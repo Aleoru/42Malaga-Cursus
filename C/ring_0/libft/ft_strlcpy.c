@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 18:20:27 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/21 15:02:59 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/04/28 19:53:45 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	unsigned int	index;
 
 	index = 0;
-	while (src[index])
+	if (size == 0)
 	{
-		if (index < size)
-			dest[index] = src[index];
-		else if (index == size)
-			dest[index] = '\0';
+		dest[ft_strlen(src) + 1] = dest[0];
+		return (ft_strlen(src));
+	}
+	while (src[index] && index < size - 1)
+	{
+		dest[index] = src[index];
 		index++;
 	}
-	while (src[index])
-		index++;
+	if (index < size)
+		dest[index] = '\0';
+	index = ft_strlen(src);
 	return (index);
 }

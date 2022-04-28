@@ -6,13 +6,13 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 12:01:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/20 13:26:51 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:07:17 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	index;
 	int	num;
