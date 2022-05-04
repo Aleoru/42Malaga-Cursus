@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 16:39:24 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/04 16:38:24 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/28 19:57:59 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/02 13:00:57 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*empty;
+	char			*str;
+	unsigned int	index;
 
-	if (nitems == 0 || size == 0)
+	index = 0;
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (ft_strlen(&s[start]) < len)
+		len = ft_strlen(&s[start]);
+	str = (char *)malloc(len + 1);
+	if (str == NULL)
 		return (NULL);
-	else if (nitems == __SIZE_MAX__ && size > 1)
-		return (NULL);
-	else if (nitems > 1 && size == __SIZE_MAX__)
-		return (NULL);
-	else
+	while (s[start] && index < len)
 	{
-		empty = malloc(nitems * size);
-		ft_bzero(empty, nitems * size);
-		return (empty);
+		str[index] = s[start];
+		start++;
+		index++;
 	}
+	str[index] = '\0';
+	return (str);
 }

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 16:39:24 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/04 16:38:24 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/05/04 17:19:05 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/04 17:22:17 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char	*empty;
+	size_t	index;
 
-	if (nitems == 0 || size == 0)
-		return (NULL);
-	else if (nitems == __SIZE_MAX__ && size > 1)
-		return (NULL);
-	else if (nitems > 1 && size == __SIZE_MAX__)
-		return (NULL);
-	else
+	index = 0;
+	while (s[index])
 	{
-		empty = malloc(nitems * size);
-		ft_bzero(empty, nitems * size);
-		return (empty);
+		f(index, &s[index]);
+		index++;
 	}
 }

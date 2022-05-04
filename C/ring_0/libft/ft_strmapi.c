@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 16:39:24 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/04 16:38:24 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/05/04 17:03:12 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/04 17:18:15 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*empty;
+	size_t	index;
+	size_t	len;
+	char	*str;
 
-	if (nitems == 0 || size == 0)
+	index = 0;
+	len = ft_strlen(s);
+	str = (char *)malloc(len * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	else if (nitems == __SIZE_MAX__ && size > 1)
-		return (NULL);
-	else if (nitems > 1 && size == __SIZE_MAX__)
-		return (NULL);
-	else
+	while (s[index])
 	{
-		empty = malloc(nitems * size);
-		ft_bzero(empty, nitems * size);
-		return (empty);
+		str[index] = f(index, s[index]);
+		index++;
 	}
+	str[index] = '\0';
+	return (str);
 }

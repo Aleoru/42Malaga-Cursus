@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 16:39:24 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/04 16:38:24 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/29 17:30:47 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/29 17:41:25 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*empty;
+	char	*str;
+	size_t	len_one;
+	size_t	len_two;
+	size_t	index;
 
-	if (nitems == 0 || size == 0)
-		return (NULL);
-	else if (nitems == __SIZE_MAX__ && size > 1)
-		return (NULL);
-	else if (nitems > 1 && size == __SIZE_MAX__)
-		return (NULL);
-	else
+	len_one = ft_strlen(s1);
+	len_two = ft_strlen(s2);
+	str = (char *)malloc(len_one + len_two);
+	index = 0;
+	while (s1[index])
 	{
-		empty = malloc(nitems * size);
-		ft_bzero(empty, nitems * size);
-		return (empty);
+		str[index] = s1[index];
+		index++;
 	}
+	index = 0;
+	while (s2[index])
+	{
+		str[len_one + index] = s2[index];
+		index++;
+	}
+	str[len_one + len_two] = '\0';
+	return (str);
 }
