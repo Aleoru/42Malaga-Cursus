@@ -66,19 +66,3 @@ char	**ft_split(char const *str, char c)
 	}
 	return (word_split(str, c, elem));
 }
-
-/*#include <stdio.h>   
-
-int	main(void)
-{
-	char	*str = "  tripouille 42  ";
-	char	**split;
-	//int		index = 0;
-
-	split = ft_split(str, ' ');
-	printf("%s\n", split[0]);
-	printf("%s\n", split[1]);
-	return (0);
-}*/
-
-// substr, strlen, strdup
