@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 19:57:59 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/02 13:00:57 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:17:00 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (ft_strlen(&s[start]) < len)
 		len = ft_strlen(&s[start]);
-	str = (char *)malloc(len + 1);
+	str = (char *)malloc((len + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (s[start] && index < len)

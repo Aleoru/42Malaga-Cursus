@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 14:43:02 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/27 20:08:46 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:43:53 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t nb)
 	mem_dest = (char *)dest;
 	mem_src = (char *)src;
 	index = 0;
+	if (src == NULL && dest == NULL)
+		return (NULL);
 	while (index < nb)
 	{
 		mem_dest[index] = mem_src[index];

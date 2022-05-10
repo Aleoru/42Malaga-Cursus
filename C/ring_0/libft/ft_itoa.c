@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:21:17 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/03 14:00:04 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 13:17:02 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*ft_itoa(int n)
 		len++;
 	}
 	nb_str = (char *)malloc((len + 1) * sizeof(char));
+	if (nb_str == NULL)
+		return (NULL);
 	nb_str[index] = *to_str(len, aux, n, nb_str);
 	return (nb_str);
 }

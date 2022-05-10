@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 18:14:23 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/27 20:26:01 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:58:57 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,11 @@ char	*ft_strchr(const char *str, int ch)
 	int	index;
 
 	index = 0;
-	if (ch > 255)
-		ch -= 256;
-	if (ch == 0)
-		return ((char *)str + ft_strlen(str));
-	while (str[index])
+	while (str[index] != (char)ch)
 	{
-		if (str[index] == ch)
-			return ((char *)&str[index]);
-		else
-			index++;
+		if (!str[index])
+			return (0);
+		index++;
 	}
-	return (0);
+	return ((char *)&str[index]);
 }

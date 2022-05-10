@@ -6,12 +6,11 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:47:39 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/05/05 11:17:57 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:14:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	**word_split(char const *str, char c, size_t n_elem)
 {
@@ -22,7 +21,9 @@ static char	**word_split(char const *str, char c, size_t n_elem)
 
 	str_pos = 0;
 	elem = 0;
-	array = (char **)malloc((n_elem + 1) * (sizeof(char *)));
+	if (n_elem > 1 && str[0] != c && str[ft_strlen(str)] != c)
+		n_elem++;
+	array = (char **)malloc((n_elem + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
 	while (str[str_pos] && elem < n_elem)
@@ -34,7 +35,7 @@ static char	**word_split(char const *str, char c, size_t n_elem)
 			str_pos++;
 		array[elem++] = ft_substr(str, start, (str_pos - start));
 	}
-	array[elem] = 0;
+	array[elem] = NULL;
 	return (array);
 }
 
@@ -44,7 +45,7 @@ char	**ft_split(char const *str, char c)
 	size_t	elem;
 	int		same;
 
-	if (str == 0)
+	if (str == NULL)
 		return (NULL);
 	elem = 0;
 	index = 0;

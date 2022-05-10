@@ -6,25 +6,26 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 18:25:53 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/27 20:20:43 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:16:07 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int ch)
+char	*ft_strrchr(const char *s, int ch)
 {
-	int	index;
+	int		index;
+	char	*str;
 
-	index = ft_strlen((char *)str);
-	if (ch > 255)
-		ch -= 256;
-	while (index >= 0)
+	str = (char *)s;
+	index = ft_strlen(str);
+	if ((char)ch == '\0')
+		return (str + index);
+	while (index + 1 > 0)
 	{
-		if (str[index] == ch)
+		if (str[index] == (char)ch)
 			return ((char *)&str[index]);
-		else
-			index--;
+		index--;
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 12:01:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/27 20:07:17 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:11:25 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_atoi(const char *str)
 	index = 0;
 	num = 0;
 	sign = 1;
-	while (str && str[index] <= ' ')
+	while (str[index] == ' ' || str[index] == '\f' || str[index] == '\n'
+		|| str[index] == '\r' || str[index] == '\t' || str[index] == '\v')
 		index++;
 	if (str[index] == '-')
 	{

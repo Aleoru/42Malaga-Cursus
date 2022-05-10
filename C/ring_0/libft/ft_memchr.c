@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 14:44:23 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/04/27 20:08:23 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:13:12 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	*ft_memchr(const void *str, int ch, size_t nb)
 	mem_str = (const char *)str;
 	index = 0;
 	if (ch > 255)
-		return ((void *)mem_str + (ch - 256));
+		return ((void *)str + (ch - 256));
 	while (index < nb)
 	{
 		if (mem_str[index] == ch)
 			return ((void *)&mem_str[index]);
-		else
-			index++;
+		index++;
 	}
 	return (0);
 }
