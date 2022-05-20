@@ -6,7 +6,7 @@
 #    By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/25 18:18:48 by aoropeza          #+#    #+#              #
-#    Updated: 2022/05/11 14:37:45 by aoropeza         ###   ########.fr        #
+#    Updated: 2022/05/13 11:24:19 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ bonus :
 	@$(CC) -c $(CFLAGS) $(B_SRC)
 	ar cr $(NAME) $(B_OBJS)
 
-all : $(NAME)
+all : $(NAME) bonus
 
 clean :
 	@$(RM) $(OBJS) $(B_OBJS)
