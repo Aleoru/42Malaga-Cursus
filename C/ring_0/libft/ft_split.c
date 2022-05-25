@@ -12,21 +12,60 @@
 
 #include "libft.h"
 
-static char	**word_split(char const *str, char c, size_t n_elem)
+static char	**split_free(char **array)
 {
+	size_t	elem;
+
+	elem = 0;
+	while (array)
+	{
+		free(array[elem]);
+		elem++;
+	}
+	return (array);
+}
+
+static size_t	count_word(char const *str, char c)
+{
+	size_t	index;
+	size_t	elem;
+	int		same;
+
+	elem = 0;
+	index = 0;
+	same = 0;
+	while (str[index++])
+	{
+		if (str[index] != c && str[index - 1] == c && str[index] != '\0')
+			elem++;
+		if (str[index] != c && str[index] != '\0')
+			same = 1;
+	}
+	if (elem == 0 && same == 1)
+	{		
+		if (!ft_strchr(str, c) || ft_strrchr(str, c))
+			elem++;
+	}
+	if (elem > 1 && str[0] != c && str[ft_strlen(str)] != c)
+		elem++;
+	return (elem);
+}
+
+char	**ft_split(char const *str, char c)
+{
+	char	**array;
+	size_t	elem;
 	size_t	str_pos;
 	size_t	start;
-	size_t	elem;
-	char	**array;
 
-	str_pos = 0;
-	elem = 0;
-	if (n_elem > 1 && str[0] != c && str[ft_strlen(str)] != c)
-		n_elem++;
-	array = (char **)malloc((n_elem + 1) * sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	array = malloc((count_word(str, c) + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
-	while (str[str_pos] && elem < n_elem)
+	str_pos = 0;
+	elem = 0;
+	while (str[str_pos] && elem < count_word(str, c))
 	{
 		while (str[str_pos] == c && str[str_pos] != '\0')
 			str_pos++;
@@ -34,36 +73,9 @@ static char	**word_split(char const *str, char c, size_t n_elem)
 		while (str[str_pos] != c && str[str_pos] != '\0')
 			str_pos++;
 		array[elem++] = ft_substr(str, start, (str_pos - start));
+		if (!array)
+			return (split_free(array));
 	}
-	array[elem] = NULL;
+	array[elem] = 0;
 	return (array);
-}
-
-char	**ft_split(char const *str, char c)
-{
-	size_t	index;
-	size_t	elem;
-	int		same;
-
-	if (str == NULL)
-		return (NULL);
-	elem = 0;
-	index = 0;
-	same = 0;
-	while (str[index])
-	{
-		if (str[index] != c && str[index - 1] == c)
-			elem++;
-		if (str[index] != c)
-			same = 1;
-		index++;
-	}
-	if (elem == 0 && same == 1)
-	{		
-		if (!ft_strchr(str, c))
-			elem++;
-		else if (ft_strrchr(str, c))
-			elem++;
-	}
-	return (word_split(str, c, elem));
 }
