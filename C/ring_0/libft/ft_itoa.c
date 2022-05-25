@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*to_str(int len, int aux, int n, char *nb_str)
+char	*to_str(int len, long aux, long int n, char *nb_str)
 {
 	int		index;
 	int		aux_len;
@@ -44,15 +44,13 @@ char	*to_str(int len, int aux, int n, char *nb_str)
 char	*ft_itoa(int n)
 {
 	char	*nb_str;
-	int		aux;
+	long	aux;
 	int		index;
 	int		len;
 
 	index = 0;
 	aux = n;
 	len = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		return (ft_strdup("0"));
 	if (n < 0)
