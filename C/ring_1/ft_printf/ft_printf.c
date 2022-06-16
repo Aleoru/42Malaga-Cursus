@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:40:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/06/03 12:40:10 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:32:15 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,3 @@ int	ft_printf(char const *str, ...)
 	va_end(args);
 	return (len);
 }
-
-/*#include <stdio.h>
-
-int	main(void)
-{
-	char	*word = "hola";
-	char	**ptr = &word;
-	int		n = -29357623;
-
-	ft_printf("%s", NULL);
-	printf("%s", NULL);
-	return(0);
-}*/
