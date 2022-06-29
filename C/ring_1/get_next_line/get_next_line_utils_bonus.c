@@ -6,11 +6,11 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:59:36 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/06/28 14:23:56 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:19:50 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {

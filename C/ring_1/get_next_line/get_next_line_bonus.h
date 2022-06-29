@@ -6,12 +6,12 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:59:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/06/28 14:23:42 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:20:10 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <fcntl.h>

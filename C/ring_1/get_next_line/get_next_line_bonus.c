@@ -6,11 +6,11 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:58:53 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/06/28 14:37:03 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:19:41 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 static char	*join(char *buf, char *buffer)
@@ -88,10 +88,10 @@ static char	*get_end(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[1024];
+	static char	*buffer[4096];
 	char		*line;
 
-	if (fd < 0 || fd > 1024 || read(fd, 0, 0) || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 4096 || read(fd, 0, 0) || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!buffer[fd])
 		buffer[fd] = ft_strdup("");
