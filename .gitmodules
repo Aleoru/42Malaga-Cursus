@@ -1,0 +1,3 @@
+[submodule "C/ring_2/so_long/lib/MLX42"]
+	path = C/ring_2/so_long/lib/MLX42
+	url = https://github.com/codam-coding-college/MLX42
