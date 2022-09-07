@@ -18,14 +18,13 @@ LIBMLX	= lib/MLX42
 
 HEADER	= -I ./inc -I $(LIBMLX)/include -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft  -L$(LIBMLX) -lmlx42 
-MLXPATH	= $(LIBMLX)/libmlx42.a
 LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 SRC		:= $(wildcard $(SRCDIR)/mandatory/*.c)
 SRC_B	:= $(wildcard $(SRCDIR)/bonus/*.c)
 OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 OBJS_B	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC_B))
 
-CC 		= clang
+CC 		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 RM 		= rm -rf
 
@@ -42,14 +41,11 @@ RESET	= \033[0m
 
 all: libmlx libft $(NAME)
 
-help:
-	@echo $(OBJS_B)
-
 libft:
 	@$(MAKE) -C $(LIBFT)
 
 libmlx:
-	@$(MAKE) -C ./lib/MLX42
+	@$(MAKE) -C $(LIBMLX)
 
 $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) $(HEADER) -o $(NAME) && printf "$(GREEN)$(BOLD)So Long game ready to play!\n$(RESET)"

@@ -23,7 +23,7 @@ void	collect_key(t_data *data, t_img img)
 	nkeys = data->level.c_count;
 	index = 0;
 	size = data->img_size;
-	while (index <= nkeys)
+	while (index < nkeys)
 	{
 		x = img.key->instances[index].x / size;
 		y = img.key->instances[index].y / size;
@@ -32,6 +32,7 @@ void	collect_key(t_data *data, t_img img)
 		{
 			img.key->instances[index].enabled = false;
 			data->points++;
+			data->level.map[data->p_y][data->p_x] = '0';
 			return ;
 		}
 		index++;

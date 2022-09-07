@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:28:29 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/15 20:28:31 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:57:25 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,4 @@ void	walk_left(t_data *data)
 	}
 	data->blink = 0;
 	data->timer = 0;
-}
-
-void	death(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data->img.player[i]->instances->enabled = false;
 }

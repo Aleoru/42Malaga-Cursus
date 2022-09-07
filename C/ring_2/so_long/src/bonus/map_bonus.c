@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:07:35 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/15 18:29:11 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:58:44 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	read_map(char *path, t_level *level, t_data *data)
 		while (level->map[y] != NULL)
 		{
 			if (len != ft_strlen(level->map[y]) - 1)
-				data->error = 2;
+				exit_error(data, 2);
 			y++;
 			level->map[y] = get_next_line(fd);
 		}
@@ -92,11 +92,6 @@ static void	load_content(t_data *data, int s, t_img img)
 		x = -1;
 		while (++x < data->level.size_x)
 		{
-			/*if (data->level.map[y][x] == 'E')
-			{
-				mlx_image_to_window(data->mlx, img.exit[1], x * s, y * s);
-				data->img.exit[1]->instances[0].enabled = false;
-			}*/
 			if (data->level.map[y][x] == 'V')
 				data->level.v_count++;
 			if (data->level.map[y][x] == 'P')
@@ -130,7 +125,7 @@ void	create_map(t_data *data, int s, t_img img)
 			else
 				exit_error(data, 7);
 			if (data->level.map[y][x] == 'C')
-				mlx_image_to_window(data->mlx, img.key, x * s, y * s);
+				mlx_image_to_window(data->mlx, img.key, x * s, y * s + 1);
 			if (data->level.map[y][x] == 'E')
 				load_exit(data, ++i, x, y);
 		}
@@ -138,4 +133,3 @@ void	create_map(t_data *data, int s, t_img img)
 	}
 	load_content(data, s, img);
 }
-//mlx_image_to_window(data->mlx, img.exit[0], x * s, y * s);

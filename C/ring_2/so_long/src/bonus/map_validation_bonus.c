@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:19:50 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/15 17:45:52 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:58:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	validate_map(t_data *data, char *path)
 	if (ft_strrchr(path, '.'))
 	{
 		ext = ft_strrchr(path, '.');
-		if (ft_strncmp(ext, ".ber", ft_strlen(".ber")))
+		if (ft_strncmp(ext, ".ber", ft_strlen(ext)))
 			exit_error(data, 1);
 	}
 }

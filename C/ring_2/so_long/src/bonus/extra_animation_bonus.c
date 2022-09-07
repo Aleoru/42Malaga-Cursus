@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:06:40 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/25 17:06:46 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:57:39 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	key_animation(void *param)
 	if (data->p_key >= 4)
 	{
 		move *= -1;
-		data->p_key = 0;
+		data->p_key = 1;
 	}
 	while (++j < data->level.c_count)
 	{

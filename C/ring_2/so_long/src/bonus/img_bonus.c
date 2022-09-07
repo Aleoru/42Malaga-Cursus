@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:03:57 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/15 17:45:01 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:57:52 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	delete_img(t_data *data)
 	mlx_delete_image(data->mlx, data->img.player[1]);
 	mlx_delete_image(data->mlx, data->img.player[2]);
 	mlx_delete_image(data->mlx, data->img.player[3]);
+	mlx_delete_image(data->mlx, data->img.player[4]);
+	mlx_delete_image(data->mlx, data->img.player[5]);
+	mlx_delete_image(data->mlx, data->img.player[6]);
+	mlx_delete_image(data->mlx, data->img.player[7]);
 	mlx_delete_image(data->mlx, data->img.key);
 	mlx_delete_image(data->mlx, data->img.exit[0]);
 	mlx_delete_image(data->mlx, data->img.exit[1]);

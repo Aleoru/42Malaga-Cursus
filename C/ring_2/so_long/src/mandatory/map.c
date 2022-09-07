@@ -55,7 +55,7 @@ void	read_map(char *path, t_level *level, t_data *data)
 		while (level->map[y] != NULL)
 		{
 			if (len != ft_strlen(level->map[y]) - 1)
-				data->error = 2;
+				exit_error(data, 2);
 			y++;
 			level->map[y] = get_next_line(fd);
 		}
@@ -103,7 +103,7 @@ void	create_map(t_data *data, int s, t_img img)
 		x = 0;
 		while (x < data->level.size_x)
 		{
-			if (ft_strchr("0CPEV", data->level.map[y][x]))
+			if (ft_strchr("0CPE", data->level.map[y][x]))
 				mlx_image_to_window(data->mlx, img.ground, x * s, y * s);
 			else if (data->level.map[y][x] == '1')
 				mlx_image_to_window(data->mlx, img.wall, x * s, y * s);

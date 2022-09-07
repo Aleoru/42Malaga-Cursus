@@ -33,7 +33,6 @@ void	move(t_data *data, t_pos *pos)
 	{
 		data->p_x = data->img.player->instances[0].x / 64;
 		data->p_y = data->img.player->instances[0].y / 64;
-		data->level.map[data->p_y + pos->y][data->p_x + pos->x] = '0';
 		collect_key(data, data->img);
 	}
 	if (data->points == data->level.c_count)

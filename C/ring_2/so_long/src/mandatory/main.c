@@ -66,8 +66,8 @@ int32_t	main(int argc, char **argv)
 		mlx_terminate(data.mlx);
 	}
 	else if (argc < 2)
-		ft_printf("\e[31mFaltan argumentos\e[0m\n");
+		ft_printf("\e[31mError\nArguments missing\e[0m\n");
 	else if (argc > 2)
-		ft_printf("\e[31mSobran uno o más argumentos\e[0m\n");
+		ft_printf("\e[31mError\nOne ore more arguments are left over\e[0m\n");
 	return (EXIT_SUCCESS);
 }

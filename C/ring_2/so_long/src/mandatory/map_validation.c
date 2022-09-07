@@ -19,9 +19,11 @@ static void	validate_map(t_data *data, char *path)
 	if (ft_strrchr(path, '.'))
 	{
 		ext = ft_strrchr(path, '.');
-		if (ft_strncmp(ext, ".ber", ft_strlen(".ber")))
+		if (ft_strncmp(ext, ".ber", ft_strlen(ext)))
 			exit_error(data, 1);
 	}
+	else
+		exit_error(data, 1);
 }
 
 static void	validate_map_structure(t_data *data, t_level *level, char **map)

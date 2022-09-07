@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:08:46 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/08/15 17:46:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:59:14 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,10 @@ void	move(t_data *data, t_pos *pos)
 		data->p_x = data->img.player[0]->instances[0].x / 64;
 		data->p_y = data->img.player[0]->instances[0].y / 64;
 		collect_key(data, data->img);
-		data->level.map[data->p_y][data->p_x] = '0';
 	}
 	if (data->points == data->level.c_count)
 	{
 		data->portal = 2;
-		data->img.exit[0]->instances[0].enabled = false;
-		data->img.exit[1]->instances[0].enabled = true;
 		if (data->level.map[data->p_y + pos->y][data->p_x + pos->x] == 'E')
 			win(data);
 	}
