@@ -16,5 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "./libft/inc/libft.h"
+
+typedef struct  pipex
+{
+    char    **paths;
+}           pipex_t;
 
 #endif
