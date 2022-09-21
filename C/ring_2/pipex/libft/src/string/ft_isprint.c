@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/19 13:38:27 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/19 17:48:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+int	ft_isprint(int arg)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
-
-#endif
+	if (arg >= 32 && arg <= 126)
+		return (1);
+	return (0);
+}

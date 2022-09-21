@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/20 13:30:45 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/20 17:37:14 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+void	*ft_memset(void *str, int ch, size_t nb)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	size_t			index;
+	unsigned char	*dstr;
 
-#endif
+	index = 0;
+	dstr = (unsigned char *)str;
+	while (nb--)
+	{
+		dstr[index] = ch;
+		index++;
+	}
+	return (dstr);
+}

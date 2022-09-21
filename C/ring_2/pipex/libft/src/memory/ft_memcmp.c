@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/21 12:20:48 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/27 20:09:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+int	ft_memcmp(const void *str_one, const void *str_two, size_t nb)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	t_size	*mem_one;
+	t_size	*mem_two;
+	size_t	index;
 
-#endif
+	mem_one = (t_size *)str_one;
+	mem_two = (t_size *)str_two;
+	index = 0;
+	while (index < nb)
+	{
+		if (mem_one[index] != mem_two[index])
+			return (mem_one[index] - mem_two[index]);
+		index++;
+	}
+	return (0);
+}

@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/19 11:49:59 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/19 17:47:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+int	ft_isalpha(int arg)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
-
-#endif
+	if ((arg >= 65 && arg <= 90) || (arg >= 97 && arg <= 122))
+		return (1);
+	return (0);
+}

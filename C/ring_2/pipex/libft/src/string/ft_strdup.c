@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/21 17:01:24 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/21 18:36:30 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+char	*ft_strdup(const char *str)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	char	*cstr;
+	int		size;
+	int		index;
+	char	*p;
 
-#endif
+	index = 0;
+	size = ft_strlen((char *)str);
+	cstr = malloc((size + 1) * sizeof(char));
+	if (cstr == NULL)
+		return (NULL);
+	p = cstr;
+	while (str[index])
+	{
+		p[index] = str[index];
+		index++;
+	}
+	p[index] = '\0';
+	return (cstr);
+}

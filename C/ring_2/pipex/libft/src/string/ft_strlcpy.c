@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/19 18:20:27 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/04/28 19:53:45 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	unsigned int	index;
 
-#endif
+	index = 0;
+	if (size == 0)
+	{
+		dest[ft_strlen(src) + 1] = dest[0];
+		return (ft_strlen(src));
+	}
+	while (src[index] && index < size - 1)
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	if (index < size)
+		dest[index] = '\0';
+	index = ft_strlen(src);
+	return (index);
+}

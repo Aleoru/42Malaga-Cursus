@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/20 18:25:53 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/10 18:16:07 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+char	*ft_strrchr(const char *s, int ch)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	int		index;
+	char	*str;
 
-#endif
+	str = (char *)s;
+	index = ft_strlen(str);
+	if ((char)ch == '\0')
+		return (str + index);
+	while (index + 1 > 0)
+	{
+		if (str[index] == (char)ch)
+			return ((char *)&str[index]);
+		index--;
+	}
+	return (NULL);
+}

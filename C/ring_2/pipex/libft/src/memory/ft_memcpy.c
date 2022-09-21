@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/20 14:43:02 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/06 18:43:53 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+void	*ft_memcpy(void *dest, const void *src, size_t nb)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	char	*mem_dest;
+	char	*mem_src;
+	size_t	index;
 
-#endif
+	mem_dest = (char *)dest;
+	mem_src = (char *)src;
+	index = 0;
+	if (src == NULL && dest == NULL)
+		return (NULL);
+	while (index < nb)
+	{
+		mem_dest[index] = mem_src[index];
+		index++;
+	}
+	return (dest);
+}

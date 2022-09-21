@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:44:25 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:27 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/04/21 16:39:24 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/05/06 20:50:13 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../inc/libft.h"
 
-/*# define READ_END	0
-# define WRITE_END	1
-# define FILE		"outfile"*/
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "./libft/inc/libft.h"
-
-typedef struct pipex
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	char	**paths;
-	char	*cmd;
-	char	**options;
-}		t_pipex;
+	char	*empty;
 
-#endif
+	if (nitems == __SIZE_MAX__ && size > 1)
+		return (NULL);
+	else if (nitems > 1 && size == __SIZE_MAX__)
+		return (NULL);
+	else
+	{
+		empty = malloc(nitems * size);
+		if (empty == NULL)
+			return (NULL);
+		ft_bzero(empty, nitems * size);
+		return (empty);
+	}
+}

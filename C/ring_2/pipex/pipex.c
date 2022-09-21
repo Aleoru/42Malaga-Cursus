@@ -12,59 +12,78 @@
 
 #include "pipex.h"
 
-char	*get_cmd_path(char *cmd, char **envp)
+static void	get_env_paths(t_pipex *pipex, char **envp)
 {
-    int     i;
-    char    *envp_PATH;
-    char    **paths;
-	char	*cmd_path;
+	int		i;
 	char	*tmp;
 
-    i = 0;
-    while (envp[i])
-    {
-        envp_PATH = ft_strnstr(envp[i], "PATH=", ft_strlen("PATH="));
-        if (envp_PATH)
+	i = 0;
+	while (envp[i])
+	{
+		tmp = ft_strnstr(envp[i], "PATH=", ft_strlen("PATH="));
+		if (tmp)
 		{
-            envp_PATH = ft_strdup(envp[i]);
+			tmp = ft_strdup(envp[i]);
 			break ;
 		}
 		i++;
-    }
-    paths = ft_split(envp_PATH, ':');
-    i = 0;
-    while (paths[i])
-    {
-		tmp = paths[i];
-        paths[i] = ft_strjoin(tmp, "/");
+	}
+	pipex->paths = ft_split(tmp, ':');
+	i = 0;
+	while (pipex->paths[i])
+	{
 		free(tmp);
-        i++;
-    }
-    i = 0;
-    while (paths[i])
-    {
-		cmd_path = ft_strjoin(paths[i], cmd);
+		tmp = pipex->paths[i];
+		pipex->paths[i] = ft_strjoin(tmp, "/");
+		i++;
+	}
+}
+
+static char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
+{
+	int		i;
+	char	*cmd_path;
+	char	*tmp;
+
+	get_env_paths(pipex, envp);
+	i = 0;
+	while (pipex->paths[++i])
+	{
+		cmd_path = ft_strjoin(pipex->paths[i], cmd);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
-		i++;
-    }
+	}
+	return (0);
 }
 
-int main(int argc, char **argv, char **envp)
+static void	cmd_and_options(t_pipex	*pipex, char *str)
 {
-    char    *options[3] = {"ls", "-la", NULL};
-	char	*cmd = "ls";
-	char	*cmd_path;
+	char	**words;
+	char	*tmp;
 
-    (void)argc;
-    (void)argv;
-	cmd_path = get_cmd_path(cmd, envp);
-	if (!cmd_path)
+	pipex->options = ft_split(str, ' ');
+	pipex->cmd = ft_strdup(pipex->options[0]);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char	*cmd_path;
+	pid_t	pid;
+	t_pipex	pipex;
+
+	if (argc < 2)
+		return (ft_printf("Faltan argumentos\n"));
+	else
 	{
-		perror(cmd_path);
-		return (-1);
+		cmd_and_options(&pipex, argv[1]);
+		cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
+		if (!cmd_path)
+		{
+			perror(cmd_path);
+			return (-1);
+		}
+		execve(cmd_path, pipex.options, envp);
 	}
-    execve(cmd_path, options, envp);
-    return (0);
+	return (0);
 }
