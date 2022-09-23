@@ -66,24 +66,62 @@ static void	cmd_and_options(t_pipex	*pipex, char *str)
 	pipex->cmd = ft_strdup(pipex->options[0]);
 }
 
+static int	exec_cmd(t_pipex *pipex, char *str, char **envp)
+{
+	char	*cmd_path;
+
+	cmd_and_options(pipex, str);
+	cmd_path = get_cmd_path(pipex->cmd, envp, pipex);
+	if (!cmd_path)
+	{
+		perror(cmd_path);
+		return (-1);
+	}
+	execve(cmd_path, pipex->options, envp);
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd_path;
 	pid_t	pid;
 	t_pipex	pipex;
+	int		status;
+	int		ends[2];
+	char	*secret;
+	char	buffer[30];
+	int		reader;
 
-	if (argc < 2)
+	if (argc < 3)
 		return (ft_printf("Faltan argumentos\n"));
 	else
 	{
-		cmd_and_options(&pipex, argv[1]);
-		cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
-		if (!cmd_path)
+		if (pipe(ends) == -1)
+			return (1);
+		pid = fork();
+		if (pid == 0)
 		{
-			perror(cmd_path);
-			return (-1);
+			close(ends[0]);
+			secret = ft_strdup("Hola que tal");
+			write(ends[1], secret, ft_strlen(secret));
+			close(ends[1]);
+			return (0);
 		}
-		execve(cmd_path, pipex.options, envp);
+			//exec_cmd(&pipex, argv[1], envp);
+		else if (pid > 0)
+		{
+			/*waitpid(pid, &status, 0);
+			pid = fork();
+			if (pid == 0)
+				exec_cmd(&pipex, argv[2], envp);
+			buffer[reader] = '\0';*/
+			close(ends[1]);
+			waitpid(pid, NULL, 0);
+			reader = read(ends[0], buffer, 30);
+			close(ends[0]);
+			buffer[reader] = '\0';
+			ft_printf("\"%s\"\n", buffer);
+		}
 	}
 	return (0);
 }
