@@ -30,26 +30,18 @@ static size_t	count_word(char const *str, char c)
 {
 	size_t	index;
 	size_t	elem;
-	int		same;
 
-	elem = 0;
 	index = 0;
-	same = 0;
-	while (str[index++])
+	elem = 0;
+	while (str[index] == c)
+		index++;
+	while (str[index])
 	{
-		if (str[index] != c && str[index - 1] == c && str[index] != '\0')
+		if (str[index] == c && str[index + 1] != c && str[index + 1] != '\0')
 			elem++;
-		if (str[index] != c && str[index] != '\0')
-			same = 1;
+		index++;
 	}
-	if (elem == 0 && same == 1)
-	{		
-		if (!ft_strchr(str, c) || ft_strrchr(str, c))
-			elem++;
-	}
-	if (elem > 1 && str[0] != c && str[ft_strlen(str)] != c)
-		elem++;
-	return (elem);
+	return (elem + 1);
 }
 
 char	**ft_split(char const *str, char c)
