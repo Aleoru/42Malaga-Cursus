@@ -83,45 +83,17 @@ static int	exec_cmd(t_pipex *pipex, char *str, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*cmd_path;
-	pid_t	pid;
 	t_pipex	pipex;
-	int		status;
-	int		ends[2];
-	char	*secret;
-	char	buffer[30];
-	int		reader;
 
 	if (argc < 3)
 		return (ft_printf("Faltan argumentos\n"));
 	else
 	{
-		if (pipe(ends) == -1)
+		if (pipe(pipex.ends) == -1)
 			return (1);
-		pid = fork();
-		if (pid == 0)
-		{
-			close(ends[0]);
-			secret = ft_strdup("Hola que tal");
-			write(ends[1], secret, ft_strlen(secret));
-			close(ends[1]);
-			return (0);
-		}
-			//exec_cmd(&pipex, argv[1], envp);
-		else if (pid > 0)
-		{
-			/*waitpid(pid, &status, 0);
-			pid = fork();
-			if (pid == 0)
-				exec_cmd(&pipex, argv[2], envp);
-			buffer[reader] = '\0';*/
-			close(ends[1]);
-			waitpid(pid, NULL, 0);
-			reader = read(ends[0], buffer, 30);
-			close(ends[0]);
-			buffer[reader] = '\0';
-			ft_printf("\"%s\"\n", buffer);
-		}
+		pipex.pid = fork();
+		if (pipex.pid == 0)
+			exec_cmd(&pipex, argv[1], envp);
 	}
 	return (0);
 }
