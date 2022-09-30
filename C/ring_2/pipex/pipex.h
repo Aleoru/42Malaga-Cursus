@@ -21,12 +21,16 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include "./libft/inc/libft.h"
 
 typedef struct pipex
 {
 	pid_t	pid;
+	pid_t	pid2;
 	int		ends[2];
+	int		infile;
+	int		outfile;
 	char	**paths;
 	char	*cmd;
 	char	**options;
