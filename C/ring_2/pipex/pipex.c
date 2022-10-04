@@ -39,11 +39,10 @@ static void	get_env_paths(t_pipex *pipex, char **envp)
 	}
 }
 
-static char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
+char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
 {
 	int		i;
 	char	*cmd_path;
-	char	*tmp;
 
 	get_env_paths(pipex, envp);
 	i = 0;
@@ -57,16 +56,7 @@ static char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
 	return (0);
 }
 
-static void	cmd_and_options(t_pipex	*pipex, char *str)
-{
-	char	**words;
-	char	*tmp;
-
-	pipex->options = ft_split(str, ' ');
-	pipex->cmd = ft_strdup(pipex->options[0]);
-}
-
-static int	pipex_list(t_pipex *pipex, int argc, char **argv, char **envp)
+static int	pipex_list(t_pipex *pipex, int argc, char **argv)
 {
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile < 0)
@@ -77,63 +67,29 @@ static int	pipex_list(t_pipex *pipex, int argc, char **argv, char **envp)
 	return (0);
 }
 
-static int	exec_cmd(t_pipex pipex, char *str, char **envp)
-{
-	char	*cmd_path;
-
-	dup2(pipex.ends[1], 1);
-	close(pipex.ends[0]);
-	dup2(pipex.infile, 0);
-	cmd_and_options(&pipex, str);
-	cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
-	if (!cmd_path)
-	{
-		perror(cmd_path);
-		exit(1);
-	}
-	execve(cmd_path, pipex.options, envp);
-	return (0);
-}
-
-static int	exec_cmd_2(t_pipex pipex, char *str, char **envp)
-{
-	char	*cmd_path;
-
-	dup2(pipex.ends[0], 0);
-	close(pipex.ends[1]);
-	dup2(pipex.outfile, 1);
-	cmd_and_options(&pipex, str);
-	cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
-	if (!cmd_path)
-	{
-		perror(cmd_path);
-		exit(1);
-	}
-	execve(cmd_path, pipex.options, envp);
-	return (0);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
+	int		status;
 
 	if (argc != 5)
-		return (ft_printf("Faltan argumentos\n"));
+		return (-1);
 	else
 	{
 		if (pipe(pipex.ends) == -1)
 			exit (1);
-		pipex_list(&pipex, argc, argv, envp);
+		pipex_list(&pipex, argc, argv);
 		pipex.pid = fork();
 		if (pipex.pid == 0)
 			exec_cmd(pipex, argv[2], envp);
 		pipex.pid2 = fork();
 		if (pipex.pid2 == 0)
 			exec_cmd_2(pipex, argv[3], envp);
-		waitpid(pipex.pid, NULL, 0);
-		close(pipex.infile);
-		waitpid(pipex.pid2, NULL, 0);
-		close(pipex.outfile);
+		close(pipex.ends[0]);
+		close(pipex.ends[1]);
+		waitpid(pipex.pid, &status, 0);
+		waitpid(pipex.pid2, &status, 0);
+		free_parent(&pipex);
 	}
 	return (0);
 }

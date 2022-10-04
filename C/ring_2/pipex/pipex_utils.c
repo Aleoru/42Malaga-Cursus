@@ -12,6 +12,18 @@
 
 #include "pipex.h"
 
+size_t	ft_strlen(const char *str)
+{
+	unsigned int	index;
+
+	index = 0;
+	while (str[index])
+	{
+		index++;
+	}
+	return (index);
+}
+
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	unsigned int	index_one;
@@ -33,74 +45,6 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 		index_one++;
 	}
 	return (0);
-}
-
-static char	**split_free(char **array)
-{
-	size_t	elem;
-
-	elem = 0;
-	while (array)
-	{
-		free(array[elem]);
-		elem++;
-	}
-	return (array);
-}
-
-static size_t	count_word(char const *str, char c)
-{
-	size_t	index;
-	size_t	elem;
-	int		same;
-
-	elem = 0;
-	index = 0;
-	same = 0;
-	while (str[index++])
-	{
-		if (str[index] != c && str[index - 1] == c && str[index] != '\0')
-			elem++;
-		if (str[index] != c && str[index] != '\0')
-			same = 1;
-	}
-	if (elem == 0 && same == 1)
-	{		
-		if (!ft_strchr(str, c) || ft_strrchr(str, c))
-			elem++;
-	}
-	if (elem > 1 && str[0] != c && str[ft_strlen(str)] != c)
-		elem++;
-	return (elem);
-}
-
-char	**ft_split(char const *str, char c)
-{
-	char	**array;
-	size_t	elem;
-	size_t	str_pos;
-	size_t	start;
-
-	if (str == NULL)
-		return (NULL);
-	array = malloc((count_word(str, c) + 1) * sizeof(char *));
-	if (!array)
-		return (NULL);
-	str_pos = 0;
-	elem = 0;
-	while (str[str_pos] && elem < count_word(str, c))
-	{
-		while (str[str_pos] == c && str[str_pos] != '\0')
-			str_pos++;
-		start = str_pos;
-		while (str[str_pos] != c && str[str_pos] != '\0')
-			str_pos++;
-		array[elem++] = ft_substr(str, start, (str_pos - start));
-		if (!array)
-			return (split_free(array));
-	}
-	array[elem] = 0;
-	return (array);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -131,18 +75,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	unsigned int	index;
-
-	index = 0;
-	while (str[index])
-	{
-		index++;
-	}
-	return (index);
-}
-
 char	*ft_strdup(const char *str)
 {
 	char	*cstr;
@@ -163,4 +95,27 @@ char	*ft_strdup(const char *str)
 	}
 	p[index] = '\0';
 	return (cstr);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char			*str;
+	unsigned int	index;
+
+	index = 0;
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (ft_strlen(&s[start]) < len)
+		len = ft_strlen(&s[start]);
+	str = malloc((len + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (s[start] && index < len)
+	{
+		str[index] = s[start];
+		start++;
+		index++;
+	}
+	str[index] = '\0';
+	return (str);
 }
