@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_free.c                                       :+:      :+:    :+:   */
+/*   pipex_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 14:27:40 by aoropeza          #+#    #+#             */
-/*   Updated: 2022/10/04 14:27:41 by aoropeza         ###   ########.fr       */
+/*   Created: 2022/10/05 13:22:03 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/10/05 13:22:06 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_child(t_pipex *pipex)
+int	ret_error(char *error)
 {
-	int	i;
-
-	i = 0;
-	while (pipex->options[i])
-	{
-		free(pipex->options[i]);
-		i++;
-	}
-	free(pipex->paths);
-	free(pipex->cmd);
+	write(2, error, ft_strlen(error));
+	return (1);
 }
 
-void	free_parent(t_pipex *pipex)
+void	exit_error(char *error)
 {
-	int	i;
+	perror(error);
+	exit (127);
+}
 
-	i = 0;
-	while (pipex->paths[i])
-	{
-		free(pipex->paths[i]);
-		i++;
-	}
-	close(pipex->infile);
-	close(pipex->outfile);
+void	exit_strerror(void)
+{
+	write(2, strerror(errno), ft_strlen(strerror(errno)));
+	write(2, "\n", 1);
+	exit(127);
 }

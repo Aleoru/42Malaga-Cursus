@@ -18,38 +18,40 @@ static void	cmd_and_options(t_pipex	*pipex, char *str)
 	pipex->cmd = ft_strdup(pipex->options[0]);
 }
 
-int	exec_cmd(t_pipex pipex, char *str, char **envp)
+void	exec_cmd(t_pipex pipex, char *str, char **envp)
 {
 	char	*cmd_path;
 
-	dup2(pipex.ends[1], 1);
-	close(pipex.ends[0]);
-	dup2(pipex.infile, 0);
+	dup2(pipex.ends[WR], WR);
+	close(pipex.ends[RD]);
+	dup2(pipex.infile, RD);
 	cmd_and_options(&pipex, str);
-	cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
+	cmd_path = get_cmd_path(pipex.cmd, &pipex);
 	if (!cmd_path)
 	{
-		perror(cmd_path);
-		exit(1);
+		free_child(&pipex);
+		exit_error(ERROR_CMD);
 	}
-	execve(cmd_path, pipex.options, envp);
-	return (0);
+	if (execve(cmd_path, pipex.options, envp))
+		exit_strerror();
+	exit (127);
 }
 
-int	exec_cmd_2(t_pipex pipex, char *str, char **envp)
+void	exec_cmd_2(t_pipex pipex, char *str, char **envp)
 {
 	char	*cmd_path;
 
-	dup2(pipex.ends[0], 0);
-	close(pipex.ends[1]);
-	dup2(pipex.outfile, 1);
+	dup2(pipex.ends[RD], RD);
+	close(pipex.ends[WR]);
+	dup2(pipex.outfile, WR);
 	cmd_and_options(&pipex, str);
-	cmd_path = get_cmd_path(pipex.cmd, envp, &pipex);
+	cmd_path = get_cmd_path(pipex.cmd, &pipex);
 	if (!cmd_path)
 	{
-		perror(cmd_path);
-		exit(1);
+		free_child(&pipex);
+		exit_error(ERROR_CMD);
 	}
-	execve(cmd_path, pipex.options, envp);
-	return (0);
+	if (execve(cmd_path, pipex.options, envp))
+		exit_strerror();
+	exit (127);
 }

@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME	= pipex
-SRC		= pipex.c pipex_utils.c pipex_split_utils.c pipex_childs.c pipex_free.c
+SRC		= pipex.c pipex_utils.c pipex_split_utils.c pipex_childs.c pipex_free.c \
+		pipex_error.c
 OBJS	= $(SRC:.c=.o)
 INC		= -I ./
 CC		= gcc

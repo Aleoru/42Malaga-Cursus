@@ -39,12 +39,11 @@ static void	get_env_paths(t_pipex *pipex, char **envp)
 	}
 }
 
-char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
+char	*get_cmd_path(char *cmd, t_pipex *pipex)
 {
 	int		i;
 	char	*cmd_path;
 
-	get_env_paths(pipex, envp);
 	i = 0;
 	while (pipex->paths[++i])
 	{
@@ -56,40 +55,50 @@ char	*get_cmd_path(char *cmd, char **envp, t_pipex *pipex)
 	return (0);
 }
 
-static int	pipex_list(t_pipex *pipex, int argc, char **argv)
+static int	pipex_list(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile < 0)
-		exit (1);
+		exit_error(ERROR_STDIN);
 	pipex->outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (pipex->outfile < 0)
-		exit (1);
-	return (0);
+		exit_error(ERROR_STDOUT);
+	if (pipe(pipex->ends) == -1)
+		exit_error(ERROR_PIPE);
+	get_env_paths(pipex, envp);
+	return (1);
+}
+
+static void	close_pipex(t_pipex *pipex, int *status)
+{
+	close(pipex->ends[0]);
+	close(pipex->ends[1]);
+	waitpid(pipex->pid, status, 0);
+	waitpid(pipex->pid2, status, 0);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
 	int		status;
+	int		exit_code;
 
+	exit_code = 1;
 	if (argc != 5)
-		return (-1);
+		return (ret_error(ERROR_INPUT));
 	else
 	{
-		if (pipe(pipex.ends) == -1)
-			exit (1);
-		pipex_list(&pipex, argc, argv);
+		pipex_list(&pipex, argc, argv, envp);
 		pipex.pid = fork();
 		if (pipex.pid == 0)
 			exec_cmd(pipex, argv[2], envp);
 		pipex.pid2 = fork();
 		if (pipex.pid2 == 0)
 			exec_cmd_2(pipex, argv[3], envp);
-		close(pipex.ends[0]);
-		close(pipex.ends[1]);
-		waitpid(pipex.pid, &status, 0);
-		waitpid(pipex.pid2, &status, 0);
+		close_pipex(&pipex, &status);
+		if (WIFEXITED(status) != 0)
+			exit_code = WEXITSTATUS(status);
 		free_parent(&pipex);
 	}
-	return (0);
+	return (exit_code);
 }
