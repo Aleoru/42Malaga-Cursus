@@ -18,13 +18,12 @@ CYAN	= \033[36;1m
 WHITE	= \033[37;1m
 RESET	= \033[0m
 
-all: libft $(NAME)
+all: lib $(NAME)
 
-libft:
+lib:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME) : $(OBJS)
-	@$(MAKE) -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(INC) -o $(NAME) && printf "$(GREEN)$(BOLD)Let's swap_push- I mean, push_swap\n$(RESET)"
 
 %o. : %.c
