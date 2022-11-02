@@ -1,9 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/02 11:29:18 by aoropeza          #+#    #+#              #
+#    Updated: 2022/11/02 11:29:20 by aoropeza         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= push_swap
 LIBFT	= libft
 
 INC		= -I ./ -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft
-SRC		= push_swap.c
+SRC		= push_swap.c mov_funs.c
 OBJS	= $(SRC:.c=.o)
 
 CC		= gcc
@@ -24,19 +36,23 @@ lib:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(INC) -o $(NAME) && printf "$(GREEN)$(BOLD)Let's swap_push- I mean, push_swap\n$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(INC) -o $(NAME) &&\
+	printf "$(GREEN)$(BOLD)Let's swap_push- I mean, push_swap\n$(RESET)"
 
 %o. : %.c
-	@$(CC) -o $@ -c $< $(INC) && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INC) && printf "$(WHITE)$(BOLD)\rCompiling: \
+	$(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean:
 	@$(RM) $(OBJS) && printf "$(GREEN)$(BOLD)All objects cleaned! :)\n$(RESET)"
 	@$(MAKE) -C $(LIBFT) clean
 
 fclean: clean
-	@$(RM) $(NAME) && printf "$(YELLOW)$(BOLD)$(NAME) $(GREEN)file cleaned! :)\n$(RESET)"
+	@$(RM) $(NAME) && printf "$(YELLOW)$(BOLD)$(NAME) $(GREEN)file cleaned! :)\
+	\n$(RESET)"
 	@$(MAKE) -C $(LIBFT) fclean
 
 re: fclean all
 
 .PHONY: all bonus clean fclean re
+
