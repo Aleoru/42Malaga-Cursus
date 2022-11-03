@@ -16,6 +16,7 @@
 # define A	'a'
 # define B	'b'
 # define SS	's'
+# define RR 'r'
 
 # include "./libft/inc/libft.h"
 
@@ -35,9 +36,10 @@ typedef struct data
 
 /*	MOVIMIENTOS	*/
 
-void	move_up(t_stack *stack);
+void	move_up(t_stack *stack, int len);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);
+void	rotate(t_data *data);
 
 #endif

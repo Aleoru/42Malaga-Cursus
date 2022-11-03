@@ -15,7 +15,7 @@ LIBFT	= libft
 
 INC		= -I ./ -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft
-SRC		= push_swap.c mov_funs.c
+SRC		= push_swap.c mov_funs.c rot_funs.c
 OBJS	= $(SRC:.c=.o)
 
 CC		= gcc
@@ -39,7 +39,7 @@ $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(INC) -o $(NAME) &&\
 	printf "$(GREEN)$(BOLD)Let's swap_push- I mean, push_swap\n$(RESET)"
 
-%o. : %.c
+%.o : %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INC) && printf "$(WHITE)$(BOLD)\rCompiling: \
 	$(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 

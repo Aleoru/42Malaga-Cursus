@@ -43,9 +43,9 @@ int	main(int argc, char **argv)
 			data.len_a++;
 		}
 		ft_printf("Tamaño stack: %d\n", data.len_a);
-		swap(&data, A);
-		ft_printf("%d: %d\n", data.stack_a[0].index, data.stack_a[0].value);
-		ft_printf("%d: %d\n", data.stack_a[1].index, data.stack_a[1].value);
+		push(&data, B);
+		ft_printf("%d\n", data.stack_a[0].value);
+		ft_printf("%d\n",data.stack_b[0].value);
 	}
 	else
 		ft_printf("Faltan argumentos\n");
