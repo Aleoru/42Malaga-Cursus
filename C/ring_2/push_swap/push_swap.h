@@ -40,6 +40,7 @@ void	move_up(t_stack *stack, int len);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);
-void	rotate(t_data *data);
+void	rotate(t_data *data, char c);
+void	rev_rotate(t_data *data, char c);
 
 #endif

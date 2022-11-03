@@ -17,7 +17,7 @@ void	move_up(t_stack *stack, int len)
 	int	i;
 
 	i = 0;
-	while (i <= len)
+	while (i < len)
 	{
 		stack[i] = stack[i + 1];
 		i++;
@@ -26,7 +26,7 @@ void	move_up(t_stack *stack, int len)
 
 void	move_down(t_stack *stack, int len)
 {
-	while (len >= 0)
+	while (len > 0)
 	{
 		stack[len + 1] = stack[len];
 		len--;

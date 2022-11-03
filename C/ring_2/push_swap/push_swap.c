@@ -37,15 +37,15 @@ int	main(int argc, char **argv)
 		while (argv[i])
 		{
 			data.stack_a[data.len_a].value = ft_atoi(argv[i]);
-			ft_printf("%d\n", data.stack_a[i - 1].value);
+			// ft_printf("%d\n", data.stack_a[i - 1].value);
 			data.stack_a[data.len_a].index = data.len_a;
 			i++;
 			data.len_a++;
 		}
-		ft_printf("Tamaño stack: %d\n", data.len_a);
+		// ft_printf("Tamaño stack: %d\n", data.len_a);
 		push(&data, B);
-		ft_printf("%d\n", data.stack_a[0].value);
-		ft_printf("%d\n",data.stack_b[0].value);
+		ft_printf("0: %d\n", data.stack_a[0].value);
+		ft_printf("Ultimo: %d\n",data.stack_b[0].value);
 	}
 	else
 		ft_printf("Faltan argumentos\n");
