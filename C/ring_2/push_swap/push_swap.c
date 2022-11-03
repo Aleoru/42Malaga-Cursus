@@ -22,6 +22,46 @@ int	stack_size(int *stack)
 	return (size);
 }
 
+void	value_index(t_data *data)
+{
+	t_stack	*stack;
+	t_stack	aux;
+	t_stack	check;
+	int		i;
+	int		j;
+
+	i = 0;
+	stack = malloc(data->len_a * sizeof(t_stack));
+	while (i < data->len_a)
+	{
+		stack[i] = data->stack_a[i];
+		i++;
+	}
+	i = 0;
+	while (i < data->len_a)
+	{
+		j = 0;
+		check = stack[i];
+		while (j < data->len_a)
+		{
+			if (check.value < stack[j].value)
+			{	
+				aux = stack[j];
+				stack[j] = check;
+				stack[i] = aux;
+				check = stack[i];
+				j = 0;
+			}
+			else
+				j++;
+		}
+		i++;
+	}
+	i = -1;
+	while (++i < data->len_a)
+		ft_printf("%d, ", stack[i].value);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -42,10 +82,8 @@ int	main(int argc, char **argv)
 			i++;
 			data.len_a++;
 		}
-		// ft_printf("Tamaño stack: %d\n", data.len_a);
-		push(&data, B);
-		ft_printf("0: %d\n", data.stack_a[0].value);
-		ft_printf("Ultimo: %d\n",data.stack_b[0].value);
+		value_index(&data);
+		i = -1;
 	}
 	else
 		ft_printf("Faltan argumentos\n");
