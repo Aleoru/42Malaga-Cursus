@@ -16,7 +16,7 @@
 # define A	'a'
 # define B	'b'
 # define SS	's'
-# define RR 'r'
+# define RR	'r'
 
 # include "./libft/inc/libft.h"
 
@@ -32,11 +32,12 @@ typedef struct data
 	t_stack	*stack_b;
 	int		len_a;
 	int		len_b;
+	int		mean;
 }		t_data;
 
 /*	MOVIMIENTOS	*/
 
-void	move_up(t_stack *stack, int len);
+void	move_up(t_stack *stack);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);

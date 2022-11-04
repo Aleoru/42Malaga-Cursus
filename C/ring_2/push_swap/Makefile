@@ -15,7 +15,7 @@ LIBFT	= libft
 
 INC		= -I ./ -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft
-SRC		= push_swap.c mov_funs.c rot_funs.c
+SRC		= push_swap.c mov_funs.c
 OBJS	= $(SRC:.c=.o)
 
 CC		= gcc

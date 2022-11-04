@@ -22,27 +22,19 @@ int	stack_size(int *stack)
 	return (size);
 }
 
-void	value_index(t_data *data)
+static void	sort_stack(t_data *data, t_stack *stack)
 {
-	t_stack	*stack;
-	t_stack	aux;
-	t_stack	check;
 	int		i;
 	int		j;
+	t_stack	aux;
+	t_stack	check;
 
 	i = 0;
-	stack = malloc(data->len_a * sizeof(t_stack));
-	while (i < data->len_a)
+	while (++i < data->len_a)
 	{
-		stack[i] = data->stack_a[i];
-		i++;
-	}
-	i = 0;
-	while (i < data->len_a)
-	{
-		j = 0;
+		j = -1;
 		check = stack[i];
-		while (j < data->len_a)
+		while (++j < data->len_a)
 		{
 			if (check.value < stack[j].value)
 			{	
@@ -50,16 +42,57 @@ void	value_index(t_data *data)
 				stack[j] = check;
 				stack[i] = aux;
 				check = stack[i];
-				j = 0;
+				j = -1;
 			}
-			else
-				j++;
 		}
-		i++;
 	}
 	i = -1;
 	while (++i < data->len_a)
-		ft_printf("%d, ", stack[i].value);
+		stack[i].index = i;
+}
+
+static void	value_index(t_data *data)
+{
+	t_stack	*stack;
+	int		i;
+	int		j;
+
+	stack = malloc(data->len_a * sizeof(t_stack));
+	i = -1;
+	while (++i < data->len_a)
+		stack[i] = data->stack_a[i];
+	sort_stack(data, stack);
+	i = -1;
+	while (++i < data->len_a)
+	{
+		j = -1;
+		while (++j < data->len_a)
+		{
+			if (data->stack_a[i].value == stack[j].value)
+			{
+				data->stack_a[i].index = stack[j].index;
+				j = -1;
+				break ;
+			}
+		}
+	}
+}
+
+static void	stack(t_data *data, int argc, char **argv)
+{
+	int	i;
+
+	data->stack_a = malloc(argc * sizeof(t_stack));
+	data->stack_b = malloc(argc * sizeof(t_stack));
+	i = 1;
+	data->len_a = 0;
+	while (argv[i])
+	{
+		data->stack_a[data->len_a].value = ft_atoi(argv[i]);
+		data->stack_a[data->len_a].index = data->len_a;
+		i++;
+		data->len_a++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -68,22 +101,12 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 1;
-	ft_bzero(&data, sizeof(t_data));
-	data.len_a = 0;
 	if (argc > 1)
 	{
-		data.stack_a = malloc(argc * sizeof(t_stack));
-		data.stack_b = malloc(argc * sizeof(t_stack));
-		while (argv[i])
-		{
-			data.stack_a[data.len_a].value = ft_atoi(argv[i]);
-			// ft_printf("%d\n", data.stack_a[i - 1].value);
-			data.stack_a[data.len_a].index = data.len_a;
-			i++;
-			data.len_a++;
-		}
+		ft_bzero(&data, sizeof(t_data));
+		stack(&data, argc, argv);
 		value_index(&data);
-		i = -1;
+		if (data.len_a > 3)
 	}
 	else
 		ft_printf("Faltan argumentos\n");

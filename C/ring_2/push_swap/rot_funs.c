@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rot_funs.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/04 11:45:15 by aoropeza          #+#    #+#             */
+/*   Updated: 2022/11/04 11:45:17 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rotate(t_data *data, char c)
 {
-	t_stack aux;
+	t_stack	aux;
 
 	if (c == A || c == RR)
 	{
@@ -26,7 +38,7 @@ void	rotate(t_data *data, char c)
 
 void	rev_rotate(t_data *data, char c)
 {
-	t_stack aux;
+	t_stack	aux;
 
 	if (c == A || c == RR)
 	{
