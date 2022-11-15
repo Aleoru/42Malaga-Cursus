@@ -44,8 +44,6 @@ void	swap(t_data *data, char c)
 		aux = data->stack_a[0];
 		data->stack_a[0] = data->stack_a[1];
 		data->stack_a[1] = aux;
-		if (c == A)
-			ft_printf("sa\n");
 	}
 	if (c == B || c == SS)
 	{
@@ -54,13 +52,9 @@ void	swap(t_data *data, char c)
 		aux = data->stack_b[0];
 		data->stack_b[0] = data->stack_b[1];
 		data->stack_b[1] = aux;
-		if (c == B)
-			ft_printf("sb\n");
 	}
-	if (c == SS)
-		ft_printf ("ss\n");
+	ft_printf("s%c\n", c);
 }
-
 
 void	push(t_data *data, char c)
 {
@@ -74,7 +68,6 @@ void	push(t_data *data, char c)
 		data->len_a++;
 		move_up(data->stack_b);
 		data->len_b--;
-		ft_printf("pa\n");
 	}
 	if (c == B)
 	{
@@ -86,6 +79,6 @@ void	push(t_data *data, char c)
 		data->len_b++;
 		move_up(data->stack_a);
 		data->len_a--;
-		ft_printf("pb\n");
 	}
+	ft_printf("p%c\n", c);
 }

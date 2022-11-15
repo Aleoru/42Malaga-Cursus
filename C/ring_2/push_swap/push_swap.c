@@ -89,7 +89,6 @@ static void	stack(t_data *data, int argc, char **argv)
 	while (argv[i])
 	{
 		data->stack_a[data->len_a].value = ft_atoi(argv[i]);
-		data->stack_a[data->len_a].index = data->len_a;
 		i++;
 		data->len_a++;
 	}
@@ -104,9 +103,10 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_bzero(&data, sizeof(t_data));
+		check_argv(argv, &data);
+		ft_printf("tamaño: %d\n", data.len_a);
 		stack(&data, argc, argv);
 		value_index(&data);
-		if (data.len_a > 3)
 	}
 	else
 		ft_printf("Faltan argumentos\n");

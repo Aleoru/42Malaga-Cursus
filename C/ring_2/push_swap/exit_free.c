@@ -12,10 +12,12 @@
 
 #include "push_swap.h"
 
-void	exit_error(t_data *data)
+void	exit_error(t_data *data, int error)
 {
 	write(2, "Error\n", 6);
-	/* FREE */
+	if (error == 2)
+		write(2, "Letters are not numbers\n", 24);
+	free(data);
 	exit(1);
 }
 
