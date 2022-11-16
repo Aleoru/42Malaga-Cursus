@@ -78,34 +78,15 @@ static void	value_index(t_data *data)
 	}
 }
 
-static void	stack(t_data *data, int argc, char **argv)
-{
-	int	i;
-
-	data->stack_a = malloc(argc * sizeof(t_stack));
-	data->stack_b = malloc(argc * sizeof(t_stack));
-	i = 1;
-	data->len_a = 0;
-	while (argv[i])
-	{
-		data->stack_a[data->len_a].value = ft_atoi(argv[i]);
-		i++;
-		data->len_a++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		i;
 
-	i = 1;
 	if (argc > 1)
 	{
 		ft_bzero(&data, sizeof(t_data));
 		check_argv(argv, &data);
-		ft_printf("tamaño: %d\n", data.len_a);
-		stack(&data, argc, argv);
+		stack_argv(argv, &data);
 		value_index(&data);
 	}
 	else

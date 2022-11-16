@@ -48,5 +48,6 @@ void	rev_rotate(t_data *data, char c);
 /*		CONTROL		*/
 void	exit_error(t_data *data, int error);
 void	check_argv(char	**argv, t_data *data);
+void	stack_argv(char	**argv, t_data *data);
 
 #endif
