@@ -16,19 +16,22 @@ void	exit_error(t_data *data, int error)
 {
 	write(2, "Error\n", 6);
 	if (error == 2)
+	{
 		write(2, "Letters are not numbers\n", 24);
-	free(data);
+		exit(1);
+	}
+	free_stack(data);
 	exit(1);
 }
 
-void	free_num(t_data *data)
+void	free_stack(t_stack *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->len_a)
+	i = data->len_a -1;
+	while (i >= data->len_a)
 	{
 		free(&data->stack_a[i]);
-		i++;
+		i--;
 	}
 }

@@ -15,15 +15,19 @@
 void	sort_three(t_data *data)
 {
 	if (data->len_a == 1)
-	{
-		
-	}
+		is_sorted(data);
 	else if (data->len_a == 2)
 	{
-
+		swap(data, A);
+		is_sorted(data);
 	}
 	else if (data->len_a == 3)
 	{
-
+		if (data->stack_a[0] < data.stack_a[1])
+		{
+			rotate(data, A);
+			swap(data, A);
+		}
+		is_sorted(data);
 	}
 }

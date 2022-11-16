@@ -67,6 +67,7 @@ static int	split_args(t_data *data, char *argv, int pos)
 	while (arg_split[i])
 	{
 		data->stack_a[pos].value = ft_atoi(arg_split[i]);
+		free(arg_split[i]);
 		i++;
 		pos++;
 	}
@@ -101,4 +102,24 @@ void	stack_argv(char	**argv, t_data *data)
 			pos++;
 		}
 	}
+}
+
+void	is_sorted(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while(i + 1 < data->len_a)
+	{
+		if (data->stack_a[i].index < data->stack_a[i + 1].index)
+			i++;
+		else
+		{
+			ft_printf("It's not sorted\n");
+			return ;
+		}
+	}
+	ft_printf("It's sorted\n");
+	free_num(data);
+	exit(EXIT_SUCCESS);
 }
