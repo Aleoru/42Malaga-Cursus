@@ -59,13 +59,19 @@ static int	split_args(t_data *data, char *argv, int pos)
 {
 	char	**arg_split;
 	int		i;
+	char	*min;
+	char	*max;
 
 	i = 0;
 	arg_split = ft_split(argv, ' ');
+	min = ft_strdup("-2147483648");
+	max = ft_strdup("2147483647");
 	if (!arg_split[0])
 		return (0);
 	while (arg_split[i])
 	{
+		if (arg_split[i] < min) // cambiar condición
+			exit_error(data, 3);
 		data->stack_a[pos].value = ft_atoi(arg_split[i]);
 		free(arg_split[i]);
 		i++;

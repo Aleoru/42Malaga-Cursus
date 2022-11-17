@@ -63,6 +63,11 @@ static void	value_index(t_data *data)
 		stack[i] = data->stack_a[i];
 	sort_stack(data, stack);
 	i = -1;
+	while (++i + 1 < data->len_a)
+	{
+		if (stack[i].value == stack[i + 1].value)
+			exit_error(data, 4);
+	}
 	while (++i < data->len_a)
 	{
 		j = -1;
@@ -84,6 +89,7 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
+		ft_printf("%d, %d\n", ft_strncmp("-1", "-2147483648", 11), ft_strncmp("2", "2147483647", 10));
 		ft_bzero(&data, sizeof(t_data));
 		check_argv(argv, &data);
 		stack_argv(argv, &data);
