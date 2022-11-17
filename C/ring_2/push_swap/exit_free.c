@@ -24,7 +24,7 @@ void	exit_error(t_data *data, int error)
 	exit(1);
 }
 
-void	free_stack(t_stack *data)
+void	free_stack(t_data *data)
 {
 	int	i;
 

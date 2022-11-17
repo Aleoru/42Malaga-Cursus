@@ -88,7 +88,8 @@ int	main(int argc, char **argv)
 		check_argv(argv, &data);
 		stack_argv(argv, &data);
 		value_index(&data);
-		is_sorted(&data);
+		if (!is_sorted(&data))
+			sort_three(&data);
 	}
 	else
 		ft_printf("Faltan argumentos\n");

@@ -38,18 +38,23 @@ typedef struct data
 
 /*	MOVIMIENTOS	*/
 
-void	move_up(t_stack *stack);
+void	move_up(t_stack *stack, int len);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);
 void	rotate(t_data *data, char c);
 void	rev_rotate(t_data *data, char c);
 
-/*		CONTROL		*/
+/*	CONTROL		*/
+
 void	exit_error(t_data *data, int error);
 void	check_argv(char	**argv, t_data *data);
 void	stack_argv(char	**argv, t_data *data);
 void	free_stack(t_data *data);
-void	is_sorted(t_data *data);
+int		is_sorted(t_data *data);
+
+/*	ALGORITMO	*/
+
+void	sort_three(t_data *data);
 
 #endif

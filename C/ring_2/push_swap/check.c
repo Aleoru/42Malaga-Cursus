@@ -104,7 +104,7 @@ void	stack_argv(char	**argv, t_data *data)
 	}
 }
 
-void	is_sorted(t_data *data)
+int	is_sorted(t_data *data)
 {
 	int	i;
 
@@ -116,10 +116,9 @@ void	is_sorted(t_data *data)
 		else
 		{
 			ft_printf("It's not sorted\n");
-			return ;
+			return (0);
 		}
 	}
 	ft_printf("It's sorted\n");
-	free_num(data);
-	exit(EXIT_SUCCESS);
+	return (1);
 }
