@@ -88,8 +88,10 @@ int	main(int argc, char **argv)
 		check_argv(argv, &data);
 		stack_argv(argv, &data);
 		value_index(&data);
-		if (!is_sorted(&data))
+		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
+		else if(!is_sorted(&data))
+			sort(&data);
 	}
 	else
 		ft_printf("Faltan argumentos\n");

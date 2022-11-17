@@ -114,11 +114,7 @@ int	is_sorted(t_data *data)
 		if (data->stack_a[i].index < data->stack_a[i + 1].index)
 			i++;
 		else
-		{
-			ft_printf("It's not sorted\n");
 			return (0);
-		}
 	}
-	ft_printf("It's sorted\n");
 	return (1);
 }

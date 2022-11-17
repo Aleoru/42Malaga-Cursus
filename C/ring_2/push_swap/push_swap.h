@@ -56,5 +56,6 @@ int		is_sorted(t_data *data);
 /*	ALGORITMO	*/
 
 void	sort_three(t_data *data);
+void	sort(t_data *data);
 
 #endif
