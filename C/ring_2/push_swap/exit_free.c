@@ -16,14 +16,7 @@ void	exit_error(t_data *data, int error)
 {
 	write(2, "Error\n", 6);
 	if (error == 2)
-	{
-		write(2, "Letters are not numbers.\n", 25);
 		exit(1);
-	}
-	if (error == 3)
-		write(2, "Values above int are not allowed.\n", 34);
-	if (error == 4)
-		write(2, "There are duplicated values.\n", 29);
 	free_stack(data);
 	exit(1);
 }

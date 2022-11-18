@@ -43,10 +43,13 @@ void	check_argv(char	**argv, t_data *data)
 		check = 0;
 		while (argv[i][++j])
 		{
-			if (ft_isalpha(argv[i][j]))
-				exit_error(data, 2);
-			else if (argv[i][j] == ' ')
+			if (argv[i][j] == ' ')
 				check = 1;
+			else if ((argv[i][j] == '+' || argv[i][j] == '-')
+				&& !ft_isdigit(argv[i][j + 1]))
+				exit_error(data, 2);
+			else if ((argv[i][j] != '+' || argv[i][j] != '-') && (ft_isalpha(argv[i][j]) || !ft_isdigit(argv[i][j])))
+				exit_error(data, 2);
 		}			
 		if (check == 1)
 			data->len_a += count(argv[i], ' ');
@@ -59,20 +62,17 @@ static int	split_args(t_data *data, char *argv, int pos)
 {
 	char	**arg_split;
 	int		i;
-	char	*min;
-	char	*max;
 
 	i = 0;
 	arg_split = ft_split(argv, ' ');
-	min = ft_strdup("-2147483648");
-	max = ft_strdup("2147483647");
 	if (!arg_split[0])
 		return (0);
 	while (arg_split[i])
 	{
-		if (arg_split[i] < min) // cambiar condición
+		if (ft_atoli(arg_split[i]) > INT_MAX
+			|| ft_atoli(arg_split[i]) < INT_MIN)
 			exit_error(data, 3);
-		data->stack_a[pos].value = ft_atoi(arg_split[i]);
+		data->stack_a[pos].value = ft_atoli(arg_split[i]);
 		free(arg_split[i]);
 		i++;
 		pos++;
@@ -104,7 +104,9 @@ void	stack_argv(char	**argv, t_data *data)
 			pos = split_args(data, argv[i], pos);
 		else if (check == 0 && argv[i] != NULL)
 		{
-			data->stack_a[pos].value = ft_atoi(argv[i]);
+			if (ft_atoli(argv[i]) > INT_MAX || ft_atoli(argv[i]) < INT_MIN)
+				exit_error(data, 3);
+			data->stack_a[pos].value = ft_atoli(argv[i]);
 			pos++;
 		}
 	}
@@ -115,7 +117,7 @@ int	is_sorted(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i + 1 < data->len_a)
+	while (i + 1 < data->len_a)
 	{
 		if (data->stack_a[i].index < data->stack_a[i + 1].index)
 			i++;

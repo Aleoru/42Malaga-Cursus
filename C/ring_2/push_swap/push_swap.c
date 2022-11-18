@@ -27,28 +27,28 @@ static void	sort_stack(t_data *data, t_stack *stack)
 	int		i;
 	int		j;
 	t_stack	aux;
-	t_stack	check;
 
-	i = 0;
+	i = -1;
 	while (++i < data->len_a)
 	{
-		j = -1;
-		check = stack[i];
+		aux = stack[i];
+		j = i;
 		while (++j < data->len_a)
 		{
-			if (check.value < stack[j].value)
+			if (aux.value > stack[j].value)
 			{	
 				aux = stack[j];
-				stack[j] = check;
+				stack[j] = stack[i];
 				stack[i] = aux;
-				check = stack[i];
-				j = -1;
 			}
 		}
 	}
-	i = -1;
-	while (++i < data->len_a)
+	while (--i >= 0)
+	{
 		stack[i].index = i;
+		if ((stack[i].value == stack[i + 1].value) && (i + 1 < data->len_a))
+			exit_error(data, 4);
+	}
 }
 
 static void	value_index(t_data *data)
@@ -63,11 +63,6 @@ static void	value_index(t_data *data)
 		stack[i] = data->stack_a[i];
 	sort_stack(data, stack);
 	i = -1;
-	while (++i + 1 < data->len_a)
-	{
-		if (stack[i].value == stack[i + 1].value)
-			exit_error(data, 4);
-	}
 	while (++i < data->len_a)
 	{
 		j = -1;
@@ -89,17 +84,17 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		ft_printf("%d, %d\n", ft_strncmp("-1", "-2147483648", 11), ft_strncmp("2", "2147483647", 10));
 		ft_bzero(&data, sizeof(t_data));
 		check_argv(argv, &data);
+		puts("hola\n");
 		stack_argv(argv, &data);
 		value_index(&data);
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
-		else if(!is_sorted(&data))
+		else if (!is_sorted(&data))
 			sort(&data);
 	}
 	else
-		ft_printf("Faltan argumentos\n");
+		exit_error(&data, 2);
 	return (0);
 }

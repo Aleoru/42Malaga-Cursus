@@ -17,7 +17,7 @@ static int	the_greatest(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i + 1 < 3)
+	while (i + 1 < 3)
 	{
 		if (data->stack_a[0].index > data->stack_a[i + 1].index)
 			i++;

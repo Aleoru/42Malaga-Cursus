@@ -17,6 +17,8 @@
 # define B	'b'
 # define SS	's'
 # define RR	'r'
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 # include "./libft/inc/libft.h"
 # include <stdio.h>
@@ -38,7 +40,7 @@ typedef struct data
 
 /*	MOVIMIENTOS	*/
 
-void	move_up(t_stack *stack, int len);
+void	move_up(t_stack *stack);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);
@@ -57,5 +59,8 @@ int		is_sorted(t_data *data);
 
 void	sort_three(t_data *data);
 void	sort(t_data *data);
+
+/*		UTILS		*/
+long	ft_atoli(const char *str);
 
 #endif

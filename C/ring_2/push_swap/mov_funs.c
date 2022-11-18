@@ -12,12 +12,12 @@
 
 #include "./push_swap.h"
 
-void	move_up(t_stack *stack, int len)
+void	move_up(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < len)
+	while (stack[i].value)
 	{
 		stack[i] = stack[i + 1];
 		i++;
@@ -66,7 +66,7 @@ void	push(t_data *data, char c)
 			move_down(data->stack_a, data->len_a);
 		data->stack_a[0] = data->stack_b[0];
 		data->len_a++;
-		move_up(data->stack_b, data->len_b);
+		move_up(data->stack_b);
 		data->len_b--;
 	}
 	if (c == B)
@@ -77,7 +77,7 @@ void	push(t_data *data, char c)
 			move_down(data->stack_b, data->len_b);
 		data->stack_b[0] = data->stack_a[0];
 		data->len_b++;
-		move_up(data->stack_a, data->len_a);
+		move_up(data->stack_a);
 		data->len_a--;
 	}
 	ft_printf("p%c\n", c);
