@@ -53,8 +53,8 @@ void	sort_three(t_data *data)
 				swap(data, A);
 		}
 	}
-	free_stack(data);
-	exit(EXIT_SUCCESS);
+	/*free_stack(data);
+	exit(EXIT_SUCCESS);*/
 }
 
 void	sort(t_data *data)
@@ -79,6 +79,51 @@ void	sort(t_data *data)
 	ft_printf("A	B\n");
 	while (++i < data->len_a)
 		ft_printf("%d : %d	%d : %d\n", data->stack_a[i].index, data->stack_a[i].value, data->stack_b[i].index, data->stack_b[i].value);
+	i -= 1;
 	while (++i < data->len_b)
 		ft_printf("	%d : %d\n", data->stack_b[i].index, data->stack_b[i].value);
+}
+
+void	find_partner(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!is_sorted(data))
+		sort_three(data);
+	ft_printf("Pareja ideal\n");
+	while (i < data->len_b)
+	{
+		j = 0;
+		while (j < data->len_a)
+		{
+			if (data->stack_b[i].value > data->stack_a[j].value)
+			{
+				j++;
+				if (j == data->len_a)
+				{
+					data->stack_b[i].partner = data->stack_a[0].value;
+					ft_printf("%d : %d\n", data->stack_b[i].value, data->stack_b[j].partner);
+					break ;
+				}
+			}
+			else
+			{
+				data->stack_b[i].partner = data->stack_a[j].value;
+				ft_printf("%d : %d\n", data->stack_b[i].value, data->stack_b[i].partner);
+				break ;
+			}
+		}
+		i++;
+	}
+}
+
+void	movement_cost(t_data *data, t_data copy)
+{
+	int	cost;
+	int	i;
+
+	cost = 0;
+	i = 0;
 }

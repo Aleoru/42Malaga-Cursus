@@ -40,3 +40,10 @@ long	ft_atoli(const char *str)
 	}
 	return (num * sign);
 }
+
+int	ft_issign(int arg)
+{
+	if (arg == 43 || arg == 45)
+		return (1);
+	return (0);
+}

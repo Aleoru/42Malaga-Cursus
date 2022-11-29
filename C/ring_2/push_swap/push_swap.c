@@ -86,13 +86,13 @@ int	main(int argc, char **argv)
 	{
 		ft_bzero(&data, sizeof(t_data));
 		check_argv(argv, &data);
-		puts("hola\n");
 		stack_argv(argv, &data);
 		value_index(&data);
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
 		else if (!is_sorted(&data))
 			sort(&data);
+		find_partner(&data);
 	}
 	else
 		exit_error(&data, 2);

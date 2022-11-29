@@ -27,6 +27,8 @@ typedef struct stack
 {
 	int	value;
 	int	index;
+	int partner;
+	int	move_cost;
 }		t_stack;
 
 typedef struct data
@@ -59,8 +61,10 @@ int		is_sorted(t_data *data);
 
 void	sort_three(t_data *data);
 void	sort(t_data *data);
+void	find_partner(t_data *data);
 
 /*		UTILS		*/
 long	ft_atoli(const char *str);
+int		ft_issign(int arg);
 
 #endif

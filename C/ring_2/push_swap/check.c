@@ -45,10 +45,10 @@ void	check_argv(char	**argv, t_data *data)
 		{
 			if (argv[i][j] == ' ')
 				check = 1;
-			else if ((argv[i][j] == '+' || argv[i][j] == '-')
-				&& !ft_isdigit(argv[i][j + 1]))
+			else if (ft_issign(argv[i][j]) && !ft_isdigit(argv[i][j + 1]))
 				exit_error(data, 2);
-			else if ((argv[i][j] != '+' || argv[i][j] != '-') && (ft_isalpha(argv[i][j]) || !ft_isdigit(argv[i][j])))
+			else if (!ft_issign(argv[i][j]) && (ft_isalpha(argv[i][j])
+				|| !ft_isdigit(argv[i][j])))
 				exit_error(data, 2);
 		}			
 		if (check == 1)
