@@ -89,8 +89,8 @@ void	stack_argv(char	**argv, t_data *data)
 
 	i = 0;
 	pos = 0;
-	data->stack_a = malloc(data->len_a * sizeof(t_stack));
-	data->stack_b = malloc(data->len_a * sizeof(t_stack));
+	data->stack_a = ft_calloc(data->len_a, sizeof(t_stack));
+	data->stack_b = ft_calloc(data->len_a, sizeof(t_stack));
 	while (argv[++i])
 	{
 		j = -1;

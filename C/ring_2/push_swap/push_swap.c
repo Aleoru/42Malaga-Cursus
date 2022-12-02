@@ -81,6 +81,7 @@ static void	value_index(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		i;
 
 	if (argc > 1)
 	{
@@ -88,6 +89,9 @@ int	main(int argc, char **argv)
 		check_argv(argv, &data);
 		stack_argv(argv, &data);
 		value_index(&data);
+		i = -1;
+		while (++i < data.len_a)
+			ft_printf("%d : %d\n", data.stack_a[i].index, data.stack_a[i].value);
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
 		else if (!is_sorted(&data))

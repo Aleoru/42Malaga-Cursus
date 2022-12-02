@@ -53,8 +53,6 @@ void	sort_three(t_data *data)
 				swap(data, A);
 		}
 	}
-	/*free_stack(data);
-	exit(EXIT_SUCCESS);*/
 }
 
 void	sort(t_data *data)
@@ -83,6 +81,8 @@ void	sort(t_data *data)
 	while (++i < data->len_b)
 		ft_printf("	%d : %d\n", data->stack_b[i].index, data->stack_b[i].value);
 }
+
+// Modificar para que sea < 25 lineas y hacer función que busque el valor más pequeño de A, parejas son indices no valores
 
 void	find_partner(t_data *data)
 {
@@ -119,11 +119,18 @@ void	find_partner(t_data *data)
 	}
 }
 
-void	movement_cost(t_data *data, t_data copy)
-{
-	int	cost;
-	int	i;
+// Calcular coste movimientos, convertir valores a absolutos (ponerlos en positivo si son negativos), y calcular el total
+// Si A y B son positivos o negativos, el coste total es el número más grande
+// Si uno es positivo y otro negativo, sumar ambos valores absolutos
 
-	cost = 0;
-	i = 0;
+void	movement_cost(t_data *data, int i)
+{
+	if (data->stack_b[i].partner < data->len_a - data->stack_b[i].partner)
+		data->stack_b->cost_a = (data->len_a - data->stack_b[i].partner) * -1;
+	else
+		data->stack_b->cost_a = data->len_a - data->stack_b[i].partner;
+	if (data->stack_b[i].index < data->len_b - data->stack_b[i].index)
+		data->stack_b->cost_b = (data->len_b - data->stack_b[i].index) * -1;
+	else
+		data->stack_b->cost_b = data->len_b - data->stack_b[i].index;
 }
