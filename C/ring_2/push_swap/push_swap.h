@@ -64,7 +64,7 @@ int		is_sorted(t_data *data);
 void	sort_three(t_data *data);
 void	sort(t_data *data);
 void	find_partner(t_data *data); // Revisar
-void	movement_cost(t_data *data, int i); // Revisar
+void	movement_cost(t_data *data, int i);
 
 /*		UTILS		*/
 long	ft_atoli(const char *str);
