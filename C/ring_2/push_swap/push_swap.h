@@ -39,6 +39,8 @@ typedef struct data
 	t_stack	*stack_b;
 	int		len_a;
 	int		len_b;
+	int		counter_a;
+	int		counter_b;
 	int		mean;
 }		t_data;
 
@@ -63,8 +65,10 @@ int		is_sorted(t_data *data);
 
 void	sort_three(t_data *data);
 void	sort(t_data *data);
+void	minor_value(t_data *data, int x); // Revisar
 void	find_partner(t_data *data); // Revisar
 void	movement_cost(t_data *data, int i);
+//void	moving_together(t_data *data);
 
 /*		UTILS		*/
 long	ft_atoli(const char *str);

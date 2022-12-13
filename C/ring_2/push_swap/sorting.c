@@ -27,7 +27,7 @@ void	sort(t_data *data)
 		ft_printf("	%d : %d\n", data->stack_b[i].index, data->stack_b[i].value);
 }
 
-int	minor_value(t_data *data)
+void	minor_value(t_data *data, int x)
 {
 	int	i;
 	int	j;
@@ -44,10 +44,12 @@ int	minor_value(t_data *data)
 				break ;
 		}
 		if (j == data->len_a)
-			return (data->stack_a[i].index);
+		{
+			ft_printf("->%d\n", data->stack_a[i].index);
+			data->stack_b[x].partner = data->stack_a[i].index;
+		}
 		i++;
 	}
-	return (data->stack_a[i].index);
 }
 
 // Modificar para que sea < 25 lineas
@@ -71,13 +73,15 @@ void	find_partner(t_data *data)
 				j++;
 				if (j == data->len_a)
 				{
-					data->stack_b[i].partner = minor_value(data);
+					minor_value(data, i); // No se ejecuta está función
+					//ft_printf("%d\n", data->stack_b[i].partner);
 					break ;
 				}
 			}
 			else
 			{
 				data->stack_b[i].partner = data->stack_a[j].index;
+				//ft_printf("%d || %d\n", data->stack_b[i].partner, data->stack_a[j].index);
 				break ;
 			}
 		}
@@ -128,4 +132,5 @@ void	movement_cost(t_data *data, int i)
 	cost_a = data->stack_b[i].cost_a;
 	cost_b = data->stack_b[i].cost_b;
 	ft_printf("A: %d, B: %d\n", cost_a, cost_b);
+	calculate_cost(data, i, cost_a, cost_b);
 }
