@@ -6,7 +6,7 @@ void	sort(t_data *data)
 
 	i = 0;
 	data->mean = data->len_a / 2;
-	while (i < data->len_a)
+	while (i < data->len_a && data->len_a > 3)
 	{
 		if (data->stack_a[i].index < data->mean)
 			push(data, B);
@@ -18,7 +18,7 @@ void	sort(t_data *data)
 	}
 	while (data->len_a > 3)
 		push(data, B);
-	if (data->len_a == 3 && !is_sorted(data))
+	if (!is_sorted(data))
 		sort_three(data);
 	i = -1;
 	ft_printf("A	B\n");
@@ -86,6 +86,7 @@ void	find_partner(t_data *data)
 			}
 		}
 		movement_cost(data, i);
+		ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
 		ft_printf("%d : %d = %d\n", data->stack_b[i].value, data->stack_b[i].partner, data->stack_b[i].total_cost);
 		i++;
 	}
@@ -93,14 +94,14 @@ void	find_partner(t_data *data)
 
 void	calculate_cost(t_data *data, int i, int cost_a, int cost_b)
 {
-	if (cost_a > 0 && cost_b > 0)
+	if (cost_a >= 0 && cost_b >= 0)
 	{
 		if (cost_a > cost_b)
 			data->stack_b[i].total_cost = cost_a;
 		else
 			data->stack_b[i].total_cost = cost_b;
 	}
-	else if (cost_a < 0 && cost_b < 0)
+	else if (cost_a <= 0 && cost_b <= 0)
 	{
 		if (cost_a > cost_b)
 			data->stack_b[i].total_cost = cost_b * -1;
@@ -131,6 +132,6 @@ void	movement_cost(t_data *data, int i)
 		data->stack_b[i].cost_b = data->len_b - data->stack_b[i].index;
 	cost_a = data->stack_b[i].cost_a;
 	cost_b = data->stack_b[i].cost_b;
-	//ft_printf("A: %d, B: %d\n", cost_a, cost_b);
+	//ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
 	calculate_cost(data, i, cost_a, cost_b);
 }

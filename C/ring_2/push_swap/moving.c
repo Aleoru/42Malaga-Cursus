@@ -61,7 +61,7 @@ void	less_movements(t_data *data)
 			else
 				break ;
 		}
-		if (j == data->len_b)
+		if (j == data->len_b - 1)
 		{
 			data->counter_a = data->stack_b[i].cost_a;
 			data->counter_b = data->stack_b[i].cost_b;
@@ -73,6 +73,6 @@ void	less_movements(t_data *data)
 
 void	final_sort(t_data *data)
 {
-		less_movements(data);
-		moving_together(data);
+	less_movements(data);
+	moving_together(data);
 }
