@@ -68,7 +68,7 @@ void	sort(t_data *data);
 void	minor_value(t_data *data, int x); // Revisar
 void	find_partner(t_data *data); // Revisar
 void	movement_cost(t_data *data, int i);
-//void	moving_together(t_data *data);
+void	final_sort(t_data *data);
 
 /*		UTILS		*/
 long	ft_atoli(const char *str);

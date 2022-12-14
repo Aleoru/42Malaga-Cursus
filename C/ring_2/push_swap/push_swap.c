@@ -96,7 +96,11 @@ int	main(int argc, char **argv)
 			sort_three(&data);
 		else if (!is_sorted(&data))
 			sort(&data);
-		find_partner(&data);
+		while (!is_sorted(&data))
+		{
+			find_partner(&data);
+			final_sort(&data);
+		}
 	}
 	else
 		exit_error(&data, 2);

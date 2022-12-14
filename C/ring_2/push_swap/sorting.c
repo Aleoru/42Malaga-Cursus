@@ -45,8 +45,8 @@ void	minor_value(t_data *data, int x)
 		}
 		if (j == data->len_a)
 		{
-			ft_printf("->%d\n", data->stack_a[i].index);
 			data->stack_b[x].partner = data->stack_a[i].index;
+			return ;
 		}
 		i++;
 	}
