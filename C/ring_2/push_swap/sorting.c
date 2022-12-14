@@ -18,6 +18,8 @@ void	sort(t_data *data)
 	}
 	while (data->len_a > 3)
 		push(data, B);
+	if (data->len_a == 3 && !is_sorted(data))
+		sort_three(data);
 	i = -1;
 	ft_printf("A	B\n");
 	while (++i < data->len_a)
@@ -60,8 +62,6 @@ void	find_partner(t_data *data)
 	int	j;
 
 	i = 0;
-	if (data->len_a == 3 && !is_sorted(data))
-		sort_three(data);
 	ft_printf("Pareja ideal\n");
 	while (i < data->len_b)
 	{
@@ -131,6 +131,6 @@ void	movement_cost(t_data *data, int i)
 		data->stack_b[i].cost_b = data->len_b - data->stack_b[i].index;
 	cost_a = data->stack_b[i].cost_a;
 	cost_b = data->stack_b[i].cost_b;
-	ft_printf("A: %d, B: %d\n", cost_a, cost_b);
+	//ft_printf("A: %d, B: %d\n", cost_a, cost_b);
 	calculate_cost(data, i, cost_a, cost_b);
 }

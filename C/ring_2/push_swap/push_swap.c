@@ -96,11 +96,18 @@ int	main(int argc, char **argv)
 			sort_three(&data);
 		else if (!is_sorted(&data))
 			sort(&data);
-		while (!is_sorted(&data))
+		while (data.len_b != 0)
 		{
 			find_partner(&data);
 			final_sort(&data);
 		}
+		i = -1;
+		while (++i < data.len_a)
+			ft_printf("%d : %d\n", data.stack_a[i].index, data.stack_a[i].value);
+		if (is_sorted(&data))
+			ft_printf("Está ordenado\n");
+		else
+			ft_printf("No está ordenado\n");
 	}
 	else
 		exit_error(&data, 2);
