@@ -54,17 +54,22 @@ void	less_movements(t_data *data)
 	while (i < data->len_b)
 	{
 		j = 0;
+		ft_printf("i: %d\n", i);
 		while (j < data->len_b)
 		{
-			if (data->stack_b[i].total_cost < data->stack_b[j].total_cost)
+			ft_printf("j: %d\n", j);
+			if (data->stack_b[i].total_cost <= data->stack_b[j].total_cost)
+			{
 				j++;
+			}
 			else
 				break ;
 		}
-		if (j == data->len_b - 1)
+		if (j == data->len_b)
 		{
 			data->counter_a = data->stack_b[i].cost_a;
 			data->counter_b = data->stack_b[i].cost_b;
+			ft_printf("mov: %d	mov: %d\n", data->counter_a, data->counter_b);
 			return ;
 		}
 		i++;

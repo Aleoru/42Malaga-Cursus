@@ -34,7 +34,7 @@ void	rotate(t_data *data, char c)
 void	rev_rotate(t_data *data, char c)
 {
 	t_stack	aux;
-
+	
 	if (c == A || c == RR)
 	{
 		aux = data->stack_a[data->len_a - 1];

@@ -98,9 +98,26 @@ int	main(int argc, char **argv)
 			sort(&data);
 		while (data.len_b != 0)
 		{
+			ft_printf("----------------------------\n");
 			find_partner(&data);
 			final_sort(&data);
+			i = -1;
+			ft_printf("A	B\n");
+			while (++i < data.len_a)
+				ft_printf("%d : %d	%d : %d\n", data.stack_a[i].index, data.stack_a[i].value, data.stack_b[i].index, data.stack_b[i].value);
+			i -= 1;
+			while (++i < data.len_b)
+				ft_printf("	%d : %d\n", data.stack_b[i].index, data.stack_b[i].value);
 		}
+		ft_printf("----------------------------\n");
+		i = -1;
+		ft_printf("A	B\n");
+		while (++i < data.len_a)
+			ft_printf("%d : %d	%d : %d\n", data.stack_a[i].index, data.stack_a[i].value, data.stack_b[i].index, data.stack_b[i].value);
+		i -= 1;
+		while (++i < data.len_b)
+			ft_printf("	%d : %d\n", data.stack_b[i].index, data.stack_b[i].value);
+		ft_printf("----------------------------\n");
 		i = -1;
 		while (++i < data.len_a)
 			ft_printf("%d : %d\n", data.stack_a[i].index, data.stack_a[i].value);

@@ -20,6 +20,7 @@ void	sort(t_data *data)
 		push(data, B);
 	if (!is_sorted(data))
 		sort_three(data);
+	ft_printf("----------------------------\n");
 	i = -1;
 	ft_printf("A	B\n");
 	while (++i < data->len_a)
@@ -63,7 +64,7 @@ void	find_partner(t_data *data)
 	t_stack	possible;
 
 	i = 0;
-	ft_printf("Pareja ideal\n");
+	//ft_printf("Pareja ideal\n");
 	while (i < data->len_b)
 	{
 		j = 0;
@@ -90,8 +91,8 @@ void	find_partner(t_data *data)
 				data->stack_b[i].partner = possible.index;
 		}
 		movement_cost(data, i);
-		ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
-		ft_printf("%d : %d = %d\n", data->stack_b[i].value, data->stack_b[i].partner, data->stack_b[i].total_cost);
+	//	ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
+	//	ft_printf("%d : %d = %d\n", data->stack_b[i].value, data->stack_b[i].partner, data->stack_b[i].total_cost);
 		i++;
 	}
 }
@@ -126,16 +127,16 @@ void	movement_cost(t_data *data, int i)
 	int	cost_a;
 	int	cost_b;
 
-	if (data->stack_b[i].partner < data->len_a - data->stack_b[i].partner)
+	if (data->stack_b[i].partner > data->len_a - data->stack_b[i].partner)
 		data->stack_b[i].cost_a = (data->len_a - data->stack_b[i].partner) * -1;
 	else
 		data->stack_b[i].cost_a = data->len_a - data->stack_b[i].partner;
-	if (data->stack_b[i].index < data->len_b - data->stack_b[i].index)
+	if (data->stack_b[i].index > data->len_b - data->stack_b[i].index)
 		data->stack_b[i].cost_b = (data->len_b - data->stack_b[i].index) * -1;
 	else
 		data->stack_b[i].cost_b = data->len_b - data->stack_b[i].index;
 	cost_a = data->stack_b[i].cost_a;
 	cost_b = data->stack_b[i].cost_b;
-	//ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
 	calculate_cost(data, i, cost_a, cost_b);
+	ft_printf("Nº: %d, A: %d, B: %d = %d\n", data->stack_b[i].value, data->stack_b[i].cost_a, data->stack_b[i].cost_b, data->stack_b[i].total_cost);
 }
