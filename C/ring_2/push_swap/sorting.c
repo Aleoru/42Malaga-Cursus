@@ -67,6 +67,7 @@ void	find_partner(t_data *data)
 	while (i < data->len_b)
 	{
 		j = 0;
+		possible = data->stack_a[j];
 		while (j < data->len_a)
 		{
 			
@@ -81,9 +82,7 @@ void	find_partner(t_data *data)
 			}
 			else
 			{
-				possible = data->stack_a[j];
-				if (j + 1 != '\0' && possible.value > data->stack_b[i].value
-					&& possible.value < data->stack_a[j + 1].value)
+				if (possible.value > data->stack_a[j].value)
 					possible = data->stack_a[j];
 			}
 			j++;
