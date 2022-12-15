@@ -58,8 +58,9 @@ void	minor_value(t_data *data, int x)
 
 void	find_partner(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	t_stack	possible;
 
 	i = 0;
 	ft_printf("Pareja ideal\n");
@@ -68,22 +69,26 @@ void	find_partner(t_data *data)
 		j = 0;
 		while (j < data->len_a)
 		{
+			
 			if (data->stack_b[i].value > data->stack_a[j].value)
 			{
 				j++;
 				if (j == data->len_a)
 				{
-					minor_value(data, i); // No se ejecuta está función
-					//ft_printf("%d\n", data->stack_b[i].partner);
+					minor_value(data, i);
 					break ;
 				}
 			}
 			else
 			{
-				data->stack_b[i].partner = data->stack_a[j].index;
-				//ft_printf("%d || %d\n", data->stack_b[i].partner, data->stack_a[j].index);
-				break ;
+				possible = data->stack_a[j];
+				if (j + 1 != '\0' && possible.value > data->stack_b[i].value
+					&& possible.value < data->stack_a[j + 1].value)
+					possible = data->stack_a[j];
 			}
+			j++;
+			if (j == data->len_a)
+				data->stack_b[i].partner = possible.index;
 		}
 		movement_cost(data, i);
 		ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
