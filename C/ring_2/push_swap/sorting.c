@@ -8,7 +8,7 @@ void	sort(t_data *data)
 	data->mean = data->len_a / 2;
 	while (i < data->len_a && data->len_a > 3)
 	{
-		if (data->stack_a[i].index < data->mean)
+		if (data->stack_a[0].index < data->mean)
 			push(data, B);
 		else
 		{
