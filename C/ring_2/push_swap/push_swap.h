@@ -46,7 +46,7 @@ typedef struct data
 
 /*	MOVIMIENTOS	*/
 
-void	move_up(t_stack *stack);
+void	move_up(t_stack *stack, int len);
 void	move_down(t_stack *stack, int len);
 void	swap(t_data *data, char c);
 void	push(t_data *data, char c);

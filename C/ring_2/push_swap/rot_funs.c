@@ -19,13 +19,13 @@ void	rotate(t_data *data, char c)
 	if (c == A || c == RR)
 	{
 		aux = data->stack_a[0];
-		move_up(data->stack_a);
+		move_up(data->stack_a, data->len_a);
 		data->stack_a[data->len_a - 1] = aux;
 	}
 	if (c == B || c == RR)
 	{
 		aux = data->stack_b[0];
-		move_up(data->stack_b);
+		move_up(data->stack_b, data->len_b);
 		data->stack_b[data->len_b - 1] = aux;
 	}
 	ft_printf("r%c\n", c);
