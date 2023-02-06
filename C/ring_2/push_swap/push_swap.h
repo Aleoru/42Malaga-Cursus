@@ -27,7 +27,9 @@ typedef struct stack
 {
 	int	value;
 	int	index;
-	int	partner;
+	int	partner; //indice de la pareja
+	int pos_a;   //posición de la pareja en A
+	int pos_b;   //posición de la pareja en B
 	int	cost_a;
 	int	cost_b;
 	int	total_cost;
@@ -69,6 +71,7 @@ void	minor_value(t_data *data, int x); // Revisar
 void	find_partner(t_data *data); // Revisar
 void	movement_cost(t_data *data, int i);
 void	final_sort(t_data *data);
+void	final_rotation(t_data *data);
 
 /*		UTILS		*/
 long	ft_atoli(const char *str);

@@ -45,7 +45,7 @@ void	moving_together(t_data *data)
 	push(data, A);
 }
 
-void	less_movements(t_data *data)
+void	less_movements(t_data *data) //revisar
 {
 	int	i;
 	int	j;

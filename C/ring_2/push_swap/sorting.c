@@ -55,44 +55,62 @@ void	minor_value(t_data *data, int x)
 	}
 }
 
-// Modificar para que sea < 25 lineas
+static int is_mayor(t_data *data, int index)
+{
+	int		i;
 
-void	find_partner(t_data *data)
+	i = 0;
+	while (i < data->len_a)
+	{
+		if (data->stack_a[i].index > index)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	mayor_a(t_data *data)
+{
+	int	mayor;
+	int	i;
+
+	i = 0;
+	mayor = data->stack_a[0].index;
+	while (i < data->len_a)
+	{
+		if (data->stack_a[i].index > mayor)
+			mayor = data->stack_a[i].index;
+		i++;
+	}
+	return (mayor);
+}
+
+void find_partner(t_data *data)
 {
 	int		i;
 	int		j;
-	t_stack	possible;
+	int		mayor;
 
 	i = 0;
-	//ft_printf("Pareja ideal\n");
 	while (i < data->len_b)
 	{
-		j = 0;
-		possible = data->stack_a[j];
-		while (j < data->len_a)
+		if (is_mayor(data, data->stack_b[i].index))
+			minor_value(data, i);
+		else
 		{
-			
-			if (data->stack_b[i].value > data->stack_a[j].value)
+			mayor = mayor_a(data);
+			j = 0;
+			while (j < data->len_a)
 			{
+				if (data->stack_a[j].index < mayor 
+					&& data->stack_b[i].index < data->stack_a[j].index)
+					mayor = data->stack_a[j].index;
 				j++;
-				if (j == data->len_a)
-				{
-					minor_value(data, i);
-					break ;
-				}
 			}
-			else
-			{
-				if (possible.value > data->stack_a[j].value)
-					possible = data->stack_a[j];
-			}
-			j++;
-			if (j == data->len_a)
-				data->stack_b[i].partner = possible.index;
+			data->stack_b[i].partner = mayor;
 		}
+		printf("Pareja: %d:%d\n", data->stack_b[i].index, data->stack_b[i].partner);
 		movement_cost(data, i);
-	//	ft_printf("A: %d, B: %d\n", data->stack_b[i].cost_a, data->stack_b[i].cost_b);
-	//	ft_printf("%d : %d = %d\n", data->stack_b[i].value, data->stack_b[i].partner, data->stack_b[i].total_cost);
 		i++;
 	}
 }
@@ -122,21 +140,61 @@ void	calculate_cost(t_data *data, int i, int cost_a, int cost_b)
 	}
 }
 
+static int pos_index(t_data *data, char array ,int index)
+{
+	int 	pos;
+
+	pos = 0;
+	if (array == 'a')
+	{
+		while (pos < data->len_a)
+		{
+			if (data->stack_a[pos].index == index)
+				return (pos);
+			pos++;
+		}
+	}
+	else
+		while (pos < data->len_b)
+		{
+			if (data->stack_b[pos].index == index)
+				return (pos);
+			pos++;
+		}
+	return (-1);
+}
+
 void	movement_cost(t_data *data, int i)
 {
 	int	cost_a;
 	int	cost_b;
-
-	if (data->stack_b[i].partner > data->len_a - data->stack_b[i].partner)
-		data->stack_b[i].cost_a = (data->len_a - data->stack_b[i].partner) * -1;
+	data->stack_b[i].pos_a = pos_index(data, 'a', data->stack_b[i].partner);
+	data->stack_b[i].pos_b = pos_index(data, 'b', data->stack_b[i].index);
+	if (data->stack_b[i].pos_a > data->len_a - data->stack_b[i].pos_a)
+		data->stack_b[i].cost_a = (data->len_a - data->stack_b[i].pos_a) * -1;
 	else
-		data->stack_b[i].cost_a = data->len_a - data->stack_b[i].partner;
-	if (data->stack_b[i].index > data->len_b - data->stack_b[i].index)
-		data->stack_b[i].cost_b = (data->len_b - data->stack_b[i].index) * -1;
+		data->stack_b[i].cost_a = data->stack_b[i].pos_a;
+	if (data->stack_b[i].pos_b > data->len_b - data->stack_b[i].pos_b)
+		data->stack_b[i].cost_b = (data->len_b - data->stack_b[i].pos_b) * -1;
 	else
-		data->stack_b[i].cost_b = data->len_b - data->stack_b[i].index;
+		data->stack_b[i].cost_b = data->stack_b[i].pos_b;
 	cost_a = data->stack_b[i].cost_a;
 	cost_b = data->stack_b[i].cost_b;
 	calculate_cost(data, i, cost_a, cost_b);
 	ft_printf("Nº: %d, A: %d, B: %d = %d\n", data->stack_b[i].value, data->stack_b[i].cost_a, data->stack_b[i].cost_b, data->stack_b[i].total_cost);
+}
+
+void	final_rotation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->stack_a[i].index != 0)
+		i++;
+	if (i > data->mean)
+		rev_rotate(data, A);
+	else if (i < data->mean)
+		rotate(data, A);
+	if (data->stack_a[0].index != 0)
+		final_rotation(data);
 }

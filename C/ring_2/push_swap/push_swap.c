@@ -78,8 +78,14 @@ static void	value_index(t_data *data)
 	}
 }
 
+void	ft_void(void)
+{
+	system("leaks -q 'push_swap'");
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(ft_void);
 	t_data	data;
 	int		i;
 
@@ -95,12 +101,12 @@ int	main(int argc, char **argv)
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
 		else if (!is_sorted(&data))
-			sort(&data);
+			sort(&data); //corregir
 		while (data.len_b != 0)
 		{
 			ft_printf("----------------------------\n");
-			find_partner(&data);
-			final_sort(&data);
+			find_partner(&data); //corregir
+			final_sort(&data); //revisar less_movements
 			i = -1;
 			ft_printf("A	B\n");
 			while (++i < data.len_a)
@@ -109,6 +115,7 @@ int	main(int argc, char **argv)
 			while (++i < data.len_b)
 				ft_printf("	%d : %d\n", data.stack_b[i].index, data.stack_b[i].value);
 		}
+		final_rotation(&data);
 		ft_printf("----------------------------\n");
 		i = -1;
 		ft_printf("A	B\n");
