@@ -15,11 +15,6 @@ SRCDIR	= src
 OBJDIR	= obj
 HEADER	= *.h
 INC		= $(addprefix -I, $(HEADER))
-#DIRS 	= list math memory print string utils
-#SRCDIRS	= $(foreach dir, $(DIRS), $(addprefix $(SRCDIR)/, $(dir)))
-#OBJDIRS	= $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
-#SRC	= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
-#OBJS	= $(subst $(SRCDIR)/, $(OBJDIR)/, $(SRC:.c=.o))
 SRC		:= $(wildcard $(SRCDIR)/*/*.c)
 OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
@@ -41,7 +36,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@ar crs $(NAME) $(OBJS) && printf "$(GREEN)$(BOLD)Make was succesful\n$(RESET)"
+	@ar crs $(NAME) $(OBJS) && printf "$(GREEN)$(BOLD)Libft ready\n$(RESET)"
 
 obj/%.o: src/%.c
 	@mkdir -p $(OBJDIR)
@@ -49,8 +44,8 @@ obj/%.o: src/%.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@ && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean :
-	@$(RM) $(OBJDIR) && printf "$(GREEN)$(BOLD)All objects cleaned! :)\n$(RESET)"
-fclean : clean
+	@$(RM) $(OBJDIR) && printf "$(GREEN)$(BOLD)Libft objects cleaned! :)\n$(RESET)"
+fclean :
 	@$(RM) $(NAME) && printf "$(YELLOW)$(BOLD)$(NAME) $(GREEN)file cleaned! :)\n$(RESET)"
 re : fclean all
 
