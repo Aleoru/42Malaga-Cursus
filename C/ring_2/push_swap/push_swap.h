@@ -27,9 +27,9 @@ typedef struct stack
 {
 	int	value;
 	int	index;
-	int	partner; //indice de la pareja
-	int pos_a;   //posición de la pareja en A
-	int pos_b;   //posición de la pareja en B
+	int	partner;
+	int	pos_a;
+	int	pos_b;
 	int	cost_a;
 	int	cost_b;
 	int	total_cost;
@@ -67,8 +67,9 @@ int		is_sorted(t_data *data);
 
 void	sort_three(t_data *data);
 void	sort(t_data *data);
-void	minor_value(t_data *data, int x); // Revisar
-void	find_partner(t_data *data); // Revisar
+int		is_greater(t_data *data, int index);
+int		greater_to(t_data *data);
+void	find_partner(t_data *data);
 void	movement_cost(t_data *data, int i);
 void	final_sort(t_data *data);
 void	final_rotation(t_data *data);

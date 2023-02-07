@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moving.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/07 11:38:33 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/02/07 11:38:35 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	moving_alone(t_data *data)
@@ -14,12 +26,12 @@ void	moving_alone(t_data *data)
 	}
 	while (data->counter_b > 0)
 	{
-		rotate(data, A);
+		rotate(data, B);
 		data->counter_b--;
 	}
 	while (data->counter_b < 0)
 	{
-		rev_rotate(data, A);
+		rev_rotate(data, B);
 		data->counter_b++;
 	}
 }
@@ -45,7 +57,7 @@ void	moving_together(t_data *data)
 	push(data, A);
 }
 
-void	less_movements(t_data *data) //revisar
+void	less_movements(t_data *data)
 {
 	int	i;
 	int	j;
@@ -54,10 +66,8 @@ void	less_movements(t_data *data) //revisar
 	while (i < data->len_b)
 	{
 		j = 0;
-		ft_printf("i: %d\n", i);
 		while (j < data->len_b)
 		{
-			ft_printf("j: %d\n", j);
 			if (data->stack_b[i].total_cost <= data->stack_b[j].total_cost)
 			{
 				j++;
@@ -69,7 +79,6 @@ void	less_movements(t_data *data) //revisar
 		{
 			data->counter_a = data->stack_b[i].cost_a;
 			data->counter_b = data->stack_b[i].cost_b;
-			ft_printf("mov: %d	mov: %d\n", data->counter_a, data->counter_b);
 			return ;
 		}
 		i++;

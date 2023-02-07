@@ -17,18 +17,14 @@ void	exit_error(t_data *data, int error)
 	write(2, "Error\n", 6);
 	if (error == 2)
 		exit(1);
-	free_stack(data);
+	free(data->stack_a);
+	free(data->stack_b);
 	exit(1);
 }
 
 void	free_stack(t_data *data)
 {
-	int	i;
-
-	i = data->len_a -1;
-	while (i >= data->len_a)
-	{
-		free(&data->stack_a[i]);
-		i--;
-	}
+	free(data->stack_a);
+	free(data->stack_b);
+	exit(EXIT_SUCCESS);
 }

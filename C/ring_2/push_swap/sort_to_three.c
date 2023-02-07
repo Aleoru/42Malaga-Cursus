@@ -32,10 +32,7 @@ static int	the_greatest(t_data *data)
 void	sort_three(t_data *data)
 {
 	if (data->len_a == 1 && is_sorted(data))
-	{
 		free_stack(data);
-		exit(EXIT_SUCCESS);
-	}
 	else if (data->len_a == 2)
 	{
 		if (!is_sorted(data))

@@ -76,18 +76,12 @@ static void	value_index(t_data *data)
 			}
 		}
 	}
-}
-
-void	ft_void(void)
-{
-	system("leaks -q 'push_swap'");
+	free(stack);
 }
 
 int	main(int argc, char **argv)
 {
-	atexit(ft_void);
 	t_data	data;
-	int		i;
 
 	if (argc > 1)
 	{
@@ -95,43 +89,17 @@ int	main(int argc, char **argv)
 		check_argv(argv, &data);
 		stack_argv(argv, &data);
 		value_index(&data);
-		i = -1;
-		while (++i < data.len_a)
-			ft_printf("%d : %d\n", data.stack_a[i].index, data.stack_a[i].value);
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
 		else if (!is_sorted(&data))
-			sort(&data); //corregir
+			sort(&data);
 		while (data.len_b != 0)
 		{
-			ft_printf("----------------------------\n");
-			find_partner(&data); //corregir
-			final_sort(&data); //revisar less_movements
-			i = -1;
-			ft_printf("A	B\n");
-			while (++i < data.len_a)
-				ft_printf("%d : %d	%d : %d\n", data.stack_a[i].index, data.stack_a[i].value, data.stack_b[i].index, data.stack_b[i].value);
-			i -= 1;
-			while (++i < data.len_b)
-				ft_printf("	%d : %d\n", data.stack_b[i].index, data.stack_b[i].value);
+			find_partner(&data);
+			final_sort(&data);
 		}
 		final_rotation(&data);
-		ft_printf("----------------------------\n");
-		i = -1;
-		ft_printf("A	B\n");
-		while (++i < data.len_a)
-			ft_printf("%d : %d	%d : %d\n", data.stack_a[i].index, data.stack_a[i].value, data.stack_b[i].index, data.stack_b[i].value);
-		i -= 1;
-		while (++i < data.len_b)
-			ft_printf("	%d : %d\n", data.stack_b[i].index, data.stack_b[i].value);
-		ft_printf("----------------------------\n");
-		i = -1;
-		while (++i < data.len_a)
-			ft_printf("%d : %d\n", data.stack_a[i].index, data.stack_a[i].value);
-		if (is_sorted(&data))
-			ft_printf("Está ordenado\n");
-		else
-			ft_printf("No está ordenado\n");
+		free_stack(&data);
 	}
 	else
 		exit_error(&data, 2);

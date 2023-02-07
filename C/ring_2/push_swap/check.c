@@ -77,6 +77,7 @@ static int	split_args(t_data *data, char *argv, int pos)
 		i++;
 		pos++;
 	}
+	free(arg_split);
 	return (pos);
 }
 
@@ -96,18 +97,15 @@ void	stack_argv(char	**argv, t_data *data)
 		j = -1;
 		check = 0;
 		while (argv[i][++j])
-		{
 			if (argv[i][j] == ' ')
 				check = 1;
-		}
 		if (check == 1)
 			pos = split_args(data, argv[i], pos);
 		else if (check == 0 && argv[i] != NULL)
 		{
 			if (ft_atoli(argv[i]) > INT_MAX || ft_atoli(argv[i]) < INT_MIN)
 				exit_error(data, 3);
-			data->stack_a[pos].value = ft_atoli(argv[i]);
-			pos++;
+			data->stack_a[pos++].value = ft_atoli(argv[i]);
 		}
 	}
 }

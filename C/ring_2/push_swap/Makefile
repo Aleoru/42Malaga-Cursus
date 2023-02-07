@@ -16,7 +16,7 @@ LIBFT	= libft
 INC		= -I ./ -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft
 SRC		= push_swap.c mov_funs.c rot_funs.c check.c exit_free.c sort_to_three.c\
-			utils.c sorting.c moving.c
+			utils.c sorting.c moving.c finding_partner_utils.c
 OBJS	= $(SRC:.c=.o)
 
 CC		= gcc
@@ -45,7 +45,7 @@ $(NAME) : $(OBJS)
 	$(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean:
-	@$(RM) $(OBJS) && printf "$(GREEN)$(BOLD)All objects cleaned! :)\n$(RESET)"
+	@$(RM) $(OBJS) && printf "$(GREEN)$(BOLD)Push_swap objects cleaned! :)\n$(RESET)"
 	@$(MAKE) -C $(LIBFT) clean
 
 fclean: clean
