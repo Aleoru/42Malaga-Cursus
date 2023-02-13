@@ -77,5 +77,6 @@ void	final_rotation(t_data *data);
 /*		UTILS		*/
 long	ft_atoli(const char *str);
 int		ft_issign(int arg);
+void	mem_stack(t_data *data);
 
 #endif

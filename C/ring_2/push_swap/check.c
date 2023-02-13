@@ -56,6 +56,7 @@ void	check_argv(char	**argv, t_data *data)
 		else if (check == 0 && argv[i] != NULL)
 			data->len_a++;
 	}
+	stack_argv(argv, data);
 }
 
 static int	split_args(t_data *data, char *argv, int pos)
@@ -65,6 +66,11 @@ static int	split_args(t_data *data, char *argv, int pos)
 
 	i = 0;
 	arg_split = ft_split(argv, ' ');
+	if (ft_strlen(arg_split[0]) == 0)
+	{
+		free(arg_split);
+		exit_error(data, 7);
+	}
 	if (!arg_split[0])
 		return (0);
 	while (arg_split[i])
@@ -72,10 +78,9 @@ static int	split_args(t_data *data, char *argv, int pos)
 		if (ft_atoli(arg_split[i]) > INT_MAX
 			|| ft_atoli(arg_split[i]) < INT_MIN)
 			exit_error(data, 3);
-		data->stack_a[pos].value = ft_atoli(arg_split[i]);
+		data->stack_a[pos++].value = ft_atoli(arg_split[i]);
 		free(arg_split[i]);
 		i++;
-		pos++;
 	}
 	free(arg_split);
 	return (pos);
@@ -90,8 +95,7 @@ void	stack_argv(char	**argv, t_data *data)
 
 	i = 0;
 	pos = 0;
-	data->stack_a = ft_calloc(data->len_a, sizeof(t_stack));
-	data->stack_b = ft_calloc(data->len_a, sizeof(t_stack));
+	mem_stack(data);
 	while (argv[++i])
 	{
 		j = -1;
@@ -103,7 +107,8 @@ void	stack_argv(char	**argv, t_data *data)
 			pos = split_args(data, argv[i], pos);
 		else if (check == 0 && argv[i] != NULL)
 		{
-			if (ft_atoli(argv[i]) > INT_MAX || ft_atoli(argv[i]) < INT_MIN)
+			if (ft_atoli(argv[i]) > INT_MAX || ft_atoli(argv[i]) < INT_MIN
+				|| argv[i][0] == '\0')
 				exit_error(data, 3);
 			data->stack_a[pos++].value = ft_atoli(argv[i]);
 		}

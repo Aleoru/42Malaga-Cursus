@@ -83,11 +83,12 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc > 1)
+	if (argc == 1)
+		return (0);
+	else if (argc > 1)
 	{
 		ft_bzero(&data, sizeof(t_data));
 		check_argv(argv, &data);
-		stack_argv(argv, &data);
 		value_index(&data);
 		if (!is_sorted(&data) && data.len_a <= 3)
 			sort_three(&data);
@@ -98,7 +99,8 @@ int	main(int argc, char **argv)
 			find_partner(&data);
 			final_sort(&data);
 		}
-		final_rotation(&data);
+		if (!is_sorted(&data))
+			final_rotation(&data);
 		free_stack(&data);
 	}
 	else

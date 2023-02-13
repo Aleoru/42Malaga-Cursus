@@ -47,3 +47,9 @@ int	ft_issign(int arg)
 		return (1);
 	return (0);
 }
+
+void	mem_stack(t_data *data)
+{
+	data->stack_a = ft_calloc(data->len_a, sizeof(t_stack));
+	data->stack_b = ft_calloc(data->len_a, sizeof(t_stack));
+}
