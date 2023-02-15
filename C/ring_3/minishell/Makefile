@@ -10,13 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= push_swap
+NAME	= minishell
+SRCDIR	= src
+OBJDIR	= obj
 LIBFT	= libft
 
-INC		= -I ./ -I $(LIBFT)/inc
-LFLAGS	= -L$(LIBFT) -lft
-SRC		= 
-OBJS	= $(SRC:.c=.o)
+INC		= -I ./inc -I $(LIBFT)/inc
+LFLAGS	= -L$(LIBFT) -lft -lreadline
+SRC		:= $(wildcard $(SRCDIR)/*/*.c)
+OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
@@ -36,15 +38,17 @@ lib:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(INC) -o $(NAME) &&\
-	printf "$(GREEN)$(BOLD)Let's swap_push- I mean, push_swap\n$(RESET)"
+	@$(CC) $(OBJS) $(INC) -o $(NAME) $(LFLAGS) &&\
+	printf "$(GREEN)$(BOLD)Here, your minishell\n$(RESET)"
 
-%.o : %.c
+obj/%.o : src/%.c
+	@mkdir -p $(OBJDIR)
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INC) && printf "$(WHITE)$(BOLD)\rCompiling: \
 	$(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean:
-	@$(RM) $(OBJS) && printf "$(GREEN)$(BOLD)Push_swap objects cleaned! :)\n$(RESET)"
+	@$(RM) $(OBJDIR) && printf "$(GREEN)$(BOLD)All objects cleaned! :)\n$(RESET)"
 	@$(MAKE) -C $(LIBFT) clean
 
 fclean: clean
