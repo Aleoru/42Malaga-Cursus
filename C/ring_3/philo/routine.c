@@ -12,13 +12,12 @@
 
 #include "philo.h"
 
-static void	check_state(t_table *table)
+static void	check_state(t_table *table, int pos)
 {
-	int		pos;
 	time_t	time;
 
-	pos = table->pos;
 	time = get_time_in_ms();
+	printf("0\n");
 	if (table->philo[pos].state == THINK
 		&& time == table->philo[pos].t_next_state)
 		table->philo[pos].state = HUNGRY;
@@ -39,7 +38,7 @@ static void	check_state(t_table *table)
 		&& time == table->philo[pos].t_next_state)
 	{
 		table->philo[pos].state = THINK;
-		table->philo[pos].t_next_state = get_time_in_ms() + 20;
+		table->philo[pos].t_next_state = get_time_in_ms() + 20;	
 	}
 }
 
@@ -52,12 +51,15 @@ void	*routine(void *data)
 	table = (t_table *)data;
 	pos = table->pos;
 	table->pos++;
+	pthread_mutex_unlock(&table->m_philo);
+	table->philo[pos].t_next_state = get_time_in_ms();
+	table->philo[pos].t_die = get_time_in_ms() + table->t_die;
 	while (table->end)
 	{
 		usleep(100000);
-		check_state(table);
 		time = time_from_start(table);
 		printf("%ld	->%d: %d\n", time, table->philo[pos].name, table->philo[pos].state);
+		check_state(table, pos);
 	}
 	return (NULL);
 }
@@ -66,10 +68,12 @@ void	call_philos(t_table *table)
 {
 	int	pos;
 
-	pos = 0;
+	table->pos = 0;
+	pthread_mutex_init(&table->m_philo, NULL);
 	while (pos < table->num_philo)
 	{
-		table->pos = pos;
-		pthread_create(table->philo[pos].philo, NULL, routine, &table);
+		pos = table->pos;
+		pthread_mutex_lock(&table->m_philo);
+		pthread_create(&table->philo[pos].th_philo, NULL, routine, &table);
 	}
 }

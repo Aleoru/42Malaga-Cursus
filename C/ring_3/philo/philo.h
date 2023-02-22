@@ -35,7 +35,7 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	pthread_t	*philo;
+	pthread_t	th_philo;
 	time_t		t_next_state;
 	time_t		t_die;
 	int			name;

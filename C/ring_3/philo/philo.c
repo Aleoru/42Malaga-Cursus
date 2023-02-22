@@ -30,6 +30,7 @@ static void	fill_philo_and_forks(t_table *table)
 	table->philo = malloc(table->num_philo * sizeof(t_philo));
 	table->forks = malloc(table->num_philo * sizeof(t_fork));
 	i = 0;
+	table->start = get_time_in_ms();
 	while (i < table->num_philo)
 	{
 		table->philo[i].name = i + 1;
@@ -45,11 +46,22 @@ static void	fill_philo_and_forks(t_table *table)
 	}
 }
 
+void	sitting_philo(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->num_philo)
+	{
+		pthread_join(table->philo[i].th_philo, NULL);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_table	table;
 
-	table.start = get_time_in_ms();
 	if (argc == 5 || argc == 6)
 	{
 		if (check_argv(&table, argv))
@@ -59,6 +71,7 @@ int	main(int argc, char **argv)
 			return (2);
 		fill_philo_and_forks(&table);
 		call_philos(&table);
+		sitting_philo(&table);
 	}
 	else
 		printf("Faltan o sobran argumentos\n");
