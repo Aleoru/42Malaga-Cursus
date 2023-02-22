@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= philo
-SRC		= philo.c check.c exit_free.c utils.c
+SRC		= philo.c check.c exit_free.c utils.c routine.c time.c
 OBJS	= $(SRC:.c=.o)
 INC		= -I ./
 CC		= gcc

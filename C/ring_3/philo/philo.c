@@ -20,6 +20,7 @@ static void	fill_table(t_table *table, char	**argv, int argc)
 	table->t_sleep = ft_atoli(argv[4]);
 	if (argc == 6)
 		table->f_meals = ft_atoli(argv[5]);
+	table->end = 1;
 }
 
 static void	fill_philo_and_forks(t_table *table)
@@ -27,14 +28,19 @@ static void	fill_philo_and_forks(t_table *table)
 	int	i;
 
 	table->philo = malloc(table->num_philo * sizeof(t_philo));
-	table->forks = malloc(table->num_philo * sizeof(t_philo));
+	table->forks = malloc(table->num_philo * sizeof(t_fork));
 	i = 0;
 	while (i < table->num_philo)
 	{
-		table->philo[i].name = i;
+		table->philo[i].name = i + 1;
+		if (i == 0)
+			table->philo[i].fork_l = table->num_philo;
+		else
+			table->philo[i].fork_l = i;
+		table->philo[i].fork_r = i + 1;
 		table->philo[i].state = THINK;
 		table->philo[i].meals = 0;
-		table->forks[i].pos = i;
+		table->forks[i].pos = i + 1;
 		i++;
 	}
 }
@@ -43,6 +49,7 @@ int	main(int argc, char **argv)
 {
 	t_table	table;
 
+	table.start = get_time_in_ms();
 	if (argc == 5 || argc == 6)
 	{
 		if (check_argv(&table, argv))
@@ -51,6 +58,7 @@ int	main(int argc, char **argv)
 		if (check_table(&table, argc))
 			return (2);
 		fill_philo_and_forks(&table);
+		call_philos(&table);
 	}
 	else
 		printf("Faltan o sobran argumentos\n");
