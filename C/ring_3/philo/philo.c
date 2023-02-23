@@ -41,8 +41,27 @@ static void	fill_philo_and_forks(t_table *table)
 		table->philo[i].fork_r = i + 1;
 		table->philo[i].state = THINK;
 		table->philo[i].meals = 0;
+		table->philo[i].picked = 0;
 		table->forks[i].pos = i + 1;
+		table->forks[i].free = 1;
+		pthread_mutex_init(table->forks[i].m_fork, NULL);
 		i++;
+	}
+}
+
+void	call_philos(t_table *table)
+{
+	int	pos;
+
+	table->pos = 0;
+	pos = table->pos;
+	pthread_mutex_init(&table->m_philo, NULL);
+	while (pos < table->num_philo)
+	{
+		pos = table->pos;
+		pthread_mutex_lock(&table->m_philo);
+		if (table->pos < table->num_philo)
+			pthread_create(&table->philo[pos].th_philo, NULL, routine, table);
 	}
 }
 

@@ -31,6 +31,7 @@ typedef struct s_fork
 {
 	pthread_mutex_t	m_fork;
 	int				pos;
+	int				free;
 }		t_fork;
 
 typedef struct s_philo
@@ -43,6 +44,7 @@ typedef struct s_philo
 	int			fork_r;
 	int			meals;
 	int			state;
+	int			picked;
 }		t_philo;
 
 typedef struct s_table
@@ -61,7 +63,12 @@ typedef struct s_table
 	int				end;
 }		t_table;
 
+/*
+*	PROGRAM
+*/
+
 void	call_philos(t_table *table);
+void	*routine(void *data);
 
 /*
 *	CONTROL
