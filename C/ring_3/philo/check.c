@@ -45,3 +45,17 @@ int	check_table(t_table *table, int argc)
 			return (exit_error(table, 2));
 	return (0);
 }
+
+int	check_meals(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->num_philo)
+	{
+		if (table->philo[i].meals != table->f_meals)
+			return (0);
+		i++;
+	}
+	return (1);
+}

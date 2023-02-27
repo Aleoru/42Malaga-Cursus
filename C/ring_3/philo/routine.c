@@ -31,20 +31,19 @@ static void	print_state(t_table *table, int pos)
 
 static void	pick_up_forks(t_table *table, int pos)
 {
-	int	i;
-
-	i = 0;
-	while (i < table->num_philo)
+	if (table->forks[table->philo[pos].fork_l].free == 1)
 	{
-		if (table->forks[i].pos == table->philo[pos].fork_r
-			|| table->forks[i].pos == table->philo[pos].fork_l)
-		{
-			pthread_mutex_lock(&table->forks[i].m_fork);
-			table->forks[i].free = 0;
-			table->philo[pos].picked++;
-			print_state(table, pos);
-		}
-		i++;
+		pthread_mutex_lock(&table->forks[table->philo[pos].fork_l].m_fork);
+		table->forks[table->philo[pos].fork_l].free = 0;
+		table->philo[pos].picked++;
+		print_state(table, pos);
+	}
+	if (table->forks[table->philo[pos].fork_r].free == 1)
+	{
+		pthread_mutex_lock(&table->forks[table->philo[pos].fork_r].m_fork);
+		table->forks[table->philo[pos].fork_r].free = 0;
+		table->philo[pos].picked++;
+		print_state(table, pos);
 	}
 	if (table->philo[pos].picked == 2)
 	{
@@ -52,7 +51,23 @@ static void	pick_up_forks(t_table *table, int pos)
 		table->philo[pos].t_die = get_time_in_ms() + table->t_die;
 		table->philo[pos].t_next_state = get_time_in_ms() + table->t_eat;
 		table->philo[pos].meals++;
+		print_state(table, pos);
 	}
+}
+
+static void	release_forks(t_table *table, int pos)
+{
+	int	fork_l;
+	int	fork_r;
+
+	fork_l = table->philo[pos].fork_l;
+	fork_r = table->philo[pos].fork_r;
+	pthread_mutex_unlock(&table->forks[fork_l].m_fork);
+	pthread_mutex_unlock(&table->forks[fork_r].m_fork);
+	table->forks[fork_l].free = 1;
+	table->forks[fork_r].free = 1;
+	table->philo[pos].picked = 0;
+	table->philo[pos].state = SLEEP;
 }
 
 static void	next_state(t_table *table, int pos)
@@ -68,15 +83,11 @@ static void	next_state(t_table *table, int pos)
 	}
 	else if (table->philo[pos].state == HUNGRY
 		&& time >= table->philo[pos].t_next_state)
-	{
-		// Comprobar si hay tenedores libres
 		pick_up_forks(table, pos);
-	}
 	else if (table->philo[pos].state == EATING
 		&& time >= table->philo[pos].t_next_state)
 	{
-		// Crear función para liberar tenedores
-		table->philo[pos].state = SLEEP;
+		release_forks(table, pos);
 		table->philo[pos].t_next_state = get_time_in_ms() + table->t_sleep;
 		print_state(table, pos);
 	}
@@ -101,8 +112,8 @@ static void	check_state(t_table *table, int pos)
 		table->end = 0;
 		return ;
 	}
-	else if (table->f_meals > 0 && table->philo[pos].meals == table->f_meals)	// Crear función que compruebe
-	{																			// si todos los filos han comido
+	else if (check_meals(table))
+	{
 		table->end = 0;
 		return ;
 	}
@@ -121,6 +132,7 @@ void	*routine(void *data)
 	pthread_mutex_unlock(&table->m_philo);
 	table->philo[pos].t_next_state = get_time_in_ms();
 	table->philo[pos].t_die = get_time_in_ms() + table->t_die;
+	print_state(table, pos);
 	while (table->end)
 	{
 		usleep(500);

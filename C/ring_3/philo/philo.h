@@ -69,6 +69,7 @@ typedef struct s_table
 
 void	call_philos(t_table *table);
 void	*routine(void *data);
+void	clear_the_table(t_table *table);
 
 /*
 *	CONTROL
@@ -76,6 +77,7 @@ void	*routine(void *data);
 
 int		check_argv(t_table *table, char **argv);
 int		check_table(t_table *table, int argc);
+int		check_meals(t_table *table);
 int		exit_error(t_table *table, int error);
 
 /*

@@ -35,16 +35,16 @@ static void	fill_philo_and_forks(t_table *table)
 	{
 		table->philo[i].name = i + 1;
 		if (i == 0)
-			table->philo[i].fork_l = table->num_philo;
+			table->philo[i].fork_l = table->num_philo - 1;
 		else
-			table->philo[i].fork_l = i;
-		table->philo[i].fork_r = i + 1;
+			table->philo[i].fork_l = i - 1;
+		table->philo[i].fork_r = i;
 		table->philo[i].state = THINK;
 		table->philo[i].meals = 0;
 		table->philo[i].picked = 0;
 		table->forks[i].pos = i + 1;
 		table->forks[i].free = 1;
-		pthread_mutex_init(table->forks[i].m_fork, NULL);
+		pthread_mutex_init(&table->forks[i].m_fork, NULL);
 		i++;
 	}
 }
@@ -91,6 +91,7 @@ int	main(int argc, char **argv)
 		fill_philo_and_forks(&table);
 		call_philos(&table);
 		sitting_philo(&table);
+		clear_the_table(&table);
 	}
 	else
 		printf("Faltan o sobran argumentos\n");
