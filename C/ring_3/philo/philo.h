@@ -24,8 +24,10 @@
 # define DEAD	0
 # define SLEEP	1
 # define THINK	2
-# define HUNGRY	3 
+# define HUNGRY	3
 # define EATING	4
+# define LEFT_H		'l'
+# define RIGHT_H	'r'
 
 typedef struct s_fork
 {
@@ -69,6 +71,8 @@ typedef struct s_table
 
 void	call_philos(t_table *table);
 void	*routine(void *data);
+void	print_state(t_table *table, int pos);
+//void	eating(t_table *table, int pos);
 void	clear_the_table(t_table *table);
 
 /*
@@ -78,6 +82,7 @@ void	clear_the_table(t_table *table);
 int		check_argv(t_table *table, char **argv);
 int		check_table(t_table *table, int argc);
 int		check_meals(t_table *table);
+int		check_deaths(t_table *table);
 int		exit_error(t_table *table, int error);
 
 /*

@@ -59,3 +59,17 @@ int	check_meals(t_table *table)
 	}
 	return (1);
 }
+
+int	check_deaths(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->num_philo)
+	{
+		if (table->philo[i].state == DEAD)
+			return (1);
+		i++;
+	}
+	return (0);
+}
