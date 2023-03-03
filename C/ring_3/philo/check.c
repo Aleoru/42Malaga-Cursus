@@ -53,7 +53,7 @@ int	check_meals(t_table *table)
 	i = 0;
 	while (i < table->num_philo)
 	{
-		if (table->philo[i].meals != table->f_meals)
+		if (table->philo[i].meals < table->f_meals)
 			return (0);
 		i++;
 	}

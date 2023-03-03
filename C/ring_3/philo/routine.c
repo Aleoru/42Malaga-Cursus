@@ -33,6 +33,7 @@ static void	pick_up_forks(t_table *table, int pos, char handed)
 {
 	int	fork;
 
+	fork = -1;
 	if (handed == LEFT_H && table->philo[pos].picked == 0)
 		fork = table->philo[pos].fork_l;
 	else if (handed == RIGHT_H && table->philo[pos].picked == 0)
@@ -41,12 +42,15 @@ static void	pick_up_forks(t_table *table, int pos, char handed)
 		fork = table->philo[pos].fork_r;
 	else if (handed == RIGHT_H && table->philo[pos].picked == 1)
 		fork = table->philo[pos].fork_l;
+	if (fork < 0)
+		return ;
 	if (table->forks[fork].free == 1)
 	{
 		pthread_mutex_lock(&table->forks[fork].m_fork);
 		table->forks[fork].free = 0;
 		table->philo[pos].picked++;
 		print_state(table, pos);
+		printf("PHILO: %d, FORK: %d\n", table->philo[pos].name, table->forks[fork].pos);
 	}
 	if (table->philo[pos].picked == 2)
 	{
@@ -57,33 +61,6 @@ static void	pick_up_forks(t_table *table, int pos, char handed)
 		print_state(table, pos);
 	}
 }
-
-/*static void	pick_up_forks(t_table *table, int pos)
-{
-	
-	if (table->forks[table->philo[pos].fork_l].free == 1)
-	{
-		pthread_mutex_lock(&table->forks[table->philo[pos].fork_l].m_fork);
-		table->forks[table->philo[pos].fork_l].free = 0;
-		table->philo[pos].picked++;
-		print_state(table, pos);
-	}
-	if (table->forks[table->philo[pos].fork_r].free == 1)
-	{
-		pthread_mutex_lock(&table->forks[table->philo[pos].fork_r].m_fork);
-		table->forks[table->philo[pos].fork_r].free = 0;
-		table->philo[pos].picked++;
-		print_state(table, pos);
-	}
-	if (table->philo[pos].picked == 2)
-	{
-		table->philo[pos].state = EATING;
-		table->philo[pos].t_die = get_time_in_ms() + table->t_die;
-		table->philo[pos].t_next_state = get_time_in_ms() + table->t_eat;
-		table->philo[pos].meals++;
-		print_state(table, pos);
-	}
-}*/
 
 static void	release_forks(t_table *table, int pos)
 {
@@ -111,7 +88,6 @@ static void	next_state(t_table *table, int pos)
 	else if (table->philo[pos].state == HUNGRY
 		&& time >= table->philo[pos].t_next_state)
 	{
-		//pick_up_forks(table, pos);
 		if (pos % 2 == 0)
 			pick_up_forks(table, pos, RIGHT_H);
 		else
@@ -154,6 +130,9 @@ static void	check_state(t_table *table, int pos)
 		next_state(table, pos);
 }
 
+// hacer condición para gestionar tiempos mientras piensan los zurdos y los diestros
+// 4 410 200 200 no debe morir nadie
+
 void	*routine(void *data)
 {
 	t_table	*table;
@@ -163,6 +142,7 @@ void	*routine(void *data)
 	pos = table->pos;
 	pthread_mutex_unlock(&table->m_philo);
 	table->pos++;
+	if (table->t_eat + table->t_sleep < table->t_die)
 	table->philo[pos].t_next_state = get_time_in_ms();
 	table->philo[pos].t_die = get_time_in_ms() + table->t_die;
 	print_state(table, pos);
