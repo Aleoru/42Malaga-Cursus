@@ -130,9 +130,6 @@ static void	check_state(t_table *table, int pos)
 		next_state(table, pos);
 }
 
-// hacer condición para gestionar tiempos mientras piensan los zurdos y los diestros
-// 4 410 200 200 no debe morir nadie
-
 void	*routine(void *data)
 {
 	t_table	*table;
@@ -140,8 +137,8 @@ void	*routine(void *data)
 
 	table = (t_table *)data;
 	pos = table->pos;
-	pthread_mutex_unlock(&table->m_philo);
 	table->pos++;
+	pthread_mutex_unlock(&table->m_philo);
 	if (pos % 2 != 0)
 		table->philo[pos].state = HUNGRY;
 	table->philo[pos].t_next_state = get_time_in_ms();
