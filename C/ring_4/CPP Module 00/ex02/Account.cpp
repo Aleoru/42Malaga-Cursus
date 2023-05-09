@@ -43,6 +43,10 @@ int Account::getNbWithdrawals(void){
 	return (Account::_totalNbWithdrawals);
 }
 
+int	Account::checkAmount(void) const {
+	return (this->_amount);
+}
+
 void	Account::_displayTimestamp(void){
 
 	time_t	t_now;
