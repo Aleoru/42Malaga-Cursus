@@ -15,8 +15,15 @@ SRC		= tests.cpp Account.cpp
 OBJS	= $(SRC:.cpp=.o)
 INC		= -I ./Account.hpp
 CC		= c++
-CFLAGS	= -Wall -Werror -Wextra -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
+
+UNAME	= $(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+CPPFLAGS = -Wall -Wextra
+$(warning Linux detected! Disabling -Werror and -std=c++98...)
+endif
 
 BOLD	= \033[1m
 RED		= \033[31;1m
@@ -29,10 +36,10 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)MEGAPHONE ON!\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)MEGAPHONE ON!\n$(RESET)"
 
 %.o : %.cpp
-	@$(CC) $(CFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
+	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean :
 	@$(RM) $(OBJS) && printf "$(YELLOW)All objects have been clean :)\n$(RESET)"
