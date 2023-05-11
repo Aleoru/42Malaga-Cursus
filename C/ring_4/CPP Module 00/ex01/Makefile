@@ -15,7 +15,7 @@ SRC		= main.cpp PhoneBook.class.cpp Contact.class.cpp
 OBJS	= $(SRC:.cpp=.o)
 INC		= -I ./PhoneBook.class.hpp -I ./Contact.class.hpp
 CC		= c++
-CFLAGS	= -Wall -Werror -Wextra -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
 
 BOLD	= \033[1m
@@ -29,10 +29,10 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Your Phonebook is ready!\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Your Phonebook is ready!\n$(RESET)"
 
 %.o : %.cpp
-	@$(CC) $(CFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
+	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
 
 clean :
 	@$(RM) $(OBJS) && printf "$(YELLOW)All objects have been clean :)\n$(RESET)"

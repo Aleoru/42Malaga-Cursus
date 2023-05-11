@@ -1,4 +1,4 @@
-# **************************************************************************** #
+	# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= megaphone
-SRC		= megaphone.cpp
+NAME	= zombie
+SRC		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJS	= $(SRC:.cpp=.o)
-INC		= -I ./
+INC		= -I ./Zombie.hpp
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
@@ -29,7 +29,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)MEGAPHONE ON!\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Beware of the zombies...\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
