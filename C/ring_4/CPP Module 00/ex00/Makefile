@@ -13,7 +13,6 @@
 NAME	= megaphone
 SRC		= megaphone.cpp
 OBJS	= $(SRC:.cpp=.o)
-INC		= -I ./
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf

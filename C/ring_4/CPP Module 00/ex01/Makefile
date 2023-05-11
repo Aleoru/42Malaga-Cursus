@@ -13,7 +13,6 @@
 NAME	= phonebook
 SRC		= main.cpp PhoneBook.class.cpp Contact.class.cpp
 OBJS	= $(SRC:.cpp=.o)
-INC		= -I ./PhoneBook.class.hpp -I ./Contact.class.hpp
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf

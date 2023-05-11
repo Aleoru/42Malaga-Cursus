@@ -10,9 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= zombie
-SRC		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+NAME	= horde
+SRC		= main.cpp Zombie.cpp zombieHorde.cpp
 OBJS	= $(SRC:.cpp=.o)
+INC		= -I ./Zombie.hpp
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
@@ -28,7 +29,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Beware of the zombies...\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)An horde is coming!!\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"

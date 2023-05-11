@@ -13,7 +13,6 @@
 NAME	= test
 SRC		= tests.cpp Account.cpp
 OBJS	= $(SRC:.cpp=.o)
-INC		= -I ./Account.hpp
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
