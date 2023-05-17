@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 12:31:34 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/05/17 12:31:41 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
@@ -83,7 +95,7 @@ bool	Account::makeWithdrawal(int withdrawal){
 		Account::_displayTimestamp();
 		std::cout << "index:" << this->_accountIndex << ";p_amount:" << p_amount;
 		std::cout << ";withdrawal:" << withdrawal << ";amount:" << this->_amount;
-		std::cout << ";nb_withdrawal:" << this->_nbWithdrawals << std::endl;
+		std::cout << ";nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		Account::_totalAmount -= withdrawal;
 		return (true);
 	}

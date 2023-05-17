@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 11:53:57 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/05/17 11:53:59 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.class.hpp"
 
 PhoneBook::PhoneBook(){
@@ -55,6 +67,17 @@ void	PhoneBook::add_contact(void){
 
 }
 
+void	PhoneBook::fill(void){
+	for (int i = 0; i < 9; i++){
+		this->_index = i;
+		this->_contacts[this->_index % 8].set_firstName("firstName");
+		this->_contacts[this->_index % 8].set_lastName("lastName");
+		this->_contacts[this->_index % 8].set_nickname("nickname");
+		this->_contacts[this->_index % 8].set_phoneNumber("phoneNumber");
+		this->_contacts[this->_index % 8].set_secret("secret");
+	}
+}
+
 Contact	PhoneBook::get_contact(int index){
 	return	(this->_contacts[index]);
 }
@@ -63,6 +86,10 @@ void	PhoneBook::search_contact(void){
 
 	std::string str;
 
+	if (this->_contacts[0].get_firstName().length() == 0){
+		std::cout << "You have any contacts, add some contacts first." << std::endl;
+		return ;
+	}
 	this->print_contacts();
 	while (!std::cin.eof()){
 		std::cout << "Contact's index: ";
@@ -80,7 +107,7 @@ void	PhoneBook::search_contact(void){
 void	PhoneBook::print_contacts(void){
 
 	for (int index = 0; index < this->_index; index++){
-		std::cout << index + 1 << "|";
+		std::cout << "         " << index + 1 << "|";
 		std::cout << this->adapt_str(this->get_contact(index).get_firstName()) << "|";
 		std::cout << this->adapt_str(this->get_contact(index).get_lastName()) << "|";
 		std::cout << this->adapt_str(this->get_contact(index).get_nickname()) << "|";
@@ -110,12 +137,16 @@ std::string	PhoneBook::adapt_str(std::string data){
 
 	len = data.length();
 	if (len < 10) {
+	std::cout << "two" << std::endl;
 		str.assign(10 - len, ' ');
+	std::cout << "two" << std::endl;
 		str += data;
 		return (str);
 	}
 	else if (len > 10) {
+	std::cout << "one" << std::endl;
 		str.assign(data, 0, 9);
+	std::cout << "one" << std::endl;
 		str += '.';
 		return (str);
 	}

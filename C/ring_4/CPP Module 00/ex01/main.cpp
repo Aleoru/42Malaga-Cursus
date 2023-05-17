@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 11:54:37 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/05/17 11:54:39 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "PhoneBook.class.hpp"
 
@@ -14,6 +26,8 @@ int	main(void)
 			pb.add_contact();
 		else if (input.compare("SEARCH") == 0)
 			pb.search_contact();
+		else if (input.compare("FILL") == 0)
+			pb.fill();
 		if (std::cin.eof())
 		{
 			std::cout << std::endl;
