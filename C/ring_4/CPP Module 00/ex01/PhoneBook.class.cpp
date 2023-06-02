@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 11:53:57 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/05/17 11:53:59 by aoropeza         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PhoneBook.class.hpp"
 
 PhoneBook::PhoneBook(){
@@ -86,10 +74,6 @@ void	PhoneBook::search_contact(void){
 
 	std::string str;
 
-	if (this->_contacts[0].get_firstName().length() == 0){
-		std::cout << "You have any contacts, add some contacts first." << std::endl;
-		return ;
-	}
 	this->print_contacts();
 	while (!std::cin.eof()){
 		std::cout << "Contact's index: ";
@@ -106,11 +90,11 @@ void	PhoneBook::search_contact(void){
 
 void	PhoneBook::print_contacts(void){
 
-	for (int index = 0; index < this->_index; index++){
-		std::cout << "         " << index + 1 << "|";
-		std::cout << this->adapt_str(this->get_contact(index).get_firstName()) << "|";
-		std::cout << this->adapt_str(this->get_contact(index).get_lastName()) << "|";
-		std::cout << this->adapt_str(this->get_contact(index).get_nickname()) << "|";
+	for (int index = 0; index < 8; index++){
+		std::cout << std::setw(10) << index + 1 << "|";
+		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_firstName()) << "|";
+		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_lastName()) << "|";
+		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_nickname()) << "|";
 		std::cout << std::endl;
 	}
 
@@ -136,17 +120,8 @@ std::string	PhoneBook::adapt_str(std::string data){
 	int			len;
 
 	len = data.length();
-	if (len < 10) {
-	std::cout << "two" << std::endl;
-		str.assign(10 - len, ' ');
-	std::cout << "two" << std::endl;
-		str += data;
-		return (str);
-	}
-	else if (len > 10) {
-	std::cout << "one" << std::endl;
+	if (len > 10) {
 		str.assign(data, 0, 9);
-	std::cout << "one" << std::endl;
 		str += '.';
 		return (str);
 	}
