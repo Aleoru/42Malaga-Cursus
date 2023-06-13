@@ -67,17 +67,6 @@ void	PhoneBook::add_contact(void){
 
 }
 
-void	PhoneBook::fill(void){
-	for (int i = 0; i < 9; i++){
-		this->_index = i;
-		this->_contacts[this->_index % 8].set_firstName("firstName");
-		this->_contacts[this->_index % 8].set_lastName("lastName");
-		this->_contacts[this->_index % 8].set_nickname("nickname");
-		this->_contacts[this->_index % 8].set_phoneNumber("phoneNumber");
-		this->_contacts[this->_index % 8].set_secret("secret");
-	}
-}
-
 Contact	PhoneBook::get_contact(int index){
 	return	(this->_contacts[index]);
 }
@@ -86,30 +75,34 @@ void	PhoneBook::search_contact(void){
 
 	std::string str;
 
-	this->print_contacts();
-	while (!std::cin.eof()){
-		std::cout << "Contact's index: ";
-		std::getline(std::cin, str);
-		if (str.length() == 1 && (str[0] >= '1' && str[0] <= '8')){
-				this->print_selected(this->_contacts[str[0] - 1 - '0']);
-				break ;
+	if (this->_contacts[0].get_firstName().length() == 0)
+		std::cout << "You have no contacts, please, start adding them to see their infomration" << std::endl;
+	else{
+		this->print_contacts();
+		while (!std::cin.eof()){
+			std::cout << "Contact's index: ";
+			std::getline(std::cin, str);
+			if (str.length() == 1 && (str[0] >= '1' && str[0] <= '8')){
+					this->print_selected(this->_contacts[str[0] - 1 - '0']);
+					break ;
+			}
+			else if ((str.length() == 1 && (str[0] < '1' || str[0] > '8')) || str.length() != 1  || str == "")
+				std::cout << "Invalid index!" << std::endl;
 		}
-		else if ((str.length() == 1 && (str[0] < '1' || str[0] > '8')) || str.length() != 1  || str == "")
-			std::cout << "Invalid index!" << std::endl;
 	}
-
 }
 
 void	PhoneBook::print_contacts(void){
 
 	for (int index = 0; index < 8; index++){
-		std::cout << std::setw(10) << index + 1 << "|";
-		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_firstName()) << "|";
-		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_lastName()) << "|";
-		std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_nickname()) << "|";
-		std::cout << std::endl;
+		if (this->_contacts[index].get_firstName().length() != 0){
+			std::cout << std::setw(10) << index + 1 << "|";
+			std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_firstName()) << "|";
+			std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_lastName()) << "|";
+			std::cout << std::setw(10) << this->adapt_str(this->get_contact(index).get_nickname()) << "|";
+			std::cout << std::endl;
+		}
 	}
-
 }
 
 void	PhoneBook::print_selected(Contact contact){

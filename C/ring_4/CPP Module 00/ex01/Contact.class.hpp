@@ -14,6 +14,7 @@
 # define CONTACT_CLASS_HPP
 
 # include <iostream>
+# include <iomanip>
 
 class	Contact {
 

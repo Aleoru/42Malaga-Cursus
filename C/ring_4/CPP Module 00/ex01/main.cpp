@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include "PhoneBook.class.hpp"
 
 int	main(void)
@@ -26,8 +27,6 @@ int	main(void)
 			pb.add_contact();
 		else if (input.compare("SEARCH") == 0)
 			pb.search_contact();
-		else if (input.compare("FILL") == 0)
-			pb.fill();
 		if (std::cin.eof())
 		{
 			std::cout << std::endl;
