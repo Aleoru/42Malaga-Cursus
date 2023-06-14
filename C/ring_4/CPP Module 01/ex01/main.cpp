@@ -16,7 +16,7 @@ Zombie*	zombieHorde(int	N, std::string name);
 
 int	main(void){
 
-	int		n = 10;
+	int		n = -10;
 	Zombie	*horde = zombieHorde(n, "Bob");
 
 	for (int i = 0; i < n; i++)

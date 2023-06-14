@@ -12,17 +12,12 @@
 
 #include "Harl.hpp"
 
-int	main(void) {
+int	main(int argc, char **argv) {
 
 	Harl		harl;
 	std::string	input;
 
-	while (input.compare("EXIT") != 0){
-
-		std::cout << "Enter a level: ";
-		std::cin >> input;
-		harl.complain(input);
-
-	}
+	if (argc == 2)
+		harl.complain(argv[1]);
 	return (0);
 }

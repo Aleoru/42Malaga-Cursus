@@ -17,9 +17,9 @@ int	main(int argc, char	**argv) {
 	Harl		harl;
 	std::string	input;
 
-	if (argc < 2) {
+	if (argc == 2)
+		harl.complain(argv[1]);
+	else
 		std::cout << "This program needs a parameter" << std::endl;
-	}
-	harl.complain(argv[1]);
 	return (0);
 }

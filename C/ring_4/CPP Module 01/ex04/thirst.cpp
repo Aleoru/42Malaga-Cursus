@@ -44,7 +44,7 @@ void	Thirst::replace(std::string s1, std::string s2){
 		while (pos != std::string::npos) {
 			str.erase(pos, s1.length());
 			str.insert(pos, s2);
-			pos = str.find(s1);
+			pos = str.find(s1, pos + s2.length());
 		}
 		ofs << str;
 		ofs.close();
