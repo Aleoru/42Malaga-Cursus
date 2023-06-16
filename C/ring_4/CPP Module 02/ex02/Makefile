@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/05/17 11:50:08 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/16 16:22:47 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,13 @@ OBJS	= $(SRC:.cpp=.o)
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
+
+UNAME	= $(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+CPPFLAGS = -Wall -Wextra
+$(warning Linux detected! Disabling -Werror and -std=c++98...)
+endif
 
 BOLD	= \033[1m
 RED		= \033[31;1m
