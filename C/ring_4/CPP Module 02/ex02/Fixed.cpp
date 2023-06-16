@@ -53,6 +53,42 @@ Fixed & Fixed::operator=(Fixed const & rhs){
 
 }
 
+Fixed & Fixed::min(Fixed & lhs, Fixed & rhs){
+
+	if (lhs.toFloat() < rhs.toFloat())
+		return (lhs);
+	else
+		return (rhs);
+
+}
+
+Fixed const & Fixed::min(Fixed const & lhs, Fixed const & rhs){
+
+	if (lhs.toFloat() < rhs.toFloat())
+		return (lhs);
+	else
+		return (rhs);
+
+}
+
+Fixed & Fixed::max(Fixed & lhs, Fixed & rhs){
+
+	if (lhs.toFloat() > rhs.toFloat())
+		return (lhs);
+	else
+		return (rhs);
+
+}
+
+Fixed const & Fixed::max(Fixed const & lhs, Fixed const & rhs){
+
+	if (lhs.toFloat() > rhs.toFloat())
+		return (lhs);
+	else
+		return (rhs);
+
+}
+
 /*		ARITHMETIC OPERATORS		*/
 Fixed	Fixed::operator+(Fixed const & rhs){
 
@@ -140,7 +176,7 @@ Fixed & Fixed::operator++(){
 Fixed	Fixed::operator++(int){
 
 	Fixed	tmp = *this;
-	++*this;
+	++this->_n;
 	return tmp;
 
 }

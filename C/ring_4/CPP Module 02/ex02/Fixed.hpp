@@ -26,6 +26,10 @@ class Fixed {
 		Fixed(Fixed const & src);
 		~Fixed(void);
 		Fixed & operator=(Fixed const & rhs);
+		static Fixed & min(Fixed & lhs, Fixed & rhs);
+		static Fixed const & min(Fixed const & lhs, Fixed const & rhs);
+		static Fixed & max(Fixed & lhs, Fixed & rhs);
+		static Fixed const & max(Fixed const & lhs, Fixed const & rhs);
 
 /*		Arithmetic operators		*/
 		Fixed operator+(Fixed const & rhs);
