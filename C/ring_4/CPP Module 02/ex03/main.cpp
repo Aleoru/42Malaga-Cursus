@@ -11,22 +11,32 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.hpp"
+#include "Point.hpp"
+
+bool	bsp(Point a, Point b, Point c, Point point);
 
 int	main(void){
 
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Point	A(1, 5);
+	Point	B(3, 1);
+	Point	C(5, 5);
+	Point	P1(3, 3);
+	Point	P2(B);
 
- 	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	std::cout << "Triangle's vertex are: ";
+	std::cout << A << " " << B << " " <<  C << std::endl;
+	std::cout << "Point 1 is " << P1 << std::endl;
+	std::cout << "Point 2 is " << P2 << std::endl;
 
-	std::cout << b << std::endl;
-
-	std::cout << Fixed::max( a, b ) << std::endl;
+	if (bsp(A, B, C, P1) == true)
+		std::cout << "The point 1 is INSIDE the triangle" << std::endl;
+	else
+		std::cout << "The point 1 is OUTSIDE the triangle" << std::endl;
+	
+	if (bsp(A, B, C, P2) == true)
+		std::cout << "The point 2 is INSIDE the triangle" << std::endl;
+	else
+		std::cout << "The point 2 is OUTSIDE the triangle" << std::endl;
 
 	return 0;
 
