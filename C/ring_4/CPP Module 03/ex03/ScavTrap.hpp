@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 16:13:33 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/06/17 16:13:33 by aoropeza         ###   ########.fr       */
+/*   Created: 2023/06/20 12:27:31 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/06/20 12:27:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-int	main(void){
+# include "ClapTrap.hpp"
+# include <iostream>
 
-	ClapTrap	CT_01;
-	ClapTrap	CT_02("CT_02");
+class ScavTrap: public ClapTrap {
 
-	CT_01.attack("a robot around");
-	CT_02.takeDamage(3);
-	CT_02.attack("another robot");
-	CT_02.beRepaired(2);
+	public:
 
-	return 0;
+		ScavTrap(void);
+		ScavTrap(std::string name);
+		ScavTrap(ScavTrap const &src);
+		~ScavTrap(void);
 
-}
+		ScavTrap	&operator=(ScavTrap const &src);
+
+		void	attack(const std::string &target);
+		void	guardGate();
+
+};
+
+#endif

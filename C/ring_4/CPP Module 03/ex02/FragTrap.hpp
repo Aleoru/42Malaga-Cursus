@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 16:13:33 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/06/17 16:13:33 by aoropeza         ###   ########.fr       */
+/*   Created: 2023/06/20 16:57:34 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/06/20 16:57:34 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int	main(void){
+# include "ClapTrap.hpp"
+# include <iostream>
 
-	ClapTrap	CT_01;
-	ClapTrap	CT_02("CT_02");
+class FragTrap: public ClapTrap {
 
-	CT_01.attack("a robot around");
-	CT_02.takeDamage(3);
-	CT_02.attack("another robot");
-	CT_02.beRepaired(2);
+	public:
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(FragTrap const &src);
+		~FragTrap(void);
 
-	return 0;
+		FragTrap	&operator=(FragTrap const &rhs);
 
-}
+		void	highFiveGuys(void);
+
+};
+
+#endif

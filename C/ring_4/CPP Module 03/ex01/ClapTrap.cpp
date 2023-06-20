@@ -33,7 +33,7 @@ ClapTrap::ClapTrap(ClapTrap const &src){
 
 ClapTrap::~ClapTrap(void){
 
-	std::cout << "Claptrap Destructor called" << std::endl;
+	std::cout << "Claptrap Destructor for " << this->_name << " called" << std::endl;
 
 }
 
