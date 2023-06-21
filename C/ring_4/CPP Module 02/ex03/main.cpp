@@ -22,11 +22,13 @@ int	main(void){
 	Point	C(5, 5);
 	Point	P1(3, 3);
 	Point	P2(B);
+	Point	P3(1, 1);
 
 	std::cout << "Triangle's vertex are: ";
 	std::cout << A << " " << B << " " <<  C << std::endl;
 	std::cout << "Point 1 is " << P1 << std::endl;
 	std::cout << "Point 2 is " << P2 << std::endl;
+	std::cout << "Point 3 is " << P3 << std::endl;
 
 	if (bsp(A, B, C, P1) == true)
 		std::cout << "The point 1 is INSIDE the triangle" << std::endl;
@@ -37,6 +39,11 @@ int	main(void){
 		std::cout << "The point 2 is INSIDE the triangle" << std::endl;
 	else
 		std::cout << "The point 2 is OUTSIDE the triangle" << std::endl;
+	
+	if (bsp(A, B, C, P3) == true)
+		std::cout << "The point 3 is INSIDE the triangle" << std::endl;
+	else
+		std::cout << "The point 3 is OUTSIDE the triangle" << std::endl;
 
 	return 0;
 

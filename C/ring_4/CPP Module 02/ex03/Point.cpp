@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:46:00 by aoropeza          #+#    #+#             */
 /*   Updated: 2023/06/17 13:46:00 by aoropeza         ###   ########.fr       */
@@ -14,31 +14,31 @@
 
 Point::Point(void) : _x(0), _y(0) {
 
-	//std::cout << "Default constructor called" << std::endl;
+	std::cout << "Point Default constructor called" << std::endl;
 
 }
 
 Point::Point(Point const &src) : _x(src.getX()), _y(src.getY()){
 
-	//std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Point Copy constructor called" << std::endl;
 
 }
 
 Point::Point(float const x, float const y) : _x(x), _y(y) {
 
-	//std::cout << "Parameterized constructor called" << std::endl;
+	std::cout << "Point Parameterized constructor called" << std::endl;
 
 }
 
 Point::~Point(void){
 
-	//std::cout << "Destructor called" << std::endl;
+	std::cout << "Point Destructor called" << std::endl;
 
 }
 
 Point & Point::operator=(Point const &rhs){
 
-	//std::cout << "Assignation operator called" << std::endl;
+	//std::cout << "Point Assignation operator called" << std::endl;
 	if (this != &rhs){
 		(Fixed)this->_x = rhs.getX();
 		(Fixed)this->_y = rhs.getY();

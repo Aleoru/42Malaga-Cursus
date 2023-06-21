@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
+#    By: aoropeza <aoropeza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/17 15:37:08 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/21 12:12:11 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Point and triangle created! It is inside or outside?\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Point and triangle created! Is it inside or outside?\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"

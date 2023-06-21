@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
+#    By: aoropeza <aoropeza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/16 16:22:47 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/21 12:07:40 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
