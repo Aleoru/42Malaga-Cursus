@@ -6,12 +6,12 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/20 16:56:24 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/22 19:02:57 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= fragtrap
-SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+NAME	= diamondtrap
+SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -35,7 +35,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)ClapTrap, ScavTrap and FragTrap ready\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Scav-, I mean Frag... No, wait, DiamondTrap? What's that?!\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"

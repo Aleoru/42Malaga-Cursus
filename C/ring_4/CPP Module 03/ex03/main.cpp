@@ -14,6 +14,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void){
 
@@ -23,6 +24,8 @@ int	main(void){
 	ScavTrap	ST_02("ST_02");
 	FragTrap	FT_01;
 	FragTrap	FT_02("FT_02");
+	DiamondTrap	DT_01;
+	DiamondTrap	DT_02("DT_02");
 
 
 	CT_01.attack("a robot around");
@@ -39,6 +42,10 @@ int	main(void){
 	FT_02.takeDamage(30);
 	FT_02.beRepaired(20);
 	FT_02.highFiveGuys();
+	DT_01.attack("bad guys");
+	DT_02.takeDamage(30);
+	DT_02.beRepaired(20);
+	DT_02.whoAmI();
 
 	return 0;
 

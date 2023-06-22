@@ -15,7 +15,6 @@
 
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
-# include <iostream>
 
 class DiamondTrap: public ScavTrap, public FragTrap {
 

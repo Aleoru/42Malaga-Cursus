@@ -44,6 +44,8 @@ FragTrap::~FragTrap(void) {
 
 }
 
+/* Overload assignation operator */
+
 FragTrap	&FragTrap::operator=(FragTrap const &rhs){
 
 	if (this != &rhs){
@@ -55,6 +57,8 @@ FragTrap	&FragTrap::operator=(FragTrap const &rhs){
 	return *this;
 
 }
+
+/* Member Functions */
 
 void	FragTrap::highFiveGuys(void){
 

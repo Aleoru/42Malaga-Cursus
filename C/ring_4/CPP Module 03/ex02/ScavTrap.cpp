@@ -44,6 +44,8 @@ ScavTrap::~ScavTrap(void) {
 
 }
 
+/* Overload assignation operator */
+
 ScavTrap	&ScavTrap::operator=(ScavTrap const &rhs) {
 
 	if (this != &rhs){
@@ -55,6 +57,8 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &rhs) {
 	return *this;
 
 }
+
+/* Member Functions */
 
 void	ScavTrap::attack(const std::string &target){
 
