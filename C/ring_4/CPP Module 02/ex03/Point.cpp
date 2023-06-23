@@ -61,3 +61,11 @@ Fixed Point::getX() const {
 Fixed Point::getY() const {
 	return this->_y;
 }
+
+void Point::setX(Fixed const x){
+	(Fixed)this->_x = x;
+}
+
+void Point::setY(Fixed const y){
+	(Fixed)this->_y = y;
+}

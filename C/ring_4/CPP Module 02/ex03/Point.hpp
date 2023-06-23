@@ -31,8 +31,10 @@ class Point {
 		~Point(void);
 
 		Point & operator=(Point const &rhs);
-		Fixed getX() const;
-		Fixed getY() const;
+		Fixed	getX() const;
+		Fixed	getY() const;
+		void	setX(Fixed const x);
+		void	setY(Fixed const y);
 
 };
 
