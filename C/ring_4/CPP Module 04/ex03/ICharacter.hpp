@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/27 21:24:21 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/06/27 21:24:21 by aoropeza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
+
+# include <iostream>
+# include "AMateria.hpp"
+
+class AMateria;
+
+class ICharacter {
+
+	protected:
+		const std::string	_name;
+
+	public:
+		virtual ~ICharacter() {}
+		virtual std::string const &getName() const = 0;
+
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int index) = 0;
+		virtual void use(int index, ICharacter& target) = 0;
+
+};
+
+#endif
