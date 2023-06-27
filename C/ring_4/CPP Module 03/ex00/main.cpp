@@ -22,6 +22,8 @@ int	main(void){
 	CT_02.takeDamage(3);
 	CT_02.attack("another robot");
 	CT_02.beRepaired(2);
+/* 	CT_01.info();
+	CT_02.info(); */
 
 	return 0;
 

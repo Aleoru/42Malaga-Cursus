@@ -6,11 +6,11 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/20 16:56:24 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/27 18:06:54 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= fragtrap
+NAME	= FragTrap
 SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++

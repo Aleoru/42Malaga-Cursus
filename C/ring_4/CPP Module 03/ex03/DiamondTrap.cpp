@@ -27,7 +27,7 @@ DiamondTrap::DiamondTrap(){
 DiamondTrap::DiamondTrap(std::string name){
 
 	this->ClapTrap::_name = name + "_clap_name";
-	this->_name = "DefaultDT";
+	this->_name = name;
 	this->FragTrap::_hp = FragTrap::_hp;
 	this->ScavTrap::_energy = ScavTrap::_energy;
 	this->FragTrap::_dmg = FragTrap::_dmg;

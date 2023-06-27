@@ -6,11 +6,11 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/22 19:02:57 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/27 18:09:19 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= diamondtrap
+NAME	= DiamondTrap
 SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++

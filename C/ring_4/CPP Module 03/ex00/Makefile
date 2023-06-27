@@ -6,11 +6,11 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/06/17 16:11:36 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/06/27 18:01:18 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= claptrap
+NAME	= ClapTrap
 SRC		= main.cpp ClapTrap.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++
