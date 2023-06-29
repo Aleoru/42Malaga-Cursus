@@ -22,8 +22,6 @@ int	main(void){
 	delete j;
 	delete i;
 
-	system("leaks ex01");
-
 	const Animal	*array[4];
 
 	std::cout << std::endl;
@@ -40,8 +38,6 @@ int	main(void){
 		delete array[i];
 	}
 	
-	system("leaks ex01");
-
 	return 0;
 
 }

@@ -14,19 +14,19 @@
 
 AMateria::AMateria(void) : _type(""){
 
-	std::cout << "* AMateria: materia is created *" << std::endl;
+	std::cout << "* AMateria: materia is created with default constructor*" << std::endl;
 
 }
 
 AMateria::AMateria(std::string const &type)  : _type(type){
 
-	std::cout << "AMateria " << this->_type << " created" << std::endl;
+	std::cout << "AMateria " << this->_type << " created with parametized constructor" << std::endl;
 
 }
 
-AMateria::AMateria(AMateria const &src){
+AMateria::AMateria(AMateria const &src): _type(src._type) {
 
-	*this = src;
+	std::cout << "AMateria " << this->_type << " created with copy constructor" << std::endl;
 
 }
 

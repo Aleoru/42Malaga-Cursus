@@ -25,7 +25,7 @@ class WrongCat : public WrongAnimal {
 		WrongCat & operator=(WrongCat const &rhs);
 
 		std::string	getType(void) const;
-		virtual void	makeSound(void) const;
+		void	makeSound(void) const;
 
 };
 
