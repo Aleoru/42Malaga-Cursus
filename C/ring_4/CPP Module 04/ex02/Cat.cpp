@@ -23,7 +23,7 @@ Cat::Cat(void){
 Cat::Cat(Cat &src): AAnimal(src) {
 
 	std::cout << "Cat copy constructor called" << std::endl;
-	this->type = src.type;
+	*this = src;
 
 }
 
@@ -37,6 +37,7 @@ Cat::~Cat(void){
 Cat	&Cat::operator=(Cat const &rhs){
 
 	this->type = rhs.type;
+	this->_brain = new Brain(*rhs._brain);
 	return *this;
 
 }
