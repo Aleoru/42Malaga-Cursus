@@ -60,11 +60,11 @@ void    Character::equip(AMateria* m) {
 
 }
 
-void    Character::unequip(int index) {
+void    Character::unequip(int idx) {
 
-	if (this->_inventory[index]){
-		delete this->_inventory[index];
-		this->_inventory[index] = NULL;
+	if (this->_inventory[idx]){
+		delete this->_inventory[idx];
+		this->_inventory[idx] = NULL;
 		std::cout << "Character " << this->_name << " unequipped" << std::endl;
 	}
 	else
@@ -72,11 +72,11 @@ void    Character::unequip(int index) {
 
 }
 
-void    Character::use(int index, ICharacter& target) {
+void    Character::use(int idx, ICharacter& target) {
 
-	if (this->_inventory[index]){
-		this->_inventory[index]->use(target);
-		std::cout << "Character " << this->_name << " uses " << this->_inventory[index]->getType() << std::endl;
+	if (this->_inventory[idx]){
+		this->_inventory[idx]->use(target);
+		std::cout << "Character " << this->_name << " uses " << this->_inventory[idx]->getType() << std::endl;
 	}
 	else
 		std::cout << "Character " << this->_name << " can't use" << std::endl;
