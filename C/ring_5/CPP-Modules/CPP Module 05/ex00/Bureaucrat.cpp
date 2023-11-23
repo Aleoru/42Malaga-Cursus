@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:34 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/22 18:40:32 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:14:17 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,9 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs) {
 	}
 	return *this;
 
+}
+
+std::ostream & operator<<(std::ostream & o, Bureaucrat const & rhs) {
+	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
+	return o;
 }

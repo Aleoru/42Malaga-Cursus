@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:39 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/22 18:34:46 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:14:16 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ class	Bureaucrat {
 		};
 };
 
-	std::ostream & operator<<(std::ostream o, Bureaucrat const & rhs);
+std::ostream & operator<<(std::ostream & o, Bureaucrat const & rhs);
 
 #endif
