@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:55 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/23 19:37:22 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:49:47 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 int	main(void) {
 
 	try {
-		Bureaucrat A;
-		Bureaucrat B("Eufrasio", 130);
-		Bureaucrat C("Ermenegildo", 145);
+		Bureaucrat	A("Eufrasio", 42);
+		Bureaucrat	B("Ermenegildo", 100);
+		Form		C("42A", 42);
+		Form		D("150B", 130);
 
 		std::cout << A << std::endl;
 		std::cout << B << std::endl;
-		B.decGrade();
-		std::cout << B << std::endl;
-		for (int i = 0; i < 9; i++)
-			C.incGrade();
-
 		std::cout << C << std::endl;
+		std::cout << D << std::endl;
+
+		A.signForm(C);
+		B.signForm(D);
+
 	}
 	catch (const Bureaucrat::GradeTooHighException e) {
 		std::cerr << e.what() << std::endl;

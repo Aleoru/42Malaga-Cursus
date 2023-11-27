@@ -6,12 +6,12 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/11/21 19:02:41 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/11/27 19:57:20 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Bureaucrat
-SRC		= main.cpp Bureaucrat.cpp
+NAME	= Form
+SRC		= main.cpp Bureaucrat.cpp Form.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -35,7 +35,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Mommy, when I grow up, I want to be a bureaucrat!\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD)Form up, Maggots!\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
