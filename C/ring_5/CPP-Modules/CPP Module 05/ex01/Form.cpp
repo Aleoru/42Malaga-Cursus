@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:25:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/27 19:57:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:19:43 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Form::~Form(void) {
 }
 
 void	Form::beSigned(const Bureaucrat& Bureau){
-	if (Bureau.getGrade() < this->getExecGrade())
+	if (Bureau.getGrade() > this->getExecGrade())
 		throw Form::GradeTooLowException();
 	this->_signed = true;
 }

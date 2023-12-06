@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:25:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/05 16:54:04 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:23:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ AForm::~AForm(void) {
 }
 
 void	AForm::beSigned(const Bureaucrat& Bureau){
-	if (Bureau.getGrade() < this->getExecGrade())
+	if (Bureau.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 	this->_signed = true;
 }
@@ -79,7 +79,7 @@ AForm & AForm::operator=(AForm const & rhs) {
 
 std::ostream & operator<<(std::ostream & o, AForm const & rhs) {
 	o << "Info:" << std::endl;
-	o << "AForm's name: " << rhs.getName() << std::endl;
+	o << "Form's name: " << rhs.getName() << std::endl;
 	o << "Minimun Grade to sign: " << rhs.getSignGrade() << std::endl;
 	o << "Minumun Grade to execute: " << rhs.getExecGrade();
 	return o;

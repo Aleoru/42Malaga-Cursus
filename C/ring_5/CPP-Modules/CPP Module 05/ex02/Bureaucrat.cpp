@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:34 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/05 17:11:18 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:08:21 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Bureaucrat::~Bureaucrat(void) {
 
 }
 
-void	Bureaucrat::signAForm(AForm &Form) {
+void	Bureaucrat::signForm(AForm &Form) {
 	try {
 		Form.beSigned(*this);
 		std::cout << this->getName() << " signed " << Form.getName() << std::endl;

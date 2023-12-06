@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:39 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/05 17:05:44 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:09:30 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class	Bureaucrat {
 
 	private:
 		std::string const	_name;
-		int	_grade;
+		int					_grade;
 		Bureaucrat(void);
 
 	public:
@@ -37,7 +37,7 @@ class	Bureaucrat {
 
 		void	incGrade(void);
 		void	decGrade(void);
-		void	signAForm(AForm &Form);
+		void	signForm(AForm &Form);
 		void	executeForm(AForm const & form) const;
 
 		class	GradeTooHighException : public std::exception {

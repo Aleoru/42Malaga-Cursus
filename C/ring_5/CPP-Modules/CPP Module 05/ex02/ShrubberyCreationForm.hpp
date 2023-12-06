@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:11:46 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/05 17:55:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:16:30 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public AForm{
 
@@ -28,8 +29,9 @@ class ShrubberyCreationForm : public AForm{
 
 		ShrubberyCreationForm & operator=(ShrubberyCreationForm & rhs);
 		void	execute(Bureaucrat const & executor) const;
-		
 
 };
+
+std::ostream & operator<<(std::ostream & o, AForm const & rhs);
 
 #endif
