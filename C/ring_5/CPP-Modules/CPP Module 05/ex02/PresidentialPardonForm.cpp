@@ -6,17 +6,17 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:41:02 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/06 20:11:33 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:14:57 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 145, 137), _target("(default)"){
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 25, 5), _target("(default)"){
 	//std::cout << "Bureaucraft Default constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string const target) : AForm("PresidentialPardonForm", 145, 137), _target(target){
+PresidentialPardonForm::PresidentialPardonForm(std::string const target) : AForm("PresidentialPardonForm", 25, 5), _target(target){
 	//std::cout << "Bureaucraft Parameterized constructor called" << std::endl;
 }
 

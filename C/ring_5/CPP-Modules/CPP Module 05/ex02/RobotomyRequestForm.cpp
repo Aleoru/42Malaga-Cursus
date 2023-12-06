@@ -6,17 +6,17 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:41:10 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/06 20:09:18 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:15:05 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 145, 137), _target("(default)"){
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("(default)"){
 	//std::cout << "Bureaucraft Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("RobotomyRequestForm", 145, 137), _target(target){
+RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("RobotomyRequestForm", 72, 45), _target(target){
 	//std::cout << "Bureaucraft Parameterized constructor called" << std::endl;
 }
 
