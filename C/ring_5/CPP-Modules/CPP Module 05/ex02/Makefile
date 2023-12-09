@@ -6,12 +6,13 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/12/06 19:05:54 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/12/09 18:41:55 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= Form
-SRC		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRC		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
