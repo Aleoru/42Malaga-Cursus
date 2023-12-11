@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:25:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:59:44 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/11 19:28:40 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	AForm::getSigned(void) const {
 AForm & AForm::operator=(AForm const & rhs) {
 
 	if (this != &rhs) {
-		this->_signed = rhs._signed;
+		this->_signed = rhs.getSigned();
 	}
 	return *this;
 
