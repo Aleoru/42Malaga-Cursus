@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:55 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/11 19:27:11 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:51:17 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,20 @@ int	main(void) {
 	AForm* rrf1;
 	AForm* rrf2;
 	
-	rrf1 = someRandomIntern.makeForm("robotomy request", "Bender")
+	rrf1 = someRandomIntern.makeForm("robotomy request", "Bender");
 	try {
-		rrf2 = someRandomIntern.makeForm("Shrubbery Creation", "Tree");
-		if (B == nullptr)
+		//rrf2 = someRandomIntern.makeForm("shrubbery creation", "Tree");
+		rrf2 = someRandomIntern.makeForm("fsasf creation", "Tree");
+		if (rrf2 == nullptr)
 			throw Intern::FormDoesNotExistException();
-/* 		Bureau.signForm(B);
-		Bureau.executeForm(B); */
+		Bureau.signForm(*rrf2);
+		Bureau.executeForm(*rrf2);
 	}
 	catch (const Intern::FormDoesNotExistException e) {
 		std::cerr << e.what() << std::endl;
 	}
-	delete B;
+	delete rrf1;
+	delete rrf2;
 	return (0);
 
 }

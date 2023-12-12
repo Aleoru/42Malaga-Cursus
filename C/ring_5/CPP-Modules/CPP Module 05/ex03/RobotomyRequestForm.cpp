@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:41:10 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:56:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:32:50 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {
 	//std::cout << "Bureaucrat Destructor called" << std::endl;
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const{
+void	RobotomyRequestForm::execute(const Bureaucrat & executor) const{
 
 	if(!this->getSigned())
 		throw AForm::IsNotSignedException();

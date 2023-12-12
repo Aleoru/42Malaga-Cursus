@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:02:38 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/11 19:26:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:50:56 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ Intern::Intern(const Intern &src) {
 }
 
 Intern::~Intern(void) {
-	//std::cout << "Intern destructor called" << std::endl;
+	std::cout << "Intern destructor called" << std::endl;
 }
 
-Intern & Intern::operator=(Intern &rhs){
+Intern & Intern::operator=(const Intern &rhs){
 	//std::cout << "Intern assignation overload called" << std::endl;
 	(void)rhs;
 	return *this;
 }
 
-Aform	* Intern::makeForm(std::string name, std::string target) {
+AForm	*Intern::makeForm(std::string name, std::string target) {
 	
 	if (!name.compare("presidential pardon")){
 		std::cout << "Intern creates " << name << std::endl;

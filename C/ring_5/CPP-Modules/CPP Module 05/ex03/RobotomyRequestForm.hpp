@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:02:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:50:50 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:21:24 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <cmath>
 # include <ctime>
 
-class RobotomyRequestForm : public AForm{
+class RobotomyRequestForm : public AForm {
 
 	private:
 		const std::string	_target;

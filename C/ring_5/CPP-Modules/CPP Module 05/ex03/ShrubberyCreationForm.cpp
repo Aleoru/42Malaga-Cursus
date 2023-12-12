@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:11:44 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:49:58 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:32:56 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	//std::cout << "Bureaucrat Destructor called" << std::endl;
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
+void	ShrubberyCreationForm::execute(const Bureaucrat & executor) const{
 
 	if(!this->getSigned())
 		throw AForm::IsNotSignedException();

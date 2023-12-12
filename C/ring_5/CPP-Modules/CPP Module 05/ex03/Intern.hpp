@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:02:41 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/11 19:21:23 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:47:18 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-class Aform;
+class AForm;
 
 class	Intern {
 
@@ -30,9 +30,9 @@ class	Intern {
 		Intern(const Intern &src);
 		~Intern(void);
 
-		Intern	&operator=(Intern &rhs);
+		Intern	&operator=(const Intern &rhs);
 
-		Aform	*makeForm(std::string name, std::string target);
+		AForm	*makeForm(std::string name, std::string target);
 
 	class	FormDoesNotExistException : public std::exception {
 		public:
@@ -40,6 +40,5 @@ class	Intern {
 	};
 
 };
-
 
 #endif

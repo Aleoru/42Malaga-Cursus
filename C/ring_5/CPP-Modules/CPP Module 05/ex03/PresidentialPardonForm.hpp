@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:02:33 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:50:39 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:21:27 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "AForm.hpp"
 # include <fstream>
 
-class PresidentialPardonForm : public AForm{
+class PresidentialPardonForm : public AForm {
 
 	private:
 		const std::string	_target;

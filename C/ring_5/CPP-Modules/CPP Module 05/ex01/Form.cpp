@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:25:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/06 19:19:43 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:42:26 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ _signGrade(signGrade), _execGrade(0) {
 Form::Form(std::string const name, int signGrade, int execGrade) : _name(name),
 _signGrade(signGrade), _execGrade(execGrade) {
 	_signed = false;
-	if (_signGrade < 1)
-		throw Form::GradeTooHighException();
-	else if (_signGrade > 150)
-		throw Form::GradeTooLowException();
+	if (_signGrade < 1 || _execGrade < 1)
+		throw AForm::GradeTooHighException();
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw AForm::GradeTooLowException();
 	//std::cout << "Bureaucraft Parameterized constructor called" << std::endl;
 }
 

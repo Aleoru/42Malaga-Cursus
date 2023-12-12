@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:11:46 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:49:59 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:21:16 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "AForm.hpp"
 # include <fstream>
 
-class ShrubberyCreationForm : public AForm{
+class ShrubberyCreationForm : public AForm {
 
 	private:
 		const std::string	_target;

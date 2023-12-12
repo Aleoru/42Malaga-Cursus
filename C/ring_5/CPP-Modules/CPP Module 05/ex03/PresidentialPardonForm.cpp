@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:41:02 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 18:57:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:32:45 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void) {
 	//std::cout << "Bureaucrat Destructor called" << std::endl;
 }
 
-void	PresidentialPardonForm::execute(Bureaucrat const & executor) const{
+void	PresidentialPardonForm::execute(const Bureaucrat & executor) const{
 
 	if(!this->getSigned())
 		throw AForm::IsNotSignedException();
