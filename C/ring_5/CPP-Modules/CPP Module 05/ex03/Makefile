@@ -6,7 +6,7 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/12/11 19:00:25 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/12/12 15:54:11 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ RESET	= \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD) No, you need form 28B, not 28C...\n$(RESET)"
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) && printf "$(GREEN)$(BOLD) At least this beats coffee-making\n$(RESET)"
 
 %.o : %.cpp
 	@$(CC) $(CPPFLAGS) -o $@ -c $< && printf "$(WHITE)$(BOLD)\rCompiling: $(CYAN)$(notdir $@)$(GREEN)\r\e[35C[OK]\n$(RESET)"
