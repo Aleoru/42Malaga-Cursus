@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:08:07 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/13 20:12:53 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:54:10 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <string>
+#include <limits>
 
 enum	e_type{
 	NONE,
@@ -34,6 +36,10 @@ class	ScalarConverter {
 	
 	public:
 		static void	convert(const std::string str);
+
+	class	ScalarConverterException : public std::exception {
+		virtual const char* what() const throw() { return "Unknown type"; }
+	};
 };
 
 #endif

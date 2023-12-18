@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:08:11 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/13 20:14:42 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/18 21:10:07 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	isInt(std::string str) {
 	if (str[0] == '+' || str[0] == '-')
 		i++;
 
-	for (int j(i); j < (int)str.length(); j++) {
+	for (int j(i); j < static_cast<int>(str.length()); j++) {
 		if (!std::isdigit(str[j]))
 			return false;
 	}
@@ -60,7 +60,7 @@ bool	isFloat(std::string str) {
 	if (str[0] == '+' || str[0] == '-')
 		i++;
 
-	for (int j(i); j < (int)str.length() - 1; j++) {
+	for (int j(i); j < static_cast<int>(str.length()) - 1; j++) {
 		
 		if(str[j] == '.' && !p)
 			p = true;
@@ -83,7 +83,7 @@ bool	isDouble(std::string str) {
 	if (str[0] == '+' || str[0] == '-')
 		i++;
 
-	for (int j(i); j < (int)str.length(); j++) {
+	for (int j(i); j < static_cast<int>(str.length()); j++) {
 		
 		if(str[j] == '.' && !p)
 			p = true;
@@ -101,42 +101,140 @@ bool	isLiteral(std::string str){
 	return false;
 }
 
+
+void	printChar(const std::string str) {
+
+	char	c = str[0];
+
+	std::cout << "char: " << c << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+
+}
+
+void	printInt(const std::string str){
+
+	int	i = std::stoi(str);
+
+	if (std::isprint(i))
+		std::cout << "char: " << static_cast<char>(i) << std::endl;
+	else if (!std::isprint(i) && i > 0 && i < CHAR_MAX)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: " << i << std::endl;
+	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;	
+
+}
+
+//
+
+void	printFloat(const std::string str){
+
+	float	f = std::stof(str);
+
+	if (std::isprint(f))
+		std::cout << "char: " << static_cast<char>(f) << std::endl;
+	else if (!std::isprint(f) && f > 0 && f < CHAR_MAX)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: " << static_cast<int>(f) << std::endl;
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;	
+
+}
+
+void	printDouble(const std::string str){
+
+	double	d = std::stoi(str);
+
+	if (std::isprint(d))
+		std::cout << "char: " << static_cast<char>(d) << std::endl;
+	else if (!std::isprint(d) && d > 0 && d < CHAR_MAX)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: " << static_cast<int>(d) << std::endl;
+	std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
+	std::cout << "double: " << d << ".0" << std::endl;	
+
+}
+
+bool	isImpossible(const std::string str, e_type type){
+
+	int		i;
+	float	f;
+	double	d;
+
+	try {
+
+		if (type == INT)
+			i = std::stoi(str);
+		else if (type == FLOAT)
+			f = std::stof(str);
+		else if (type == DOUBLE)
+			d = std::stod(str);
+		return false;
+
+	} catch(std::exception & e) {
+		return true;
+	}
+
+}
+
+e_type	setType(const std::string str) {
+
+	if (isChar(str))
+		return CHAR;
+	else if (isInt(str))
+		return INT;
+	else if(isFloat(str))
+		return FLOAT;
+	else if(isDouble(str))
+		return DOUBLE;
+	else if(isLiteral(str))
+		return LITERALS;
+	else
+		return NONE;
+
+}
+
 void	ScalarConverter::convert(const std::string str){
 
-	e_type	type;
-
 	std::cout << "str: \"" << str << "\"" << std::endl;
-	if (isChar(str))
-		type = CHAR;
-	else if (isInt(str))
-		type = INT;
-	else if(isFloat(str))
-		type = FLOAT;
-	else if(isDouble(str))
-		type = DOUBLE;
-	else if(isLiteral(str))
-		type = LITERALS;
-	else
-		type = NONE;
+
+	e_type	type = setType(str);
+
+	if (isImpossible(str, type)){
+		std::cout << "Imposible " << type << std::endl;
+		return;
+	}
 
 	switch (type) {
 		case CHAR:
-			std::cout << "Soy Char-lie" << std::endl;
+			//std::cout << "Soy Char-lie" << std::endl;
+			printChar(str);
 			break;
 		case INT:
-			std::cout << "Estoy Int-ero" << std::endl;
+			//std::cout << "Estoy Int-ero" << std::endl;
+			//2147483647 || -2147483648
+			printInt(str);
 			break;
 		case FLOAT:
-			std::cout << "Estoy Float-ando" << std::endl;
+			//std::cout << "Estoy Float-ando" << std::endl;
+			printFloat(str);
 			break;
 		case DOUBLE:
-			std::cout << "Veo to' Double" << std::endl;
+			///std::cout << "Veo to' Double" << std::endl;
+			printDouble(str);
 			break;
 		case LITERALS:
 			std::cout << "Literal-mente no se que poner" << std::endl;
 			break;
 		case NONE:
-			std::cout << "Yo soy nada" << std::endl;
-			break;
+			throw ScalarConverter::ScalarConverterException();
 	}
 }
