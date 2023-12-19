@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:08:11 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/18 21:10:07 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:07:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,37 +129,47 @@ void	printInt(const std::string str){
 
 }
 
-//
-
 void	printFloat(const std::string str){
 
 	float	f = std::stof(str);
 
-	if (std::isprint(f))
+	if (f == static_cast<int>(f) && std::isprint(f))
 		std::cout << "char: " << static_cast<char>(f) << std::endl;
 	else if (!std::isprint(f) && f > 0 && f < CHAR_MAX)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: Impossible" << std::endl;
 	std::cout << "int: " << static_cast<int>(f) << std::endl;
-	std::cout << "float: " << f << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;	
+	if (f == static_cast<int>(f))
+		std::cout << "float: " << f << ".0f" << std::endl;
+	else
+		std::cout << "float: " << f << "f" << std::endl;
+	if (f == static_cast<int>(f))
+		std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;	
+	else
+		std::cout << "double: " << static_cast<double>(f) << std::endl;
 
 }
 
 void	printDouble(const std::string str){
 
-	double	d = std::stoi(str);
+	double	d = std::stod(str);
 
-	if (std::isprint(d))
+	if (d == static_cast<int>(d) && std::isprint(d))
 		std::cout << "char: " << static_cast<char>(d) << std::endl;
 	else if (!std::isprint(d) && d > 0 && d < CHAR_MAX)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: Impossible" << std::endl;
 	std::cout << "int: " << static_cast<int>(d) << std::endl;
-	std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
-	std::cout << "double: " << d << ".0" << std::endl;	
+	if (d == static_cast<int>(d))
+		std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+	if (d == static_cast<int>(d))
+		std::cout << "double: " << d << ".0" << std::endl;	
+	else
+		std::cout << "double: " << d << std::endl;	
 
 }
 
@@ -203,8 +213,6 @@ e_type	setType(const std::string str) {
 }
 
 void	ScalarConverter::convert(const std::string str){
-
-	std::cout << "str: \"" << str << "\"" << std::endl;
 
 	e_type	type = setType(str);
 
