@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:08:11 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/19 20:07:35 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:51:14 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ScalarConverter & ScalarConverter::operator=(const ScalarConverter & rhs) {
 }
 
 static bool	isChar(std::string str) {
-	return (str.length() == 1 && std::isalpha(str[0]) && std::isprint(str[0]));
+	return (str.length() == 1 && (str[0] >= 32 && str[0] <= 127) && std::isprint(str[0]));
 }
 
 bool	isInt(std::string str) {
@@ -55,6 +55,10 @@ bool	isFloat(std::string str) {
 		return false;
 	
 	int		i = 0;
+
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+
 	bool	p = false;
 
 	if (str[0] == '+' || str[0] == '-')
@@ -78,6 +82,10 @@ bool	isDouble(std::string str) {
 		return false;
 	
 	int		i = 0;
+
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+
 	bool	p = false;
 
 	if (str[0] == '+' || str[0] == '-')
@@ -119,13 +127,19 @@ void	printInt(const std::string str){
 
 	if (std::isprint(i))
 		std::cout << "char: " << static_cast<char>(i) << std::endl;
-	else if (!std::isprint(i) && i > 0 && i < CHAR_MAX)
+	else if (!std::isprint(i) && i >= 0 && i <= CHAR_MAX)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: Impossible" << std::endl;
 	std::cout << "int: " << i << std::endl;
 	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;	
+
+}
+
+void	printLiterals(const std::string str){
+
+
 
 }
 
