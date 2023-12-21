@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:08:11 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/20 19:51:14 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:39:02 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,6 @@ void	printInt(const std::string str){
 
 }
 
-void	printLiterals(const std::string str){
-
-
-
-}
-
 void	printFloat(const std::string str){
 
 	float	f = std::stof(str);
@@ -153,7 +147,10 @@ void	printFloat(const std::string str){
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: " << static_cast<int>(f) << std::endl;
+	if (f > INT_MAX || f < INT_MIN)
+		std::cout << "int: Impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	if (f == static_cast<int>(f))
 		std::cout << "float: " << f << ".0f" << std::endl;
 	else
@@ -175,7 +172,10 @@ void	printDouble(const std::string str){
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: Impossible" << std::endl;
-	std::cout << "int: " << static_cast<int>(d) << std::endl;
+	if (d > INT_MAX || d < INT_MIN)
+		std::cout << "int: Impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
 	if (d == static_cast<int>(d))
 		std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
 	else
@@ -184,6 +184,21 @@ void	printDouble(const std::string str){
 		std::cout << "double: " << d << ".0" << std::endl;	
 	else
 		std::cout << "double: " << d << std::endl;	
+
+}
+
+void	printLiterals(const std::string str){
+
+	std::cout << "char: Impossible\nint: Impossible" << std::endl;
+
+	if(!str.compare("nan"))
+		std::cout << "float: " << str + "f" <<"\ndouble: " << str << std::endl;
+	else if (!str.compare("nanf"))
+		std::cout << "float: " << str << "\ndouble: " << str.substr(0, str.length() - 1) << std::endl;
+	else if(!str.compare("+inf") || !str.compare("-inf"))
+		std::cout << "float: " << str + "f" <<"\ndouble: " << str << std::endl;
+	else if(!str.compare("+inff") || !str.compare("-inff"))
+		std::cout << "float: " << str << "\ndouble: " << str.substr(0, str.length() - 1) << std::endl;
 
 }
 
@@ -254,7 +269,8 @@ void	ScalarConverter::convert(const std::string str){
 			printDouble(str);
 			break;
 		case LITERALS:
-			std::cout << "Literal-mente no se que poner" << std::endl;
+			//std::cout << "Literal-mente no se que poner" << std::endl;
+			printLiterals(str);
 			break;
 		case NONE:
 			throw ScalarConverter::ScalarConverterException();
