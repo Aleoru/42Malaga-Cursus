@@ -6,12 +6,12 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 18:44:34 by aoropeza          #+#    #+#              #
-#    Updated: 2023/12/12 18:33:36 by aoropeza         ###   ########.fr        #
+#    Updated: 2024/01/02 20:27:53 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= convert
-SRC		= main.cpp ScalarConverter.cpp
+NAME	= serializer
+SRC		= main.cpp Serializer.cpp
 OBJS	= $(SRC:.cpp=.o)
 CC		= c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
