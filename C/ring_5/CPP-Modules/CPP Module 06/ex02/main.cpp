@@ -10,3 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Base.hpp"
+
+int main(void) {
+
+    Base    *something;
+
+    something = Base::generate();
+    Base    &another = *something;
+
+    Base::identify(something);
+    Base::identify(another);
+
+    return (0);
+
+}
