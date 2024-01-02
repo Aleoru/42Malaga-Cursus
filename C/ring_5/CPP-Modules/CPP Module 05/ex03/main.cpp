@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:55 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/12 15:51:17 by aoropeza         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:01:59 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ int	main(void) {
 	AForm* rrf1;
 	AForm* rrf2;
 	
-	rrf1 = someRandomIntern.makeForm("robotomy request", "Bender");
 	try {
-		//rrf2 = someRandomIntern.makeForm("shrubbery creation", "Tree");
-		rrf2 = someRandomIntern.makeForm("fsasf creation", "Tree");
+		rrf1 = someRandomIntern.makeForm("shrubbery creation", "Tree");
+		if (rrf1 == nullptr)
+			throw Intern::FormDoesNotExistException();
+		Bureau.signForm(*rrf1);
+		Bureau.executeForm(*rrf1);
+		rrf2 = someRandomIntern.makeForm("robotomy request", "Bender");
 		if (rrf2 == nullptr)
 			throw Intern::FormDoesNotExistException();
 		Bureau.signForm(*rrf2);

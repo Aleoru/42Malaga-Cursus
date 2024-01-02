@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:00:55 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/09 19:00:15 by aoropeza         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:30:22 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,31 @@
 int	main(void) {
 
 	try {
-		Bureaucrat	A("Eufrasio", 150);
-		Bureaucrat	B("Ermenegildo", 80);
-		Bureaucrat	C("Eustaquio", 50);
-		ShrubberyCreationForm		D("42A");
-		RobotomyRequestForm			E("42B");
-		PresidentialPardonForm		F("42C");
 
+		std::cout << "\033[33;1m[    TEST 1    ]\033[0m" << std::endl;
+		Bureaucrat				A("Eufrasio", 130);
+		ShrubberyCreationForm	D("42A");
 		std::cout << A << std::endl;
-		std::cout << B << std::endl;
-		std::cout << C << std::endl;
 		std::cout << D << std::endl;
-		std::cout << E << std::endl;
-		std::cout << F << std::endl;
-
 		A.signForm(D);
-		B.signForm(E);
-		C.signForm(F);
-
 		A.executeForm(D);
+		std::cout << std::endl;
+
+		std::cout << "\033[33;1m[    TEST 2    ]\033[0m" << std::endl;
+		Bureaucrat			B("Ermenegildo", 42);
+		RobotomyRequestForm	E("42B");
+		std::cout << B << std::endl;
+		std::cout << E << std::endl;
+		B.signForm(E);
 		B.executeForm(E);
+		std::cout << std::endl;
+
+		std::cout << "\033[33;1m[    TEST 3    ]\033[0m" << std::endl;
+		Bureaucrat				C("Eustaquio", 5);
+		PresidentialPardonForm	F("42C");
+		std::cout << C << std::endl;
+		std::cout << F << std::endl;
+		C.signForm(F);
 		C.executeForm(F);
 
 	}

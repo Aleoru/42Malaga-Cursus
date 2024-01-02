@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:02:38 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/12/12 15:50:56 by aoropeza         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:59:48 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Intern::Intern(const Intern &src) {
 }
 
 Intern::~Intern(void) {
-	std::cout << "Intern destructor called" << std::endl;
+	//std::cout << "Intern destructor called" << std::endl;
 }
 
 Intern & Intern::operator=(const Intern &rhs){
@@ -33,19 +33,21 @@ Intern & Intern::operator=(const Intern &rhs){
 
 AForm	*Intern::makeForm(std::string name, std::string target) {
 	
-	if (!name.compare("presidential pardon")){
-		std::cout << "Intern creates " << name << std::endl;
-		return new PresidentialPardonForm(target);
+	std::string	forms[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+	int	i = 0;
+
+	while (i < 3 && forms[i].compare(name))
+		i++;
+	
+	switch (i) {
+		case 0:
+			return new PresidentialPardonForm(target);
+		case 1:
+			return new RobotomyRequestForm(target);
+		case 2:
+			return new ShrubberyCreationForm(target);
+		default:
+			return (nullptr);
 	}
-	else if (!name.compare("robotomy request")){
-		std::cout << "Intern creates " << name << std::endl;
-		return new RobotomyRequestForm(target);
-	}
-	else if (!name.compare("shrubbery creation")){
-		std::cout << "Intern creates " << name << std::endl;
-		return new ShrubberyCreationForm(target);
-	}
-	else
-		return (nullptr);
 
 }
