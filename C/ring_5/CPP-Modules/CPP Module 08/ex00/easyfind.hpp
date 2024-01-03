@@ -18,6 +18,7 @@
 #include <list>
 #include <vector>
 #include <deque>
+#include <iterator>
 
 class	OutOfRangeException : public std::exception {
 	public:
@@ -25,15 +26,14 @@ class	OutOfRangeException : public std::exception {
 };
 
 template <typename T>
-int	easyfind(T &cont, int find) {
+int	easyfind(T& cont, int find) {
 
-	int	res = 0;
+	typename T::iterator	res;
 
-	if (std::find(cont.begin(), cont.end(), find))
-		std::cout << "funciona" << std::endl;
-	if (find != res)
-		throw std::exception();
-	return res;
+	res = std::find(cont.begin(), cont.end(), find);
+	if (find != *res)
+		throw OutOfRangeException();
+	return *res;
 
 }
 
