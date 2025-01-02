@@ -16,3 +16,9 @@
 [submodule "ring_2/so_long"]
 	path = ring_2/so_long
 	url = git@github.com:Aleoru/so_long.git
+[submodule "ring_3/philo"]
+	path = ring_3/philo
+	url = git@github.com:Aleoru/philo.git
+[submodule "ring_3/Minishell"]
+	path = ring_3/Minishell
+	url = git@github.com:Aleoru/Minishell.git
