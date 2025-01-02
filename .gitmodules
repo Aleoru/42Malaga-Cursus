@@ -7,3 +7,12 @@
 [submodule "ring_1/get_next_line"]
 	path = ring_1/get_next_line
 	url = git@github.com:Aleoru/get_next_line.git
+[submodule "ring_2/pipex"]
+	path = ring_2/pipex
+	url = git@github.com:Aleoru/pipex.git
+[submodule "ring_2/push_swap"]
+	path = ring_2/push_swap
+	url = git@github.com:Aleoru/push_swap.git
+[submodule "ring_2/so_long"]
+	path = ring_2/so_long
+	url = git@github.com:Aleoru/so_long.git
