@@ -1,3 +1,6 @@
 [submodule "C/ring_2/so_long/lib/MLX42"]
 	path = C/ring_2/so_long/lib/MLX42
 	url = https://github.com/codam-coding-college/MLX42
+[submodule "ring_0/libft"]
+	path = ring_0/libft
+	url = git@github.com:Aleoru/libft.git
