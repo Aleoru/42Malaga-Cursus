@@ -34,3 +34,6 @@
 [submodule "ring_5/Inception"]
 	path = ring_5/Inception
 	url = git@github.com:Aleoru/Inception.git
+[submodule "ring_6/ft_transcendence"]
+	path = ring_6/ft_transcendence
+	url = git@github.com:belenarbizu/ft_transcendence.git
