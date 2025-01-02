@@ -28,3 +28,9 @@
 [submodule "ring_4/net_practice"]
 	path = ring_4/net_practice
 	url = git@github.com:Aleoru/net_practice.git
+[submodule "ring_5/ft_irc"]
+	path = ring_5/ft_irc
+	url = git@github.com:Aleoru/ft_irc.git
+[submodule "ring_5/Inception"]
+	path = ring_5/Inception
+	url = git@github.com:Aleoru/Inception.git
