@@ -22,3 +22,9 @@
 [submodule "ring_3/Minishell"]
 	path = ring_3/Minishell
 	url = git@github.com:Aleoru/Minishell.git
+[submodule "ring_4/CPP-Modules"]
+	path = ring_4/CPP-Modules
+	url = git@github.com:Aleoru/CPP-Modules.git
+[submodule "ring_4/net_practice"]
+	path = ring_4/net_practice
+	url = git@github.com:Aleoru/net_practice.git
