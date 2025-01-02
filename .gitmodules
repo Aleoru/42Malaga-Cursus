@@ -4,3 +4,9 @@
 [submodule "ring_0/libft"]
 	path = ring_0/libft
 	url = git@github.com:Aleoru/libft.git
+[submodule "ring_1/ft_printf"]
+	path = ring_1/ft_printf
+	url = git@github.com:Aleoru/ft_printf.git
+[submodule "ring_1/get_next_line"]
+	path = ring_1/get_next_line
+	url = git@github.com:Aleoru/get_next_line.git
